@@ -1,0 +1,43 @@
+/* ==========================================================================
+   PÁGINA B: "SALUD Y BIENESTAR" (Mindfulness, Yoga, Nutrición)
+   Estética: Inspiración nórdica, texturas orgánicas (microcemento), luz y amplitud.
+   ========================================================================== */
+
+:root[data-theme="bienestar"],
+body.theme-bienestar {
+  /* Paleta cromática principal */
+  --bg-primary: #EAE8E3;         /* Piedra Cálida (Warm Stone) */
+  --bg-surface: #F4F2EE;         /* Superficie de piedra suave / lino */
+  --bg-surface-elevated: #FFFFFF;/* Blanco puro para tarjetas elevadas */
+  --bg-glass: rgba(234, 232, 227, 0.88);
+  
+  --text-primary: #2A2A2A;       /* Gris Grafito */
+  --text-muted: #5A5A5A;         /* Gris carbón suave */
+  --text-dim: #8A8A86;           /* Tono mineral claro */
+  
+  --accent-cta: #3E5A44;         /* Verde Botánico */
+  --accent-cta-hover: #2D4232;   /* Verde bosque profundo */
+  --accent-secondary: #D4B895;   /* Madera Suave / Roble claro */
+  --accent-secondary-glow: rgba(212, 184, 149, 0.35);
+  
+  --border-subtle: rgba(42, 42, 42, 0.1);
+  --border-focus: rgba(62, 90, 68, 0.45);
+  
+  /* Tipografía */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', system-ui, -apple-system, sans-serif;
+  --heading-weight: 600;
+  --heading-transform: none;
+  --heading-letter-spacing: -0.01em;
+  
+  /* Sombras y atmósfera orgánica */
+  --shadow-elevation: 0 12px 32px -8px rgba(42, 42, 42, 0.08);
+  --shadow-glow: 0 0 25px rgba(62, 90, 68, 0.2);
+  --bridge-gradient: linear-gradient(135deg, #3E5A44 0%, #D4B895 100%);
+  --texture-overlay: radial-gradient(circle at 85% 15%, rgba(62, 90, 68, 0.07) 0%, transparent 55%),
+                     radial-gradient(circle at 10% 75%, rgba(212, 184, 149, 0.12) 0%, transparent 50%),
+                     url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+
+  --card-radius: 18px;
+  --pill-radius: 9999px;
+}

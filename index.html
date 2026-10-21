@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es" data-theme="enjoy">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enjoy and Learn · Salsa, Eventos y Audiovisuales</title>
+  <meta name="description" content="Aprende salsa cubana y ritmos latinos con metodología inmersiva. Eventos exclusivos y producción audiovisual en Luxemburgo.">
+  
+  <!-- Tipografías de Google Fonts: Montserrat (Titulares cinematográficos) + Inter (Cuerpo legible) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Hojas de estilo: Tema A + Estructura Compartida -->
+  <link rel="stylesheet" href="theme-enjoy.css">
+  <link rel="stylesheet" href="styles-base.css">
+</head>
+<body class="theme-enjoy">
+
+  <!-- ==========================================================================
+       1. ARQUITECTURA GLOBAL Y NAVEGACIÓN (HEADER STICKY)
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      
+      <!-- LOGO IZQUIERDA -->
+      <a href="enjoy-and-learn.html" class="brand-logo" aria-label="Enjoy and Learn Inicio">
+        <span class="logo-badge">💃</span>
+        <span>ENJOY &amp; LEARN</span>
+      </a>
+
+      <!-- NAVEGACIÓN CENTRAL -->
+      <nav class="nav-desktop" aria-label="Navegación Principal">
+        <ul class="nav-center">
+          <li><a href="#historia" class="nav-link" data-i18n="nav_history">Historia</a></li>
+          <li><a href="#eventos" class="nav-link" data-i18n="nav_events">Eventos</a></li>
+          <li>
+            <button class="nav-cta-reserva" data-open-modal="booking" data-i18n="nav_booking">
+              Reserva
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- NAVEGACIÓN DERECHA: ACCIONES GLOBALES -->
+      <div class="nav-actions-right">
+        
+        <!-- SELECTOR MULTILINGÜE MINIMALISTA -->
+        <div class="lang-selector">
+          <button class="lang-btn" id="langToggleBtn" aria-haspopup="true" aria-expanded="false" aria-label="Cambiar idioma">
+            🌐 <span id="currentLangLabel">ES</span> ▾
+          </button>
+          <ul class="lang-dropdown" id="langDropdown" role="menu">
+            <li><button class="lang-opt active" data-lang="es" role="menuitem">Español (ES)</button></li>
+            <li><button class="lang-opt" data-lang="en" role="menuitem">English (EN)</button></li>
+            <li><button class="lang-opt" data-lang="fr" role="menuitem">Français (FR)</button></li>
+          </ul>
+        </div>
+
+        <!-- BOTÓN CROSS-LINK ("EL PUENTE" HACIA LA PÁGINA HERMANA) -->
+        <a href="salud-y-bienestar.html" class="bridge-button" id="bridgeBtn" title="Ir a la web hermana de Salud y Bienestar">
+          <span class="bridge-pulse"></span>
+          <span data-i18n="bridge_to_bienestar">Salud y Bienestar</span>
+          <span>➔</span>
+        </a>
+
+        <!-- TOGGLE MÓVIL (HAMBURGUESA) -->
+        <button class="mobile-toggle" id="mobileToggleBtn" aria-label="Abrir menú" aria-expanded="false">
+          ☰
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MENÚ MÓVIL DESPLEGABLE -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="#historia" data-i18n="nav_history">Historia</a></li>
+      <li><a href="#eventos" data-i18n="nav_events">Eventos</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+    </ul>
+    <button class="btn-primary" data-open-modal="booking" style="width: 100%;" data-i18n="nav_booking">
+      Reserva tu plaza
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       HERO PRINCIPAL (CINEMATOGRÁFICO, INMERSIVO)
+       ========================================================================== -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-kicker" data-i18n="hero_kicker_enjoy">Salsa · Eventos · Producción Audiovisual</span>
+        <h1 class="hero-title" data-i18n="hero_title_enjoy">
+          Ritmo, pasión y <span class="accent">experiencias</span> que transforman.
+        </h1>
+        <p class="hero-lead" data-i18n="hero_lead_enjoy">
+          Aprende salsa cubana y ritmos latinos con metodología inmersiva. Eventos exclusivos y producción audiovisual de alto nivel en Luxemburgo y Europa.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn-primary" data-open-modal="booking" data-i18n="hero_cta_booking">
+            Reservar Experiencia
+          </button>
+          <a href="#eventos" class="btn-outline" data-i18n="hero_cta_events">
+            Ver Galería de Eventos
+          </a>
+        </div>
+      </div>
+
+      <!-- Tarjeta Visual Destacada -->
+      <div class="hero-visual-card">
+        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=900&q=80" alt="Clase de Salsa y Evento Musical en Directo" loading="eager">
+        <div class="hero-card-badge">
+          <h4>Próxima Noche Cubana · Luxemburgo</h4>
+          <p>Música en directo, workshops de ritmo y rodaje audiovisual cinematográfico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECCIÓN HISTORIA / ABOUT
+       ========================================================================== -->
+  <section class="about-section" id="historia">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="about_kicker">Quiénes Somos</span>
+        <h2 class="section-title" data-i18n="about_title_enjoy">
+          Un método vibrante donde la técnica se convierte en arte
+        </h2>
+        <p class="section-subtitle">
+          Enjoy and Learn nace de la unión entre el baile social y la narrativa audiovisual. No solo enseñamos pasos de salsa: creamos comunidad, musicalidad y memoria visual para cada evento.
+        </p>
+      </div>
+
+      <div class="services-grid" id="servicios">
+        <article class="service-card">
+          <span class="service-icon">💃</span>
+          <h3>Clases y Talleres Inmersivos</h3>
+          <p>Desde pasos básicos hasta estilo y musicalidad avanzada en Salsa Casino, Son Cubano y Bachata moderna con enfoque pedagógico claro.</p>
+        </article>
+
+        <article class="service-card">
+          <span class="service-icon">🎬</span>
+          <h3>Producción Audiovisual</h3>
+          <p>Grabación cinematográfica en 4K, edición de reels dinámicos y aftermovies para festivales de baile, academias y eventos corporativos.</p>
+        </article>
+
+        <article class="service-card">
+          <span class="service-icon">✨</span>
+          <h3>Fiestas y Eventos Exclusivos</h3>
+          <p>Organización integral de veladas de baile social con DJs de referencia, shows en vivo y ambientación inmersiva en Luxemburgo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECCIÓN EVENTOS: GALERÍA FLOTANTE (MASONRY ASIMÉTRICA + PARALLAX)
+       ========================================================================== -->
+  <section class="events-section" id="eventos">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker">Galería Visual</span>
+        <h2 class="section-title">Momentos en la pista</h2>
+        <p class="section-subtitle">Explora fotos y capturas de nuestros últimos talleres, rodajes y noches sociales.</p>
+      </div>
+
+      <!-- Filtros interactivos -->
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos</button>
+        <button class="filter-btn" data-filter="clases" data-i18n="filter_classes">Clases</button>
+        <button class="filter-btn" data-filter="eventos" data-i18n="filter_events">Eventos</button>
+        <button class="filter-btn" data-filter="audiovisual">Audiovisual</button>
+      </div>
+
+      <!-- Cuadrícula Asimétrica Flotante con Parallax -->
+      <div class="floating-masonry" id="galleryGrid">
+        
+        <div class="masonry-item span-7" data-category="eventos">
+          <span class="media-badge">VIDEO 4K</span>
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80" alt="Gala Latina de Salsa" class="masonry-media">
+          <div class="masonry-overlay">
+            <div class="masonry-caption">
+              <h4>Noche Social de Verano · Philharmonie</h4>
+              <p>Música en directo y más de 120 bailarines en pista.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masonry-item span-5" data-category="clases">
+          <span class="media-badge">TALLER</span>
+          <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80" alt="Taller de Musicalidad" class="masonry-media">
+          <div class="masonry-overlay">
+            <div class="masonry-caption">
+              <h4>Musicalidad y Timba Cubana</h4>
+              <p>Entendiendo la clave, las congas y los acentos rítmicos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masonry-item span-4" data-category="audiovisual">
+          <span class="media-badge">RODAJE</span>
+          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80" alt="Producción de Videoclip" class="masonry-media">
+          <div class="masonry-overlay">
+            <div class="masonry-caption">
+              <h4>Behind the Scenes · Festival</h4>
+              <p>Cobertura cinematográfica y fotografía de alto impacto.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="masonry-item span-8" data-category="clases">
+          <span class="media-badge">MASTERCLASS</span>
+          <img src="https://images.unsplash.com/photo-1545224144-b38cd309ef69?auto=format&fit=crop&w=1200&q=80" alt="Masterclass de Estilo y Giros" class="masonry-media">
+          <div class="masonry-overlay">
+            <div class="masonry-caption">
+              <h4>Taller Intensivo de Giros y Parejas</h4>
+              <p>Fluidez, conexión de brazos y disociación corporal.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MODAL DE RESERVA (CTA FORMULARIO LIMPIO)
+       ========================================================================== -->
+  <div class="booking-modal-backdrop" id="bookingModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="booking-modal">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Cerrar ventana">✕</button>
+      
+      <div class="modal-header">
+        <h3 id="modalTitle" data-i18n="modal_title">Agenda tu Experiencia</h3>
+        <p data-i18n="modal_subtitle">Selecciona el servicio y fecha deseada. Responderemos en menos de 24 horas.</p>
+      </div>
+
+      <form class="booking-form" id="bookingForm">
+        <div class="form-group">
+          <label for="bookService" data-i18n="modal_service_label">Servicio de interés</label>
+          <select id="bookService" class="form-select" required>
+            <option value="clases-privadas">Clases Privadas de Salsa (Individual / Pareja)</option>
+            <option value="talleres-grupales">Taller Grupal de Fin de Semana</option>
+            <option value="grabacion-audiovisual">Producción Audiovisual para Eventos</option>
+            <option value="evento-privado">Animación de Fiesta o Evento de Empresa</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="bookDate" data-i18n="modal_date_label">Fecha preferida</label>
+          <input type="date" id="bookDate" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookName" data-i18n="modal_name_label">Nombre completo</label>
+          <input type="text" id="bookName" class="form-input" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookEmail" data-i18n="modal_email_label">Correo electrónico</label>
+          <input type="email" id="bookEmail" class="form-input" placeholder="nombre@correo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="bookNotes" data-i18n="modal_notes_label">Mensaje o necesidades especiales</label>
+          <textarea id="bookNotes" class="form-textarea" placeholder="Nivel actual de baile, número de personas, etc."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit-btn" data-i18n="modal_submit">
+          Confirmar Solicitud de Reserva
+        </button>
+      </form>
+
+      <div class="form-success-msg" id="formSuccessMsg" data-i18n="modal_success">
+        ¡Gracias! Tu solicitud ha sido registrada. Te contactaremos pronto.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER MINIMALISTA
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="brand-logo">
+          <span class="logo-badge">💃</span>
+          <span>ENJOY &amp; LEARN</span>
+        </div>
+
+        <!-- Iconos sociales propios de la vertiente de baile/audiovisual -->
+        <div class="footer-socials" aria-label="Redes Sociales de Enjoy and Learn">
+          <a href="#" class="social-icon-btn" title="Instagram de Salsa y Eventos" aria-label="Instagram">📸</a>
+          <a href="#" class="social-icon-btn" title="Canal de YouTube con Tutoriales" aria-label="YouTube">▶️</a>
+          <a href="#" class="social-icon-btn" title="Spotify Playlist de Salsa" aria-label="Spotify">🎵</a>
+          <a href="#" class="social-icon-btn" title="Vimeo Producciones 4K" aria-label="Vimeo">🎞️</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Enjoy and Learn · <span data-i18n="footer_rights">Todos los derechos reservados.</span> Luxemburgo.</p>
+        <div class="footer-legal-links">
+          <a href="#" data-i18n="footer_privacy">Política de Privacidad</a>
+          <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+          <a href="#" data-i18n="footer_cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts compartidos del ecosistema -->
+  <script src="ecosystem.js"></script>
+</body>
+</html>

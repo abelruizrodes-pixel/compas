@@ -1,0 +1,42 @@
+/* ==========================================================================
+   PÁGINA A: "ENJOY AND LEARN" (Salsa, Eventos y Audiovisuales)
+   Estética: Cinematográfica, inmersiva, de alto contraste y energía.
+   ========================================================================== */
+
+:root[data-theme="enjoy"],
+body.theme-enjoy {
+  /* Paleta cromática principal */
+  --bg-primary: #121212;         /* Negro Asfalto */
+  --bg-surface: #1a1a1a;         /* Superficie elevada oscura */
+  --bg-surface-elevated: #242424;/* Elementos flotantes */
+  --bg-glass: rgba(18, 18, 18, 0.85);
+  
+  --text-primary: #F5F5F5;       /* Blanco Humo */
+  --text-muted: #A3A3A3;         /* Gris medio legible */
+  --text-dim: #737373;           /* Gris sutil */
+  
+  --accent-cta: #C62828;         /* Rojo Carmesí primario */
+  --accent-cta-hover: #E53935;   /* Rojo vibrante en hover */
+  --accent-secondary: #D4AF37;   /* Oro Envejecido */
+  --accent-secondary-glow: rgba(212, 175, 55, 0.25);
+  
+  --border-subtle: rgba(245, 245, 245, 0.12);
+  --border-focus: rgba(212, 175, 55, 0.5);
+  
+  /* Tipografía */
+  --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --heading-weight: 800;
+  --heading-transform: uppercase;
+  --heading-letter-spacing: -0.02em;
+  
+  /* Sombras y atmósfera */
+  --shadow-elevation: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 25px rgba(198, 40, 40, 0.35);
+  --bridge-gradient: linear-gradient(135deg, #C62828 0%, #D4AF37 100%);
+  --texture-overlay: radial-gradient(circle at 80% 20%, rgba(198, 40, 40, 0.12) 0%, transparent 60%),
+                     radial-gradient(circle at 10% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+  
+  --card-radius: 12px;
+  --pill-radius: 9999px;
+}
