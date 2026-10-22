@@ -124,6 +124,23 @@ img, video {
   white-space: nowrap;
 }
 
+.brand-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--accent-secondary);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  background: #121212;
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.1) rotate(4deg);
+  border-color: var(--accent-cta);
+  box-shadow: 0 4px 16px rgba(198, 40, 40, 0.4);
+}
+
 .logo-badge {
   width: 34px;
   height: 34px;
