@@ -1092,6 +1092,12 @@ img, video {
   transform: none;
 }
 
+.instructor-she-img {
+  object-position: center top !important;
+  transform: scale(1.18);
+  transform-origin: center 4%;
+}
+
 .instructor-role-badge {
   position: absolute;
   top: 1rem;
