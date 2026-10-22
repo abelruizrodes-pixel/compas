@@ -7,12 +7,12 @@ Ecosistema web dual compuesto por dos sitios hermanos interconectados que compar
 ## 🎨 Identidades Visuales
 
 ### 💃 1. Enjoy and Learn (Salsa, Bachata, Rumba & Bailoterapia)
-* **Estética:** Cinematográfica, inmersiva, nocturna y de alto contraste premium.
+* **Estética:** Luminosa, cálida, acogedora y con elegancia antillana (Paleta "Caribe").
 * **Paleta Oficial de Marca:**
-  * **Fondo principal:** Negro Asfalto (`#121212`). Da un toque premium profundo y hace que los recursos audiovisuales resalten sin deslumbrar.
-  * **Acción primaria (Botones):** Rojo Carmesí (`#C62828`). Aporta la pasión y la energía focalizada para reservar entradas o clases.
-  * **Acentos:** Oro Envejecido (`#D4AF37`). Para iconos sutiles o tipografía secundaria, aportando un aire de nostalgia caribeña.
-  * **Texto:** Blanco Humo (`#F5F5F5`). Asegura una lectura cómoda sobre el fondo oscuro.
+  * **Fondo principal:** Blanco Arena (`#F4F1EA`). Un lienzo luminoso y cálido, mucho más acogedor que el blanco puro.
+  * **Acción primaria (Botones):** Terracota Vibrante (`#E65100`). Transmite el calor de la música afroantillana manteniendo una línea gráfica sofisticada.
+  * **Acentos:** Verde Botánico (`#2E7D32`). Un toque fresco que rompe la calidez y estructura visualmente la página.
+  * **Texto:** Gris Antracita (`#2C3E50`). Mantiene un contraste alto y moderno sin la dureza del negro absoluto.
 * **Tipografía:** Montserrat (Titulares enérgicos y potentes) + Inter (Lectura cómoda).
 
 ### 🌿 2. Salud y Bienestar (Mindfulness, Yoga y Nutrición Holística)

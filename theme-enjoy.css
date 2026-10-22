@@ -1,35 +1,35 @@
 /* ==========================================================================
-   PALETA OFICIAL "ENJOY AND LEARN"
-   Fondo principal: Negro Asfalto (#121212)
-   Acción primaria (Botones): Rojo Carmesí (#C62828)
-   Acentos: Oro Envejecido (#D4AF37)
-   Texto: Blanco Humo (#F5F5F5)
+   PALETA OFICIAL "CARIBE" (Enjoy and Learn)
+   Fondo principal: Blanco Arena (#F4F1EA)
+   Acción primaria (Botones): Terracota Vibrante (#E65100)
+   Acentos: Verde Botánico (#2E7D32)
+   Texto: Gris Antracita (#2C3E50)
    ========================================================================== */
 
 :root,
 :root[data-theme="enjoy"],
 body.theme-enjoy {
-  /* Fondo principal: Negro Asfalto (#121212) - Toque premium profundo */
-  --bg-primary: #121212;
-  --bg-surface: #1a1a1a;
-  --bg-surface-elevated: #242424;
-  --bg-glass: rgba(18, 18, 18, 0.88);
+  /* Fondo principal: Blanco Arena (#F4F1EA) - Un lienzo luminoso y cálido */
+  --bg-primary: #F4F1EA;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #FFFFFF;
+  --bg-glass: rgba(244, 241, 234, 0.92);
   
-  /* Texto: Blanco Humo (#F5F5F5) - Lectura cómoda sobre fondo oscuro */
-  --text-primary: #F5F5F5;
-  --text-muted: #B3B3B3;
-  --text-dim: #737373;
+  /* Texto: Gris Antracita (#2C3E50) - Contraste alto y moderno sin dureza */
+  --text-primary: #2C3E50;
+  --text-muted: #566573;
+  --text-dim: #7F8C8D;
   
-  /* Acción primaria (Botones): Rojo Carmesí (#C62828) - Pasión y energía focalizada */
-  --accent-cta: #C62828;
-  --accent-cta-hover: #D32F2F;
+  /* Acción primaria (Botones): Terracota Vibrante (#E65100) - Calor afroantillano */
+  --accent-cta: #E65100;
+  --accent-cta-hover: #BF360C;
   
-  /* Acentos: Oro Envejecido (#D4AF37) - Nostalgia caribeña para iconos sutiles y tipografía */
-  --accent-secondary: #D4AF37;
-  --accent-secondary-glow: rgba(212, 175, 55, 0.25);
+  /* Acentos: Verde Botánico (#2E7D32) - Frescura que estructura visualmente */
+  --accent-secondary: #2E7D32;
+  --accent-secondary-glow: rgba(46, 125, 50, 0.20);
   
-  --border-subtle: rgba(245, 245, 245, 0.12);
-  --border-focus: rgba(212, 175, 55, 0.5);
+  --border-subtle: rgba(44, 62, 80, 0.12);
+  --border-focus: rgba(46, 125, 50, 0.50);
   
   /* Tipografía */
   --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
@@ -38,12 +38,12 @@ body.theme-enjoy {
   --heading-transform: uppercase;
   --heading-letter-spacing: -0.02em;
   
-  /* Sombras y atmósfera */
-  --shadow-elevation: 0 10px 30px -10px rgba(0, 0, 0, 0.85);
-  --shadow-glow: 0 0 25px rgba(198, 40, 40, 0.35);
-  --bridge-gradient: linear-gradient(135deg, #C62828 0%, #D4AF37 100%);
-  --texture-overlay: radial-gradient(circle at 80% 20%, rgba(198, 40, 40, 0.10) 0%, transparent 60%),
-                     radial-gradient(circle at 10% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+  /* Sombras y atmósfera luminosa cálida */
+  --shadow-elevation: 0 10px 30px -10px rgba(44, 62, 80, 0.10);
+  --shadow-glow: 0 4px 20px rgba(230, 81, 0, 0.28);
+  --bridge-gradient: linear-gradient(135deg, #E65100 0%, #2E7D32 100%);
+  --texture-overlay: radial-gradient(circle at 85% 15%, rgba(230, 81, 0, 0.05) 0%, transparent 60%),
+                     radial-gradient(circle at 15% 85%, rgba(46, 125, 50, 0.04) 0%, transparent 50%);
   
   --card-radius: 12px;
   --pill-radius: 9999px;
