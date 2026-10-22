@@ -916,3 +916,615 @@ img, video {
     align-items: flex-start;
   }
 }
+
+/* ==========================================================================
+   ESTILOS COMPLEMENTARIOS: SELECTOR DE INSTRUCTORES Y TIENDA ONLINE
+   Ecosistema Enjoy & Learn: Clases de Baile (Él & Ella) y Tienda Oficial
+   ========================================================================== */
+
+/* Botón de Tienda en el Header */
+.bridge-button.shop-btn {
+  background: linear-gradient(135deg, #C62828 0%, #D4AF37 100%);
+  color: #FFF !important;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.bridge-button.dance-btn {
+  background: linear-gradient(135deg, #1a1a1a 0%, #C62828 100%);
+  color: #FFF !important;
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.cart-icon-btn {
+  position: relative;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--pill-radius);
+  padding: 0.45rem 0.85rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.25s ease;
+}
+
+.cart-icon-btn:hover {
+  border-color: var(--accent-secondary);
+}
+
+.cart-badge {
+  background: var(--accent-cta);
+  color: #FFF;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   SECCIÓN INSTRUCTORES (ÉL & ELLA)
+   ========================================================================== */
+.instructors-section {
+  padding: 6rem 0;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.instructor-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 0.75rem 2rem;
+  border-radius: var(--pill-radius);
+  background: var(--bg-surface-elevated);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-secondary);
+}
+
+.tab-btn.active {
+  background: var(--accent-cta);
+  color: #FFF;
+  border-color: var(--accent-cta);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.instructors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.instructor-card {
+  background: var(--bg-surface-elevated);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+}
+
+.instructor-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-secondary);
+  box-shadow: var(--shadow-elevation);
+}
+
+.instructor-card.highlight-special {
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.instructor-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #000;
+}
+
+.instructor-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.instructor-card:hover .instructor-media img {
+  transform: scale(1.05);
+}
+
+.instructor-role-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  color: var(--accent-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--pill-radius);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.instructor-content {
+  padding: 2.25rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.instructor-name {
+  font-size: 1.8rem;
+  margin-bottom: 0.35rem;
+}
+
+.instructor-subtitle {
+  color: var(--accent-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.instructor-bio {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.specialties-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.specialties-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.spec-pill {
+  font-size: 0.82rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--pill-radius);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.spec-pill.wellness-highlight {
+  background: rgba(62, 90, 68, 0.25);
+  border-color: #7fc8a9;
+  color: #7fc8a9;
+  font-weight: 700;
+}
+
+.spec-pill.rumba-highlight {
+  background: rgba(198, 40, 40, 0.2);
+  border-color: var(--accent-cta);
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.instructor-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* =========================================================
+   SECCIÓN ESTILOS DE BAILE (SALSA, BACHATA, RUMBA, BAILOTERAPIA)
+   ========================================================= */
+.styles-section {
+  padding: 6rem 0;
+}
+
+.styles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.style-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+.style-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-cta);
+}
+
+.style-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1.25rem;
+  display: inline-block;
+}
+
+.style-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.style-instructor-tag {
+  font-size: 0.78rem;
+  color: var(--accent-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.style-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.style-features {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.style-features li::before {
+  content: "✓ ";
+  color: var(--accent-secondary);
+  font-weight: bold;
+}
+
+/* =========================================================
+   TIENDA ONLINE (tienda.html & catálogo)
+   ========================================================= */
+.shop-hero {
+  padding: 5rem 0 3.5rem;
+  text-align: center;
+  background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+}
+
+.shop-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 2.5rem 0 3.5rem;
+  flex-wrap: wrap;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+.product-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-secondary);
+  box-shadow: var(--shadow-elevation);
+}
+
+.product-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #000;
+}
+
+.product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-media img {
+  transform: scale(1.06);
+}
+
+.product-tag-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--accent-cta);
+  color: #FFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--pill-radius);
+}
+
+.product-body {
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-category {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.product-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.product-desc {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.product-price {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.product-price small {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.btn-add-cart {
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--pill-radius);
+  background: var(--accent-cta);
+  color: #FFF;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.btn-add-cart:hover {
+  background: var(--accent-cta-hover);
+  transform: scale(1.04);
+}
+
+/* =========================================================
+   CARRITO LATERAL (DRAWER SLIDE-OVER)
+   ========================================================= */
+.cart-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 250;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cart-drawer-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100%);
+  background: var(--bg-surface-elevated);
+  border-left: 1px solid var(--border-subtle);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  z-index: 260;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 2rem;
+}
+
+.cart-drawer-backdrop.active .cart-drawer {
+  transform: translateX(0);
+}
+
+.cart-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.cart-drawer-header h3 {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-items-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-right: 0.5rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.cart-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-item-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+
+.cart-item-info span {
+  font-size: 0.85rem;
+  color: var(--accent-secondary);
+  font-weight: 700;
+}
+
+.cart-item-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.cart-item-remove:hover {
+  color: var(--accent-cta);
+}
+
+.cart-drawer-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 1.5rem;
+}
+
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.cart-checkout-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--pill-radius);
+  background: var(--accent-cta);
+  color: #FFF;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+}
+
+.cart-checkout-btn:hover {
+  background: var(--accent-cta-hover);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 980px) {
+  .instructors-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .styles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .styles-grid {
+    grid-template-columns: 1fr;
+  }
+}

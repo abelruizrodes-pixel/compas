@@ -1,6 +1,7 @@
 /**
- * ECOSISTEMA WEB DUAL: "Enjoy and Learn" & "Salud y Bienestar"
- * Script de interacción, accesibilidad, multilingüe y transiciones de vista
+ * ECOSISTEMA WEB DUAL & ACADEMIA: "Enjoy and Learn" & "Tienda Oficial"
+ * Controladores de interactividad, multilingüe, carrito de compra,
+ * filtros de instructores/catálogo y transiciones suaves.
  */
 
 // ==========================================================================
@@ -8,109 +9,79 @@
 // ==========================================================================
 const TRANSLATIONS = {
   es: {
-    nav_history: "Historia",
+    nav_instructors: "Instructores",
+    nav_classes: "Clases & Estilos",
     nav_events: "Eventos",
-    nav_booking: "Reserva",
-    bridge_to_enjoy: "Enjoy and Learn",
-    bridge_to_bienestar: "Salud y Bienestar",
-    hero_kicker_enjoy: "Salsa · Eventos · Producción Audiovisual",
-    hero_kicker_bienestar: "Mindfulness · Yoga · Nutrición Holística",
-    hero_title_enjoy: "Ritmo, pasión y <span class='accent'>experiencias</span> que transforman.",
-    hero_title_bienestar: "Equilibrio, calma y <span class='accent'>conexión</span> profunda con tu ser.",
-    hero_lead_enjoy: "Aprende salsa cubana y ritmos latinos con metodología inmersiva. Eventos exclusivos y producción audiovisual de alto nivel en Luxemburgo y Europa.",
-    hero_lead_bienestar: "Espacio dedicado a restaurar tu armonía interior a través del movimiento consciente, la meditación y la alimentación regenerativa.",
-    hero_cta_booking: "Reservar Experiencia",
-    hero_cta_events: "Ver Galería de Eventos",
-    about_kicker: "Quiénes Somos",
-    about_title_enjoy: "Un método vibrante donde la técnica se convierte en arte",
-    about_title_bienestar: "Un santuario nórdico para reconectar con tu calma natural",
+    nav_booking: "Reserva tu Clase",
+    nav_shop: "Tienda Oficial 🛍️",
+    bridge_to_dance: "Clases de Baile 💃",
+    hero_kicker_dance: "Salsa · Bachata · Rumba · Bailoterapia",
+    hero_title_dance: "Dos instructores, dos energías, <span class='accent'>una sola pasión</span> por el ritmo.",
+    hero_lead_dance: "Aprende con nosotros en Luxemburgo: técnica depurada y sabor con Él (Salsa, Bachata y Rumba tradicional), y conexión corporal, elegancia y Bailoterapia enfocada a Salud y Bienestar con Ella.",
+    hero_cta_instructors: "Conoce a los Instructores",
+    instructors_kicker: "Equipo Pedagógico",
+    instructors_title: "Elige tu instructor ideal",
     filter_all: "Todos",
     filter_classes: "Clases",
     filter_events: "Eventos",
     filter_workshops: "Talleres",
-    modal_title: "Agenda tu Experiencia",
-    modal_subtitle: "Selecciona el servicio y fecha deseada. Responderemos en menos de 24 horas.",
-    modal_service_label: "Servicio de interés",
-    modal_date_label: "Fecha preferida",
-    modal_name_label: "Nombre completo",
-    modal_email_label: "Correo electrónico",
-    modal_notes_label: "Mensaje o necesidades especiales",
+    modal_title: "Agenda tu Clase o Experiencia",
+    modal_subtitle: "Selecciona tu instructor, modalidad y fecha. Te responderemos en menos de 24h.",
     modal_submit: "Confirmar Solicitud de Reserva",
-    modal_success: "¡Gracias! Tu solicitud ha sido registrada. Te contactaremos pronto.",
+    modal_success: "¡Gracias! Tu solicitud ha sido registrada. Te contactaremos muy pronto para confirmar.",
     footer_rights: "Todos los derechos reservados.",
     footer_privacy: "Política de Privacidad",
-    footer_legal: "Aviso Legal",
-    footer_cookies: "Cookies"
+    footer_legal: "Aviso Legal"
   },
   en: {
-    nav_history: "About Us",
+    nav_instructors: "Instructors",
+    nav_classes: "Classes & Styles",
     nav_events: "Events",
-    nav_booking: "Book Now",
-    bridge_to_enjoy: "Enjoy and Learn",
-    bridge_to_bienestar: "Health & Wellness",
-    hero_kicker_enjoy: "Salsa · Events · Audiovisual Production",
-    hero_kicker_bienestar: "Mindfulness · Yoga · Holistic Nutrition",
-    hero_title_enjoy: "Rhythm, passion, and <span class='accent'>experiences</span> that inspire.",
-    hero_title_bienestar: "Balance, calm, and <span class='accent'>deep connection</span> with yourself.",
-    hero_lead_enjoy: "Learn Cuban salsa and Latin rhythms with an immersive methodology. Exclusive events and premier audiovisual production in Luxembourg and Europe.",
-    hero_lead_bienestar: "A mindful sanctuary dedicated to restoring your inner harmony through conscious movement, meditation, and regenerative nutrition.",
-    hero_cta_booking: "Book Experience",
-    hero_cta_events: "View Events Gallery",
-    about_kicker: "About Us",
-    about_title_enjoy: "A vibrant method where technique transforms into living art",
-    about_title_bienestar: "A Nordic sanctuary designed to reconnect with your natural stillness",
+    nav_booking: "Book a Class",
+    nav_shop: "Official Store 🛍️",
+    bridge_to_dance: "Dance Classes 💃",
+    hero_kicker_dance: "Salsa · Bachata · Rumba · Dance Therapy",
+    hero_title_dance: "Two instructors, two energies, <span class='accent'>one shared passion</span> for rhythm.",
+    hero_lead_dance: "Learn with us in Luxembourg: refined technique and flavor with Him (Salsa, Bachata & traditional Cuban Rumba), and body connection, elegance, and Dance Therapy focused on Health & Wellness with Her.",
+    hero_cta_instructors: "Meet the Instructors",
+    instructors_kicker: "Teaching Team",
+    instructors_title: "Choose your ideal instructor",
     filter_all: "All",
     filter_classes: "Classes",
     filter_events: "Events",
     filter_workshops: "Workshops",
-    modal_title: "Book Your Experience",
-    modal_subtitle: "Choose your desired service and preferred date. We will reply within 24 hours.",
-    modal_service_label: "Service of interest",
-    modal_date_label: "Preferred date",
-    modal_name_label: "Full name",
-    modal_email_label: "Email address",
-    modal_notes_label: "Message or special requests",
+    modal_title: "Book Your Class or Session",
+    modal_subtitle: "Select your preferred instructor, style and date. We will reply within 24 hours.",
     modal_submit: "Confirm Booking Request",
-    modal_success: "Thank you! Your request has been recorded. We will contact you shortly.",
+    modal_success: "Thank you! Your request has been recorded. We will contact you shortly to confirm.",
     footer_rights: "All rights reserved.",
     footer_privacy: "Privacy Policy",
-    footer_legal: "Legal Notice",
-    footer_cookies: "Cookies"
+    footer_legal: "Legal Notice"
   },
   fr: {
-    nav_history: "Histoire",
+    nav_instructors: "Professeurs",
+    nav_classes: "Cours & Styles",
     nav_events: "Événements",
-    nav_booking: "Réserver",
-    bridge_to_enjoy: "Enjoy and Learn",
-    bridge_to_bienestar: "Santé et Bien-être",
-    hero_kicker_enjoy: "Salsa · Événements · Production Audiovisuelle",
-    hero_kicker_bienestar: "Pleine Conscience · Yoga · Nutrition Holistique",
-    hero_title_enjoy: "Rythme, passion et <span class='accent'>expériences</span> transformatrices.",
-    hero_title_bienestar: "Équilibre, calme et <span class='accent'>connexion</span> profonde avec soi.",
-    hero_lead_enjoy: "Apprenez la salsa cubaine et les rythmes latins grâce à une pédagogie immersive. Événements exclusifs et production audiovisuelle au Luxembourg et en Europe.",
-    hero_lead_bienestar: "Un sanctuaire dédié à la restauration de votre harmonie intérieure à travers le mouvement conscient, la méditation et l'alimentation régénératrice.",
-    hero_cta_booking: "Réserver une Séance",
-    hero_cta_events: "Galerie Événements",
-    about_kicker: "À Propos",
-    about_title_enjoy: "Une méthode vibrante où la technique devient un art vivant",
-    about_title_bienestar: "Un havre nordique pour renouer avec votre sérénité naturelle",
+    nav_booking: "Réserver un Cours",
+    nav_shop: "Boutique Officielle 🛍️",
+    bridge_to_dance: "Cours de Danse 💃",
+    hero_kicker_dance: "Salsa · Bachata · Rumba · Danse-Thérapie",
+    hero_title_dance: "Deux professeurs, deux énergies, <span class='accent'>une seule passion</span> pour le rythme.",
+    hero_lead_dance: "Apprenez avec nous au Luxembourg : technique et authenticité avec Lui (Salsa, Bachata et Rumba cubaine), et connexion corporelle, élégance et Danse-thérapie axée sur la Santé et le Bien-être avec Elle.",
+    hero_cta_instructors: "Découvrir les Professeurs",
+    instructors_kicker: "Équipe Pédagogique",
+    instructors_title: "Choisissez votre professeur idéal",
     filter_all: "Tous",
     filter_classes: "Cours",
     filter_events: "Événements",
     filter_workshops: "Ateliers",
-    modal_title: "Réservez votre Expérience",
-    modal_subtitle: "Sélectionnez le service et la date souhaitée. Nous vous répondrons sous 24h.",
-    modal_service_label: "Prestation souhaitée",
-    modal_date_label: "Date préférée",
-    modal_name_label: "Nom complet",
-    modal_email_label: "Adresse e-mail",
-    modal_notes_label: "Message ou besoins spécifiques",
+    modal_title: "Réservez votre Cours ou Atelier",
+    modal_subtitle: "Sélectionnez votre professeur, discipline et date. Réponse sous 24h.",
     modal_submit: "Confirmer la Réservation",
-    modal_success: "Merci ! Votre demande a été enregistrée. Nous vous contacterons très vite.",
+    modal_success: "Merci ! Votre demande a été enregistrée. Nous vous contacterons très vite pour confirmer.",
     footer_rights: "Tous droits réservés.",
     footer_privacy: "Politique de Confidentialité",
-    footer_legal: "Mentions Légales",
-    footer_cookies: "Cookies"
+    footer_legal: "Mentions Légales"
   }
 };
 
@@ -137,13 +108,41 @@ function applyLanguage(lang) {
 }
 
 // ==========================================================================
-// 2. INICIALIZACIÓN GLOBAL CUANDO EL DOM ESTÁ LISTO
+// 2. INICIALIZACIÓN GLOBAL
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializar idioma
+  // Idioma
   applyLanguage(currentLang);
 
-  // Selector multilingüe dropdown
+  // Dropdown selector de idioma
+  initLanguageDropdown();
+
+  // Header sticky scroll effect
+  initHeaderScroll();
+
+  // Menú hamburguesa móvil
+  initMobileDrawer();
+
+  // Modal de reserva con preselección de instructor y estilo
+  initBookingModal();
+
+  // Galería de eventos (filtros + parallax suave)
+  initEventsGallery();
+
+  // Filtro de instructores (Él / Ella / Ambos)
+  initInstructorFilter();
+
+  // Tienda Online: Carrito & Filtros de Catálogo
+  initShop();
+
+  // Transiciones fluidas entre páginas
+  initBridgeTransitions();
+});
+
+// ==========================================================================
+// 3. SELECTOR DE IDIOMA
+// ==========================================================================
+function initLanguageDropdown() {
   const langBtn = document.getElementById("langToggleBtn");
   const langDropdown = document.getElementById("langDropdown");
 
@@ -164,16 +163,21 @@ document.addEventListener("DOMContentLoaded", () => {
       langDropdown.classList.remove("open");
     });
   }
+}
 
-  // Header Scrolled State
+// ==========================================================================
+// 4. HEADER Y MENÚ MÓVIL
+// ==========================================================================
+function initHeaderScroll() {
   const header = document.querySelector(".site-header");
   window.addEventListener("scroll", () => {
     if (header) {
       header.classList.toggle("scrolled", window.scrollY > 30);
     }
   }, { passive: true });
+}
 
-  // Mobile Drawer Toggle
+function initMobileDrawer() {
   const mobileToggle = document.getElementById("mobileToggleBtn");
   const mobileDrawer = document.getElementById("mobileDrawer");
 
@@ -184,27 +188,50 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileToggle.setAttribute("aria-expanded", isOpen);
     });
 
-    mobileDrawer.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        mobileDrawer.classList.remove("open");
-        mobileToggle.innerHTML = "☰";
-        mobileToggle.setAttribute("aria-expanded", "false");
+    mobileDrawer.querySelectorAll("a, button").forEach(elem => {
+      elem.addEventListener("click", () => {
+        // Si no es el botón del carrito móvil que abre el drawer del carrito
+        if (elem.id !== "mobileOpenCartBtn") {
+          mobileDrawer.classList.remove("open");
+          mobileToggle.innerHTML = "☰";
+          mobileToggle.setAttribute("aria-expanded", "false");
+        }
       });
     });
   }
-
-  // Modal de Reserva
-  initBookingModal();
-
-  // Galería Flotante Interactiva (Filtros y Parallax suave)
-  initEventsGallery();
-
-  // Transición suave entre páginas hermanas con View Transitions API
-  initBridgeTransitions();
-});
+}
 
 // ==========================================================================
-// 3. CONTROLADOR DEL MODAL DE RESERVA
+// 5. FILTROS DE INSTRUCTORES (ÉL / ELLA / AMBOS)
+// ==========================================================================
+function initInstructorFilter() {
+  const filterTabs = document.querySelectorAll("[data-instructor-filter]");
+  const instructorCards = document.querySelectorAll(".instructor-card");
+
+  if (!filterTabs.length || !instructorCards.length) return;
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      filterTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const filter = tab.getAttribute("data-instructor-filter");
+      instructorCards.forEach(card => {
+        const role = card.getAttribute("data-instructor");
+        if (filter === "all" || role === filter) {
+          card.style.display = "";
+          card.style.opacity = "1";
+        } else {
+          card.style.display = "none";
+          card.style.opacity = "0";
+        }
+      });
+    });
+  });
+}
+
+// ==========================================================================
+// 6. MODAL DE RESERVA (CON PRESELECCIÓN DINÁMICA)
 // ==========================================================================
 function initBookingModal() {
   const backdrop = document.getElementById("bookingModalBackdrop");
@@ -212,9 +239,18 @@ function initBookingModal() {
   const openButtons = document.querySelectorAll("[data-open-modal='booking']");
   const form = document.getElementById("bookingForm");
   const successMsg = document.getElementById("formSuccessMsg");
+  const instructorSelect = document.getElementById("bookInstructor");
+  const serviceSelect = document.getElementById("bookService");
 
-  function openModal() {
+  function openModal(preselectInstructor, preselectService) {
     if (backdrop) {
+      if (preselectInstructor && instructorSelect) {
+        instructorSelect.value = preselectInstructor;
+      }
+      if (preselectService && serviceSelect) {
+        serviceSelect.value = preselectService;
+      }
+
       backdrop.classList.add("active");
       document.body.style.overflow = "hidden";
       const firstInput = backdrop.querySelector("input, select");
@@ -233,7 +269,9 @@ function initBookingModal() {
 
   openButtons.forEach(btn => btn.addEventListener("click", (e) => {
     e.preventDefault();
-    openModal();
+    const preInstructor = btn.getAttribute("data-preselect-instructor");
+    const preService = btn.getAttribute("data-preselect-service");
+    openModal(preInstructor, preService);
   }));
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
@@ -264,13 +302,14 @@ function initBookingModal() {
 }
 
 // ==========================================================================
-// 4. GALERÍA FLOTANTE (FILTROS Y EFECTO PARALLAX SUAVE AL SCROLL)
+// 7. GALERÍA FLOTANTE (EVENTOS)
 // ==========================================================================
 function initEventsGallery() {
-  const filterButtons = document.querySelectorAll(".filter-btn");
+  const filterButtons = document.querySelectorAll(".filter-btn[data-filter]");
   const masonryItems = document.querySelectorAll(".masonry-item");
 
-  // Filtrado suave
+  if (!filterButtons.length || !masonryItems.length) return;
+
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       filterButtons.forEach(b => b.classList.remove("active"));
@@ -290,7 +329,6 @@ function initEventsGallery() {
     });
   });
 
-  // Parallax suave al scroll para elementos asimétricos
   if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
     let ticking = false;
     window.addEventListener("scroll", () => {
@@ -316,23 +354,218 @@ function initEventsGallery() {
 }
 
 // ==========================================================================
-// 5. BOTÓN CROSS-LINK ("EL PUENTE" CON VIEW TRANSITIONS)
+// 8. TIENDA ONLINE: CARRITO SLIDE-OVER & FILTROS DE CATÁLOGO
+// ==========================================================================
+function initShop() {
+  // --- A. Filtros de catálogo en tienda.html ---
+  const shopFilters = document.querySelectorAll("[data-shop-filter]");
+  const productCards = document.querySelectorAll(".product-card[data-shop-category]");
+
+  shopFilters.forEach(btn => {
+    btn.addEventListener("click", () => {
+      shopFilters.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.getAttribute("data-shop-filter");
+      productCards.forEach(card => {
+        const category = card.getAttribute("data-shop-category");
+        if (filter === "all" || category === filter) {
+          card.style.display = "";
+          card.style.opacity = "1";
+        } else {
+          card.style.display = "none";
+          card.style.opacity = "0";
+        }
+      });
+    });
+  });
+
+  // Enlaces de navegación rápida de categorías
+  document.querySelectorAll("[data-filter-link]").forEach(link => {
+    link.addEventListener("click", (e) => {
+      const targetCategory = link.getAttribute("data-filter-link");
+      const matchingFilterBtn = document.querySelector(`[data-shop-filter="${targetCategory}"]`);
+      if (matchingFilterBtn) {
+        matchingFilterBtn.click();
+      }
+    });
+  });
+
+  // --- B. Gestión del Carrito (State en LocalStorage) ---
+  const CART_KEY = "enjoy_shop_cart";
+  let cart = [];
+  try {
+    const saved = localStorage.getItem(CART_KEY);
+    if (saved) cart = JSON.parse(saved);
+  } catch (e) {
+    cart = [];
+  }
+
+  const drawerBackdrop = document.getElementById("cartDrawerBackdrop");
+  const openCartBtn = document.getElementById("openCartBtn");
+  const mobileOpenCartBtn = document.getElementById("mobileOpenCartBtn");
+  const closeCartBtn = document.getElementById("closeCartBtn");
+  const cartItemsList = document.getElementById("cartItemsList");
+  const cartTotalPrice = document.getElementById("cartTotalPrice");
+  const cartCountBadges = document.querySelectorAll("#cartCount, #mobileOpenCartBtn");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+
+  function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    renderCart();
+  }
+
+  function openCartDrawer() {
+    if (drawerBackdrop) {
+      drawerBackdrop.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function closeCartDrawer() {
+    if (drawerBackdrop) {
+      drawerBackdrop.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  }
+
+  function renderCart() {
+    // Calcular cantidad total de artículos y subtotal
+    const totalItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * (item.qty || 1)), 0);
+
+    // Actualizar badges
+    const badge = document.getElementById("cartCount");
+    if (badge) badge.textContent = totalItems;
+
+    if (mobileOpenCartBtn) {
+      mobileOpenCartBtn.textContent = `Ver mi Carrito (${totalItems})`;
+    }
+
+    if (cartTotalPrice) {
+      cartTotalPrice.textContent = `${totalPrice.toFixed(2)} €`;
+    }
+
+    if (!cartItemsList) return;
+
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = `
+        <div style="text-align: center; color: var(--text-muted); margin: 3rem auto;">
+          <p style="font-size: 2.5rem; margin-bottom: 0.5rem;">🛍️</p>
+          <p style="font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Tu carrito está vacío</p>
+          <p style="font-size: 0.85rem;">Explora nuestra ropa de baile, accesorios de bailoterapia o bonos de clases.</p>
+        </div>
+      `;
+      return;
+    }
+
+    cartItemsList.innerHTML = cart.map((item, idx) => `
+      <div class="cart-item">
+        <img src="${item.img || 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=150&q=80'}" alt="${item.name}">
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <span>${item.price.toFixed(2)} € × ${item.qty || 1} = ${(item.price * (item.qty || 1)).toFixed(2)} €</span>
+        </div>
+        <button class="cart-item-remove" data-remove-index="${idx}" aria-label="Eliminar producto">✕</button>
+      </div>
+    `).join("");
+
+    // Asignar eventos de eliminación
+    cartItemsList.querySelectorAll("[data-remove-index]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const index = parseInt(btn.getAttribute("data-remove-index"), 10);
+        if (!isNaN(index) && index >= 0 && index < cart.length) {
+          cart.splice(index, 1);
+          saveCart();
+        }
+      });
+    });
+  }
+
+  // Event Listeners de apertura/cierre de carrito
+  if (openCartBtn) openCartBtn.addEventListener("click", openCartDrawer);
+  if (mobileOpenCartBtn) {
+    mobileOpenCartBtn.addEventListener("click", () => {
+      const mobileDrawer = document.getElementById("mobileDrawer");
+      if (mobileDrawer) mobileDrawer.classList.remove("open");
+      openCartDrawer();
+    });
+  }
+  if (closeCartBtn) closeCartBtn.addEventListener("click", closeCartDrawer);
+
+  if (drawerBackdrop) {
+    drawerBackdrop.addEventListener("click", (e) => {
+      if (e.target === drawerBackdrop) closeCartDrawer();
+    });
+  }
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawerBackdrop && drawerBackdrop.classList.contains("active")) {
+      closeCartDrawer();
+    }
+  });
+
+  // Botones "+ Añadir" en catálogo
+  document.querySelectorAll("[data-add-to-cart]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      try {
+        const productData = JSON.parse(btn.getAttribute("data-add-to-cart"));
+        const existingItem = cart.find(item => item.id === productData.id);
+        if (existingItem) {
+          existingItem.qty = (existingItem.qty || 1) + 1;
+        } else {
+          cart.push({ ...productData, qty: 1 });
+        }
+        saveCart();
+        openCartDrawer();
+      } catch (err) {
+        console.error("Error al añadir producto al carrito:", err);
+      }
+    });
+  });
+
+  // Botón Checkout vía WhatsApp / Stripe
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Tu carrito está vacío. Añade algún producto antes de finalizar el pedido.");
+        return;
+      }
+
+      const totalItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * (item.qty || 1)), 0);
+
+      const itemsText = cart
+        .map(i => `• ${i.name} (x${i.qty || 1}) - ${(i.price * (i.qty || 1)).toFixed(2)}€`)
+        .join("\n");
+
+      const message = `¡Hola Enjoy & Learn! 👋 Quisiera realizar el siguiente pedido desde la web:\n\n${itemsText}\n\n*Total a pagar: ${totalPrice.toFixed(2)} € (TVA incl.)*\n\n¿Cómo podemos coordinar el pago y la entrega/activación?`;
+
+      const whatsappUrl = `https://wa.me/352661000000?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank");
+    });
+  }
+
+  // Render inicial del carrito
+  renderCart();
+}
+
+// ==========================================================================
+// 9. CROSS-LINK "EL PUENTE" CON VIEW TRANSITIONS
 // ==========================================================================
 function initBridgeTransitions() {
-  const bridgeBtn = document.getElementById("bridgeBtn");
-  if (!bridgeBtn) return;
+  const bridgeBtns = document.querySelectorAll(".bridge-button");
+  bridgeBtns.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const targetUrl = btn.getAttribute("href");
+      if (!targetUrl || targetUrl.startsWith("#")) return;
 
-  bridgeBtn.addEventListener("click", (e) => {
-    const targetUrl = bridgeBtn.getAttribute("href");
-    if (!targetUrl || targetUrl.startsWith("#")) return;
-
-    // Si el navegador soporta View Transitions para navegación cliente
-    if (document.startViewTransition) {
-      e.preventDefault();
-      document.startViewTransition(async () => {
-        window.location.href = targetUrl;
-      });
-    }
-    // Si no soporta startViewTransition, la navegación estándar @view-transition o nativa prosigue sin interferencias.
+      if (document.startViewTransition) {
+        e.preventDefault();
+        document.startViewTransition(async () => {
+          window.location.href = targetUrl;
+        });
+      }
+    });
   });
 }
