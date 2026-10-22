@@ -1169,9 +1169,9 @@ img, video {
 }
 
 .spec-pill.wellness-highlight {
-  background: rgba(62, 90, 68, 0.25);
-  border-color: #7fc8a9;
-  color: #7fc8a9;
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.45);
+  color: var(--accent-secondary);
   font-weight: 700;
 }
 
