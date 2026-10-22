@@ -620,6 +620,7 @@ img, video {
 }
 
 /* Variaciones asimétricas de cuadrícula */
+.masonry-item.span-12 { grid-column: span 12; aspect-ratio: 16 / 9; }
 .masonry-item.span-7 { grid-column: span 7; aspect-ratio: 16 / 10; }
 .masonry-item.span-5 { grid-column: span 5; aspect-ratio: 1 / 1; }
 .masonry-item.span-4 { grid-column: span 4; aspect-ratio: 4 / 5; }
