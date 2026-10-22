@@ -317,8 +317,8 @@ function initEventsGallery() {
 
       const filter = btn.getAttribute("data-filter");
       masonryItems.forEach(item => {
-        const categories = (item.getAttribute("data-category") || "").split(" ");
-        if (filter === "all" || categories.includes(filter)) {
+        const category = item.getAttribute("data-category");
+        if (filter === "all" || category === filter) {
           item.style.display = "";
           item.style.opacity = "1";
         } else {
