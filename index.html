@@ -1,488 +1,942 @@
 <!doctype html>
-<html lang="es" data-theme="enjoy">
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Enjoy and Learn · Clases de Salsa Cubana, Bachata, Rumba y Bailoterapia en Luxemburgo</title>
-  <meta name="description" content="Aprende Salsa Cubana, Bachata y Rumba con dos instructores especializados. Técnica, ritmo y Bailoterapia enfocada a Salud y Bienestar en Luxemburgo.">
-  
-  <!-- Favicon Pareja de Baile -->
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="apple-touch-icon" href="assets/favicon.png">
-  
-  <!-- Tipografías Google: Montserrat (Titulares enérgicos) + Inter (Cuerpo) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="theme-enjoy.css">
-  <link rel="stylesheet" href="styles-base.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Compás — Encuentra tu pareja de baile en Luxemburgo</title>
+<meta name="description" content="Compás: haz match con pareja de práctica de salsa y bachata de tu nivel en Luxemburgo y reserva clases con instructores con precio por hora visible.">
+<meta name="theme-color" content="#0c0c0f">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+:root{
+  --bg:#0c0c0f; --bg2:#141419; --card:#1a1a21; --card2:#22222c;
+  --ink:#f4f1ea; --muted:#a7a3b8; --line:#2c2c38;
+  --gold:#d4af37; --gold2:#b8952e; --terra:#e65100; --green:#3fae5a; --red:#e5484d;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#060608;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font:inherit;color:var(--ink)}
+a{color:var(--gold)}
+.hidden{display:none!important}
+
+/* ---------- Marco tipo app ---------- */
+#phone{max-width:430px;margin:0 auto;min-height:100dvh;background:var(--bg);display:flex;flex-direction:column;position:relative;box-shadow:0 0 60px rgba(0,0,0,.6)}
+@media(min-width:480px){#phone{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.screen{flex:1;overflow-y:auto;padding:20px 18px 28px;display:none;flex-direction:column}
+.screen.active{display:flex}
+
+/* ---------- Marca y bienvenida ---------- */
+.brand{text-align:center;margin:26px 0 6px}
+.brand .logo{font-size:44px;letter-spacing:.5px;font-weight:800}
+.brand .logo span{color:var(--gold)}
+.brand .tag{color:var(--muted);margin-top:6px;font-size:15px;line-height:1.45}
+.hero-badge{display:inline-block;margin:14px auto 0;padding:6px 12px;border:1px solid var(--gold2);color:var(--gold);border-radius:999px;font-size:12.5px;letter-spacing:.4px}
+.role-pick{display:grid;gap:14px;margin-top:28px}
+.role-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:left;transition:border-color .15s, transform .15s;width:100%}
+.role-card:hover{border-color:var(--gold2)}
+.role-card:active{transform:scale(.99)}
+.role-card h3{font-size:19px;margin-bottom:6px}
+.role-card p{color:var(--muted);font-size:14px;line-height:1.5}
+.role-card .big{font-size:26px;margin-bottom:8px}
+.demo-note{margin-top:auto;padding:14px;border:1px dashed #3a3a48;border-radius:12px;color:var(--muted);font-size:13px;line-height:1.55;background:#101016}
+.demo-note strong{color:var(--ink)}
+
+/* ---------- Formularios ---------- */
+h2.screen-title{font-size:24px;margin:8px 0 4px}
+p.screen-sub{color:var(--muted);font-size:14px;margin-bottom:18px;line-height:1.5}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px;letter-spacing:.3px;text-transform:uppercase}
+.field input[type=text],.field input[type=number],.field select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;outline:none}
+.field input:focus,.field select:focus{border-color:var(--gold2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:14px}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#191405;font-weight:600}
+.btn{display:block;width:100%;padding:15px;border-radius:14px;background:var(--gold);color:#191405;font-weight:700;font-size:16px;text-align:center}
+.btn:hover{background:#e2c04a}
+.btn.secondary{background:var(--card2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:transparent;color:var(--red);border:1px solid #4a2326}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.link-btn{color:var(--gold);font-size:14px;padding:8px 0;text-align:center;width:100%}
+.price-wrap{display:flex;align-items:center;gap:8px}
+.price-wrap input{flex:1}
+.price-wrap span{color:var(--muted)}
+
+/* ---------- Cabecera app ---------- */
+header.appbar{padding:14px 18px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+header.appbar .logo{font-size:22px;font-weight:800}
+header.appbar .logo span{color:var(--gold)}
+.likes-pill{font-size:12.5px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+.likes-pill b{color:var(--gold)}
+
+/* ---------- Mazo de cartas ---------- */
+.filters{display:flex;gap:8px;overflow-x:auto;padding:12px 18px 4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters .chip{white-space:nowrap;flex:none}
+#deck-wrap{flex:1;display:flex;flex-direction:column;padding:14px 18px 8px;overflow:hidden}
+#deck{position:relative;flex:1;min-height:380px}
+.pcard{position:absolute;inset:0;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;touch-action:none;user-select:none}
+.pcard .photo{height:46%;position:relative;display:flex;align-items:flex-end;padding:16px}
+.pcard .photo .initials{font-size:64px;font-weight:800;color:rgba(255,255,255,.92);text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.pcard .photo .kind{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.55);padding:6px 11px;border-radius:999px;font-size:12.5px;letter-spacing:.3px}
+.pcard .photo .price{position:absolute;top:14px;right:14px;background:var(--gold);color:#191405;font-weight:800;padding:6px 12px;border-radius:999px;font-size:15px}
+.pcard .photo .compat{position:absolute;bottom:14px;right:14px;background:rgba(23,68,35,.85);border:1px solid var(--green);color:#b9f4c9;padding:5px 10px;border-radius:999px;font-size:12px}
+.pcard .body{padding:14px 16px 16px;overflow-y:auto}
+.pcard h3{font-size:23px}
+.pcard h3 .age{color:var(--muted);font-weight:400;font-size:18px}
+.pcard .meta{color:var(--muted);font-size:14px;margin-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:12.5px;background:var(--card2);border:1px solid var(--line);padding:5px 10px;border-radius:999px;color:var(--ink)}
+.tag.gold{border-color:var(--gold2);color:var(--gold)}
+.pcard .bio{margin-top:10px;font-size:14.5px;line-height:1.5;color:#ddd9ce;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pcard .seeks{margin-top:10px;font-size:14px;background:#12121a;border:1px dashed #3a3a48;border-radius:10px;padding:9px 12px;color:var(--ink)}
+.pcard .seeks b{color:var(--gold)}
+.stars{color:var(--gold);font-size:13.5px;margin-top:6px}
+.deck-actions{display:flex;align-items:center;justify-content:center;gap:16px;padding:12px 0 6px}
+.round-btn{width:60px;height:60px;border-radius:50%;font-size:24px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);background:var(--card)}
+.round-btn.no{color:var(--red)}
+.round-btn.yes{background:var(--gold);color:#191405;border-color:var(--gold);width:68px;height:68px;font-size:28px}
+.round-btn.undo{width:48px;height:48px;font-size:19px;color:var(--gold);border-color:var(--gold2)}
+.round-btn:disabled{opacity:.35}
+.empty-deck{text-align:center;color:var(--muted);padding:50px 24px;line-height:1.6}
+.empty-deck .big{font-size:40px;margin-bottom:10px}
+.book-strip{padding:0 18px 12px}
+.book-strip .btn{background:var(--terra);color:#fff}
+
+/* ---------- Listas (matches / reservas) ---------- */
+.list-item{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin-bottom:10px;width:100%;text-align:left}
+.avatar{width:52px;height:52px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px;color:rgba(255,255,255,.95)}
+.list-item .info{flex:1;min-width:0}
+.list-item .info h4{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-item .info p{color:var(--muted);font-size:13.5px;margin-top:2px;line-height:1.4}
+.badge{background:var(--gold);color:#191405;font-weight:700;font-size:11.5px;border-radius:999px;padding:3px 8px}
+.badge.grey{background:var(--card2);color:var(--muted);border:1px solid var(--line)}
+.empty-list{color:var(--muted);text-align:center;padding:40px 20px;line-height:1.6}
+.empty-list .big{font-size:38px;margin-bottom:8px}
+
+/* ---------- Chat ---------- */
+#screen-chat{padding:0}
+.chat-head{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.chat-head h4{font-size:16.5px}
+.chat-head p{color:var(--muted);font-size:12.5px}
+#chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px}
+.msg{max-width:82%;padding:10px 13px;border-radius:16px;font-size:15px;line-height:1.45;white-space:pre-wrap}
+.msg.them{background:var(--card2);align-self:flex-start;border-bottom-left-radius:5px}
+.msg.me{background:var(--gold);color:#191405;align-self:flex-end;border-bottom-right-radius:5px;font-weight:500}
+.msg.sys{background:#12121a;border:1px dashed #3a3a48;color:var(--muted);align-self:center;max-width:92%;font-size:13.5px;text-align:center}
+.msg .proposal-title{font-weight:700}
+.typing{align-self:flex-start;background:var(--card2);border-radius:16px;padding:11px 14px;color:var(--muted);font-size:14px}
+.chat-input{display:flex;gap:9px;padding:12px 14px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--bg)}
+.chat-input input{flex:1;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:12px 16px;font-size:16px;outline:none}
+.chat-input button{background:var(--gold);color:#191405;font-weight:700;border-radius:999px;padding:0 18px}
+.chat-actions{padding:10px 14px 0;display:flex;gap:8px;flex-wrap:wrap}
+.chat-actions .chip{font-size:13px}
+
+/* ---------- Barra de pestañas ---------- */
+nav.tabbar{display:flex;border-top:1px solid var(--line);background:#101014;padding-bottom:env(safe-area-inset-bottom)}
+nav.tabbar button{flex:1;padding:11px 4px 9px;color:var(--muted);font-size:12px;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative}
+nav.tabbar button .ic{font-size:21px}
+nav.tabbar button.on{color:var(--gold)}
+nav.tabbar .dot{position:absolute;top:8px;right:calc(50% - 20px);background:var(--terra);color:#fff;font-size:10.5px;font-weight:700;min-width:17px;height:17px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+
+/* ---------- Modales ---------- */
+.modal-veil{position:fixed;inset:0;background:rgba(0,0,0,.66);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.modal-veil.open{display:flex}
+.modal{background:var(--bg2);width:100%;max-width:430px;border-radius:24px 24px 0 0;padding:24px 20px calc(22px + env(safe-area-inset-bottom));max-height:88dvh;overflow-y:auto;animation:up .22s ease}
+@keyframes up{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+.modal h3{font-size:21px;margin-bottom:8px}
+.modal p{color:var(--muted);font-size:14.5px;line-height:1.55}
+.modal .row{margin-top:14px}
+.match-hero{text-align:center;padding:8px 0 4px}
+.match-hero .big{font-size:52px}
+.match-hero h3{color:var(--gold);font-size:27px}
+.breakdown{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px;font-size:15px}
+.breakdown .line{display:flex;justify-content:space-between;padding:4px 0}
+.breakdown .line.total{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-weight:800}
+.breakdown .line span:last-child{font-variant-numeric:tabular-nums}
+.rate-stars{display:flex;gap:8px;justify-content:center;font-size:36px;margin:14px 0 6px}
+.rate-stars button{color:#3c3c48;padding:2px}
+.rate-stars button.on{color:var(--gold)}
+.profile-head{display:flex;gap:14px;align-items:center;margin-bottom:8px}
+.profile-head .avatar{width:66px;height:66px;font-size:24px}
+.kv{font-size:14.5px;line-height:1.9;color:var(--muted)}
+.kv b{color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:#23232e;border:1px solid var(--gold2);color:var(--ink);padding:12px 18px;border-radius:12px;font-size:14.5px;opacity:0;pointer-events:none;transition:.25s;z-index:80;max-width:88%;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%)}
+</style>
 </head>
-<body class="theme-enjoy">
+<body>
+<div id="phone">
 
-  <!-- ==========================================================================
-       HEADER STICKY CON ACCESO A LA TIENDA Y SELECTOR DE IDIOMA
-       ========================================================================== -->
-  <header class="site-header" id="siteHeader">
-    <div class="container header-container">
-      
-      <!-- LOGO -->
-      <a href="enjoy-and-learn.html" class="brand-logo" aria-label="Enjoy and Learn Inicio">
-        <img src="assets/logo-couple.png" alt="Logo Pareja de Baile Enjoy & Learn" class="brand-logo-img" width="40" height="40">
-        <span>ENJOY &amp; LEARN</span>
-      </a>
-
-      <!-- NAVEGACIÓN CENTRAL -->
-      <nav class="nav-desktop" aria-label="Navegación Principal">
-        <ul class="nav-center">
-          <li><a href="#instructores" class="nav-link" data-i18n="nav_instructors">Instructores</a></li>
-          <li><a href="#clases" class="nav-link" data-i18n="nav_classes">Clases &amp; Estilos</a></li>
-          <li><a href="#eventos" class="nav-link" data-i18n="nav_events">Eventos</a></li>
-          <li>
-            <button class="nav-cta-reserva" data-open-modal="booking" data-i18n="nav_booking">
-              Reserva tu Clase
-            </button>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- ACCIONES GLOBALES (TIENDA + IDIOMA + MÓVIL) -->
-      <div class="nav-actions-right">
-        
-        <!-- SELECTOR DE IDIOMA -->
-        <div class="lang-selector">
-          <button class="lang-btn" id="langToggleBtn" aria-haspopup="true" aria-expanded="false" aria-label="Cambiar idioma">
-            🌐 <span id="currentLangLabel">ES</span> ▾
-          </button>
-          <ul class="lang-dropdown" id="langDropdown" role="menu">
-            <li><button class="lang-opt active" data-lang="es" role="menuitem">Español (ES)</button></li>
-            <li><button class="lang-opt" data-lang="en" role="menuitem">English (EN)</button></li>
-            <li><button class="lang-opt" data-lang="fr" role="menuitem">Français (FR)</button></li>
-          </ul>
-        </div>
-
-        <!-- ACCESO A LA TIENDA OFICIAL (EL NUEVO PUENTE) -->
-        <a href="tienda.html" class="bridge-button shop-btn" title="Ir a la Tienda Oficial de Ropa, Calzado y Bonos">
-          <span class="bridge-pulse"></span>
-          <span data-i18n="nav_shop">Tienda Oficial 🛍️</span>
-          <span>➔</span>
-        </a>
-
-        <!-- TOGGLE MÓVIL -->
-        <button class="mobile-toggle" id="mobileToggleBtn" aria-label="Abrir menú" aria-expanded="false">
-          ☰
-        </button>
-
-      </div>
+  <!-- BIENVENIDA -->
+  <section class="screen active" id="screen-welcome">
+    <div class="brand">
+      <div class="logo">Comp<span>ás</span></div>
+      <p class="tag">Encuentra pareja de práctica de <b>salsa y bachata</b> de tu nivel en Luxemburgo, y reserva clases con instructores con el precio por hora a la vista.</p>
+      <div><span class="hero-badge">VALIDACIÓN · LUXEMBURGO</span></div>
     </div>
-  </header>
+    <div class="role-pick">
+      <button class="role-card" id="pick-dancer">
+        <div class="big">💃🕺</div>
+        <h3>Soy bailador/a</h3>
+        <p>Haz match con alguien compatible (rol, nivel, estilo y disponibilidad) y la app te propone día y lugar para practicar. Gratis.</p>
+      </button>
+      <button class="role-card" id="pick-instructor">
+        <div class="big">🎓</div>
+        <h3>Soy instructor/a</h3>
+        <p>Perfil público con tu precio por hora, reserva y pago dentro de la app. Comisión del 12&nbsp;% solo si entra una clase pagada. Sin exclusividad.</p>
+      </button>
+    </div>
+    <div class="demo-note"><strong>Versión de demostración:</strong> los perfiles son ficticios, no hay registro real ni pagos de verdad, y tus datos se guardan solo en este navegador. Sirve para enseñar y validar el concepto.</div>
+  </section>
 
-  <!-- MENÚ MÓVIL -->
-  <div class="mobile-drawer" id="mobileDrawer">
-    <ul class="mobile-nav-links">
-      <li><a href="#instructores" data-i18n="nav_instructors">Instructores</a></li>
-      <li><a href="#clases" data-i18n="nav_classes">Clases &amp; Estilos</a></li>
-      <li><a href="#eventos" data-i18n="nav_events">Eventos</a></li>
-      <li><a href="tienda.html" style="color: var(--accent-secondary);" data-i18n="nav_shop">Tienda Oficial 🛍️</a></li>
-    </ul>
-    <button class="btn-primary" data-open-modal="booking" style="width: 100%;" data-i18n="nav_booking">
-      Reserva tu Clase
-    </button>
+  <!-- INSCRIPCIÓN -->
+  <section class="screen" id="screen-signup">
+    <button class="link-btn" id="signup-back" style="text-align:left;width:auto">← Volver</button>
+    <h2 class="screen-title" id="signup-title">Tu perfil de bailador/a</h2>
+    <p class="screen-sub" id="signup-sub">Un minuto. Esto es lo que verán tus matches.</p>
+    <form id="signup-form" autocomplete="off">
+      <div class="field"><label for="f-name">Nombre</label><input type="text" id="f-name" placeholder="Tu nombre" maxlength="30" required></div>
+      <div class="field" id="wrap-role"><label>Cuando bailas, sueles ser</label>
+        <div class="chips" id="f-role">
+          <button type="button" class="chip" data-v="leader">Leader</button>
+          <button type="button" class="chip" data-v="follower">Follower</button>
+          <button type="button" class="chip" data-v="ambos">Los dos</button>
+        </div>
+      </div>
+      <div class="field"><label id="level-label">Tu nivel</label>
+        <div class="chips" id="f-level">
+          <button type="button" class="chip" data-v="1">Principiante</button>
+          <button type="button" class="chip" data-v="2">Intermedio</button>
+          <button type="button" class="chip" data-v="3">Avanzado</button>
+        </div>
+      </div>
+      <div class="field" id="wrap-teach"><label>Niveles que enseñas</label>
+        <div class="chips multi" id="f-teach">
+          <button type="button" class="chip" data-v="1">Principiante</button>
+          <button type="button" class="chip" data-v="2">Intermedio</button>
+          <button type="button" class="chip" data-v="3">Avanzado</button>
+        </div>
+      </div>
+      <div class="field"><label>Estilos</label>
+        <div class="chips multi" id="f-styles">
+          <button type="button" class="chip" data-v="salsa">Salsa</button>
+          <button type="button" class="chip" data-v="bachata">Bachata</button>
+        </div>
+      </div>
+      <div class="field" id="wrap-music"><label>Tipo de música con la que trabajas</label><input type="text" id="f-music" placeholder="P. ej., timba y salsa cubana, bachata moderna…" maxlength="60"></div>
+      <div class="field" id="wrap-price"><label>Precio por hora</label>
+        <div class="price-wrap"><input type="number" id="f-price" min="10" max="200" step="5" placeholder="45"><span>€ / hora</span></div>
+      </div>
+      <div class="field"><label>Disponibilidad (días)</label>
+        <div class="chips multi" id="f-days">
+          <button type="button" class="chip" data-v="1">Lun</button>
+          <button type="button" class="chip" data-v="2">Mar</button>
+          <button type="button" class="chip" data-v="3">Mié</button>
+          <button type="button" class="chip" data-v="4">Jue</button>
+          <button type="button" class="chip" data-v="5">Vie</button>
+          <button type="button" class="chip" data-v="6">Sáb</button>
+          <button type="button" class="chip" data-v="0">Dom</button>
+        </div>
+      </div>
+      <div class="field" id="wrap-seeks"><label>Qué buscas</label>
+        <div class="chips" id="f-seeks">
+          <button type="button" class="chip" data-v="practica">Practicar esta semana</button>
+          <button type="button" class="chip" data-v="social">Ir a un social</button>
+          <button type="button" class="chip" data-v="clases">Recibir clases</button>
+        </div>
+      </div>
+      <div class="field"><label>Zona</label><input type="text" id="f-zone" placeholder="P. ej., Luxemburgo ciudad" maxlength="40"></div>
+      <button class="btn" type="submit" id="signup-submit">Crear mi perfil</button>
+    </form>
+  </section>
+
+  <!-- APP -->
+  <main id="app-main" class="hidden">
+    <header class="appbar">
+      <div class="logo">Comp<span>ás</span></div>
+      <div class="likes-pill" id="likes-pill">Likes hoy: <b>20</b></div>
+    </header>
+
+    <!-- DESCUBRIR -->
+    <section class="screen active" id="screen-discover" style="padding:0">
+      <div class="filters" id="filters">
+        <button class="chip on" data-f="todos">Todos</button>
+        <button class="chip" data-f="bailadores">Bailadores</button>
+        <button class="chip" data-f="instructores">Instructores</button>
+        <button class="chip" data-f="salsa">Salsa</button>
+        <button class="chip" data-f="bachata">Bachata</button>
+      </div>
+      <div id="deck-wrap"><div id="deck"></div></div>
+      <div class="book-strip hidden" id="book-strip"><button class="btn" id="btn-book-current">Reservar clase</button></div>
+      <div class="deck-actions">
+        <button class="round-btn undo" id="btn-undo" title="Deshacer" disabled>↩</button>
+        <button class="round-btn no" id="btn-no" title="Descartar">✕</button>
+        <button class="round-btn yes" id="btn-yes" title="A bailar">♥</button>
+      </div>
+    </section>
+
+    <!-- MATCHES -->
+    <section class="screen" id="screen-matches">
+      <h2 class="screen-title">Matches</h2>
+      <p class="screen-sub">Tus matches y conversaciones. Un match sin propuesta en 48&nbsp;h caduca: la idea es bailar, no coleccionar chats.</p>
+      <div id="matches-list"></div>
+    </section>
+
+    <!-- RESERVAS -->
+    <section class="screen" id="screen-bookings">
+      <h2 class="screen-title">Mis reservas</h2>
+      <p class="screen-sub">Clases con instructores reservadas desde la app. En la demo el pago es simulado.</p>
+      <div id="bookings-list"></div>
+    </section>
+
+    <!-- PERFIL -->
+    <section class="screen" id="screen-profile">
+      <h2 class="screen-title">Mi perfil</h2>
+      <p class="screen-sub">Así te ven tus matches.</p>
+      <div id="profile-view"></div>
+      <div class="row" style="margin-top:18px"><button class="btn secondary" id="btn-edit-profile">Editar mi perfil</button></div>
+      <div class="row" style="margin-top:10px"><button class="btn danger" id="btn-reset">Borrar mis datos y empezar de cero</button></div>
+      <div class="demo-note" style="margin-top:22px"><strong>Demo sin servidor:</strong> todo se guarda en este navegador (localStorage). Sin cuentas reales, sin pagos reales.</div>
+    </section>
+
+    <!-- CHAT -->
+    <section class="screen" id="screen-chat">
+      <div class="chat-head">
+        <button class="link-btn" id="chat-back" style="width:auto;padding:4px 6px">←</button>
+        <div class="avatar" id="chat-avatar">?</div>
+        <div><h4 id="chat-name">—</h4><p id="chat-meta">—</p></div>
+      </div>
+      <div class="chat-actions" id="chat-actions"></div>
+      <div id="chat-body"></div>
+      <div class="chat-input">
+        <input type="text" id="chat-text" placeholder="Escribe un mensaje…" maxlength="500">
+        <button id="chat-send">Enviar</button>
+      </div>
+    </section>
+
+    <nav class="tabbar" id="tabbar">
+      <button data-tab="discover" class="on"><span class="ic">🃏</span>Descubrir</button>
+      <button data-tab="matches"><span class="ic">💬</span>Matches<span class="dot hidden" id="matches-dot">0</span></button>
+      <button data-tab="bookings"><span class="ic">📅</span>Reservas<span class="dot hidden" id="bookings-dot">0</span></button>
+      <button data-tab="profile"><span class="ic">👤</span>Mi perfil</button>
+    </nav>
+  </main>
+</div>
+
+<!-- MODAL MATCH -->
+<div class="modal-veil" id="modal-match">
+  <div class="modal">
+    <div class="match-hero"><div class="big">🎉</div><h3>¡Es un match!</h3>
+    <p id="match-text">Habéis coincidido.</p></div>
+    <div class="row"><button class="btn" id="match-propose">Proponer práctica</button></div>
+    <div class="row"><button class="btn secondary" id="match-later">Seguir descubriendo</button></div>
   </div>
+</div>
 
-  <!-- ==========================================================================
-       HERO PRINCIPAL
-       ========================================================================== -->
-  <section class="hero-section">
-    <div class="container hero-grid">
-      <div>
-        <span class="hero-kicker" data-i18n="hero_kicker_dance">Salsa Cubana · Bachata · Rumba · Bailoterapia</span>
-        <h1 class="hero-title" data-i18n="hero_title_dance">
-          Dos instructores individuales, <span class="accent">dos metodologías únicas</span> para tu aprendizaje.
-        </h1>
-        <p class="hero-lead" data-i18n="hero_lead_dance">
-          Clases 100% individuales en Luxemburgo con metodologías especializadas e independientes: aprende técnica cubana, ritmo y conducción con <strong>Yomiuri Ruiz</strong> (Salsa Cubana tradicional, Bachata y Rumba afrocubana) o bien estilo femenino, fluidez corporal y <strong>Bailoterapia enfocada a Salud y Bienestar</strong> con <strong>Ludivine Gomez</strong>. Cada instructor imparte sus propias clases.
-        </p>
-        <div class="hero-ctas">
-          <a href="#instructores" class="btn-primary" data-i18n="hero_cta_instructors">
-            Conoce a los Instructores
-          </a>
-          <button class="btn-outline" data-open-modal="booking" data-i18n="nav_booking">
-            Reservar Clase de Prueba
-          </button>
-        </div>
-      </div>
-
-      <!-- Tarjeta Visual Destacada Hero -->
-      <div class="hero-visual-wrapper">
-        <div class="hero-visual-card">
-          <img src="assets/hero-dance-couple.jpg" alt="Instructores de baile latino en Luxemburgo" loading="eager">
-        </div>
-        <div class="hero-card-badge">
-          <h4>Clases 100% Individuales</h4>
-          <p>Cada instructor imparte sus clases por separado con su propio método y enfoque pedagógico.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECCIÓN 1: LOS DOS INSTRUCTORES (YOMIURI RUIZ & LUDIVINE GOMEZ)
-       ========================================================================== -->
-  <section class="instructors-section" id="instructores">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-kicker" data-i18n="instructors_kicker">Equipo Pedagógico</span>
-        <h2 class="section-title" data-i18n="instructors_title">Elige tu instructor ideal</h2>
-        <p class="section-subtitle">
-          Instructores independientes con programas y metodologías propias. Cada uno imparte sus clases por separado según tu objetivo de baile o bienestar.
-        </p>
-      </div>
-
-      <!-- Selector interactivo de filtro -->
-      <div class="instructor-tabs">
-        <button class="tab-btn active" data-instructor-filter="all">👥 Ver Ambos Instructores</button>
-        <button class="tab-btn" data-instructor-filter="he">🕺 Yomiuri Ruiz (Salsa Cubana, Bachata &amp; Rumba)</button>
-        <button class="tab-btn" data-instructor-filter="she">💃 Ludivine Gomez (Salsa Cubana, Lady Style &amp; Bailoterapia)</button>
-      </div>
-
-      <div class="instructors-grid">
-
-        <!-- INSTRUCTOR: YOMIURI RUIZ -->
-        <article class="instructor-card" data-instructor="he">
-          <div class="instructor-media">
-            <span class="instructor-role-badge">Instructor Individual &amp; Fundador</span>
-            <img src="assets/instructor-he.jpg" alt="Yomiuri Ruiz · Instructor de Salsa Cubana, Bachata y Rumba" loading="lazy">
-          </div>
-          <div class="instructor-content">
-            <h3 class="instructor-name">Yomiuri Ruiz</h3>
-            <span class="instructor-subtitle">Metodología Cubana · Clases Individuales de Salsa Cubana, Bachata &amp; Rumba</span>
-            <a href="https://www.instagram.com/yomiuri_ruiz/" target="_blank" rel="noopener noreferrer" class="instructor-ig-link" title="Instagram de Yomiuri Ruiz">
-              <svg class="instructor-ig-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-              <span>@yomiuri_ruiz</span>
-            </a>
-            <p class="instructor-bio">
-              Coach deportivo certificado y profesor de bailes latinos con amplia trayectoria en Cuba, Francia y Luxemburgo. Su metodología integra la raíz afrocubana, la conducción clara en pareja y el acondicionamiento físico funcional, logrando que cada alumno baile con seguridad, fluidez y auténtico sabor cubano.
-            </p>
-
-            <span class="specialties-title">Especialidades clave:</span>
-            <div class="specialties-pills">
-              <span class="spec-pill">Salsa Cubana (Casino)</span>
-              <span class="spec-pill">Bachata Sensual &amp; Dominicana</span>
-              <span class="spec-pill rumba-highlight">★ Rumba Cubana (Guaguancó)</span>
-              <span class="spec-pill">Musicalidad &amp; Conducción</span>
-              <span class="spec-pill">Personal Training &amp; Fit</span>
-            </div>
-
-            <div class="instructor-actions">
-              <button class="btn-primary" data-open-modal="booking" data-preselect-instructor="he" style="flex: 1;">
-                Reservar con Yomiuri
-              </button>
-              <a href="#clases" class="btn-outline" style="padding: 0.85rem 1.25rem;">
-                Ver Clases
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- INSTRUCTORA: LUDIVINE GOMEZ -->
-        <article class="instructor-card highlight-special" data-instructor="she">
-          <div class="instructor-media">
-            <span class="instructor-role-badge">
-              Instructora Individual &amp; Bienestar
-            </span>
-            <img src="assets/instructor-she.jpg" alt="Ludivine Gomez · Instructora de Salsa Cubana, Lady Style y Bailoterapia" class="instructor-she-img" loading="lazy">
-          </div>
-          <div class="instructor-content">
-            <h3 class="instructor-name">Ludivine Gomez</h3>
-            <span class="instructor-subtitle">Metodología de Estilo &amp; Salud · Clases Individuales de Salsa Cubana, Lady Style &amp; Bailoterapia</span>
-            <a href="https://www.instagram.com/ludivine.gomez/" target="_blank" rel="noopener noreferrer" class="instructor-ig-link" title="Instagram de Ludivine Gomez">
-              <svg class="instructor-ig-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-              <span>@ludivine.gomez</span>
-            </a>
-            <p class="instructor-bio">
-              Bailarina e instructora de Salsa y Bachata que une la sensualidad y estética del movimiento con la salud integral. Su programa estrella de <strong>Bailoterapia</strong> utiliza el baile como medicina preventiva: cardio latino sin impacto lesivo, corrección postural, liberación de estrés y tonificación consciente.
-            </p>
-
-            <span class="specialties-title">Especialidades clave:</span>
-            <div class="specialties-pills">
-              <span class="spec-pill">Salsa Cubana (Estilo Femenino)</span>
-              <span class="spec-pill">Bachata Sensual &amp; Fluidez</span>
-              <span class="spec-pill wellness-highlight">★ Bailoterapia Salud &amp; Bienestar</span>
-              <span class="spec-pill wellness-highlight">Liberación de Estrés &amp; Cardio</span>
-              <span class="spec-pill">Alineación Postural</span>
-            </div>
-
-            <div class="instructor-actions">
-              <button class="btn-primary" data-open-modal="booking" data-preselect-instructor="she" style="flex: 1;">
-                Reservar con Ludivine
-              </button>
-              <a href="#clases" class="btn-outline" style="padding: 0.85rem 1.25rem;">
-                Ver Clases
-              </a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECCIÓN 2: CATÁLOGO DE CLASES & METODOLOGÍAS INDIVIDUALES
-       ========================================================================== -->
-  <section class="styles-section" id="clases">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-kicker">Programas Formativos</span>
-        <h2 class="section-title">Clases y metodologías por instructor</h2>
-        <p class="section-subtitle">
-          Cada instructor imparte sus propias sesiones de forma individualizada con su propio método y enfoque pedagógico.
-        </p>
-      </div>
-
-      <div class="styles-grid">
-
-        <!-- SALSA CUBANA (YOMIURI RUIZ) -->
-        <article class="style-card">
-          <span class="style-icon">🔥</span>
-          <span class="style-instructor-tag">Clase Individual · Yomiuri Ruiz</span>
-          <h3>Salsa Cubana (Casino)</h3>
-          <p>Aprende desde los fundamentos rítmicos del son y el casino hasta figuras circulares, nudos de brazos y conducción cubana con la metodología de Yomiuri.</p>
-          <ul class="style-features">
-            <li>Niveles: Iniciación, Intermedio y Avanzado</li>
-            <li>Guapea, Dile que no, Enchufla y conducción cubana</li>
-            <li>Rueda de Casino tradicional y musicalidad</li>
-          </ul>
-          <button class="btn-outline" data-open-modal="booking" data-preselect-instructor="he" data-preselect-service="salsa-yomiuri" style="width: 100%;">
-            Apuntarme con Yomiuri
-          </button>
-        </article>
-
-        <!-- RUMBA CUBANA (YOMIURI RUIZ) -->
-        <article class="style-card">
-          <span class="style-icon">🥁</span>
-          <span class="style-instructor-tag">Clase Individual · Yomiuri Ruiz</span>
-          <h3>Rumba Tradicional &amp; Raíz</h3>
-          <p>La cuna del ritmo: Guaguancó, Yambú y Columbia. Trabajo profundo de disociación de torso, hombros, caderas y agilidad.</p>
-          <ul class="style-features">
-            <li>El juego del "Vacunao" y seducción folclórica</li>
-            <li>Coordinación motriz y fuerza rítmica</li>
-            <li>Aplicación directa para lucirse en la Salsa</li>
-          </ul>
-          <button class="btn-primary" data-open-modal="booking" data-preselect-instructor="he" data-preselect-service="rumba-yomiuri" style="width: 100%;">
-            Apuntarme con Yomiuri
-          </button>
-        </article>
-
-        <!-- SALSA CUBANA & LADY STYLE (LUDIVINE GOMEZ) -->
-        <article class="style-card">
-          <span class="style-icon">💃</span>
-          <span class="style-instructor-tag">Clase Individual · Ludivine Gomez</span>
-          <h3>Salsa Cubana &amp; Lady Style</h3>
-          <p>Elegancia en el baile social, disociación corporal fluida, técnica de brazos, giros limpios y confianza femenina con la metodología de Ludivine.</p>
-          <ul class="style-features">
-            <li>Styling femenino aplicado al baile social</li>
-            <li>Fluidez, coordinación y expresión corporal</li>
-            <li>Pasos libres (shines) y colocación postural</li>
-          </ul>
-          <button class="btn-outline" data-open-modal="booking" data-preselect-instructor="she" data-preselect-service="salsa-ladystyle-ludivine" style="width: 100%;">
-            Apuntarme con Ludivine
-          </button>
-        </article>
-
-        <!-- BAILOTERAPIA SALUD Y BIENESTAR (LUDIVINE GOMEZ) -->
-        <article class="style-card">
-          <span class="style-icon">✨</span>
-          <span class="style-instructor-tag">Clase Individual · Ludivine Gomez</span>
-          <h3>Bailoterapia · Salud &amp; Bienestar</h3>
-          <p>Danza terapéutica basada en ritmos latinos combinada con mindfulness y respiración. Quema calorías, alivia el estrés y revitaliza tu energía con el método de Ludivine.</p>
-          <ul class="style-features">
-            <li>Cardio latino suave sin impacto articular</li>
-            <li>Liberación de endorfinas y reducción de cortisol</li>
-            <li>Alineación postural y bienestar emocional</li>
-          </ul>
-          <button class="btn-primary" data-open-modal="booking" data-preselect-instructor="she" data-preselect-service="bailoterapia-ludivine" style="width: 100%;">
-            Apuntarme con Ludivine
-          </button>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECCIÓN 3: GALERÍA DE EVENTOS & TALLERES
-       ========================================================================== -->
-  <section class="events-section" id="eventos">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-kicker">Galería Visual</span>
-        <h2 class="section-title">Momentos en la pista y en la sala</h2>
-        <p class="section-subtitle">Descubre imágenes de nuestras clases grupales, talleres de bailoterapia y veladas de baile.</p>
-      </div>
-
-      <div class="gallery-filters">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="salsa">Salsa Cubana &amp; Rumba</button>
-        <button class="filter-btn" data-filter="bienestar">Bailoterapia</button>
-        <button class="filter-btn" data-filter="bachata">Bachata Social</button>
-      </div>
-
-      <div class="floating-masonry" id="galleryGrid">
-        
-        <div class="masonry-item span-7" data-category="salsa">
-          <span class="media-badge">CLASE MAGISTRAL</span>
-          <img src="assets/event-salsa-cubana.jpg" alt="Masterclass de Salsa Cubana y Rumba con Yomiuri Ruiz" class="masonry-media" style="object-position: center 35%;" loading="lazy">
-          <div class="masonry-overlay">
-            <div class="masonry-caption">
-              <h4>Masterclass de Salsa Cubana &amp; Rumba</h4>
-              <p>Rueda de Casino, percusión afrocubana y musicalidad con Yomiuri Ruiz.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="masonry-item span-5" data-category="bienestar">
-          <span class="media-badge">BAILOTERAPIA</span>
-          <img src="assets/event-bailoterapia.jpg" alt="Sesión de Bailoterapia y Cardio Latino con Ludivine Gomez" class="masonry-media" style="object-position: 50% 25%;" loading="lazy">
-          <div class="masonry-overlay">
-            <div class="masonry-caption">
-              <h4>Jornada de Bailoterapia &amp; Cardio Latino</h4>
-              <p>Movimiento rítmico, alegría y salud cardiovascular con Ludivine Gomez.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="masonry-item span-12" data-category="bachata">
-          <span class="media-badge">BACHATA &amp; SOCIAL DANCE</span>
-          <img src="assets/event-bachata-sensual.jpg" alt="Taller y Social Dance de Bachata Sensual" class="masonry-media" loading="lazy">
-          <div class="masonry-overlay">
-            <div class="masonry-caption">
-              <h4>Noche Social &amp; Taller Intensivo de Bachata Sensual</h4>
-              <p>Conexión en pareja, musicalidad y pista social con la comunidad de Enjoy &amp; Learn.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       MODAL DE RESERVA (CLASES INDIVIDUALES CON CADA INSTRUCTOR)
-       ========================================================================== -->
-  <div class="booking-modal-backdrop" id="bookingModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="booking-modal">
-      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Cerrar ventana">✕</button>
-      
-      <div class="modal-header">
-        <h3 id="modalTitle">Reserva tu Clase Individual</h3>
-        <p>Selecciona tu instructor según su estilo y metodología. Cada clase se imparte de forma 100% individual y personalizada.</p>
-      </div>
-
-      <form class="booking-form" id="bookingForm">
-        <div class="form-group">
-          <label for="bookInstructor">Instructor preferido</label>
-          <select id="bookInstructor" class="form-select" required>
-            <option value="he">Yomiuri Ruiz · Metodología Cubana (Salsa Cubana, Bachata &amp; Rumba)</option>
-            <option value="she">Ludivine Gomez · Metodología Estilo &amp; Salud (Lady Style &amp; Bailoterapia)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="bookService">Estilo o modalidad individual</label>
-          <select id="bookService" class="form-select" required>
-            <optgroup label="Metodología Yomiuri Ruiz">
-              <option value="salsa-yomiuri">Salsa Cubana &amp; Casino (con Yomiuri Ruiz)</option>
-              <option value="rumba-yomiuri">Rumba Tradicional Afrocubana (con Yomiuri Ruiz)</option>
-              <option value="bachata-yomiuri">Bachata &amp; Conducción Rítmica (con Yomiuri Ruiz)</option>
-              <option value="fitness-yomiuri">Personal Training &amp; Acondicionamiento (con Yomiuri Ruiz)</option>
-            </optgroup>
-            <optgroup label="Metodología Ludivine Gomez">
-              <option value="salsa-ladystyle-ludivine">Salsa Cubana &amp; Lady Style (con Ludivine Gomez)</option>
-              <option value="bailoterapia-ludivine">Bailoterapia · Salud &amp; Bienestar (con Ludivine Gomez)</option>
-              <option value="bachata-ludivine">Bachata Sensual &amp; Fluidez Corporal (con Ludivine Gomez)</option>
-              <option value="estiramiento-ludivine">Alineación Postural &amp; Estiramiento (con Ludivine Gomez)</option>
-            </optgroup>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="bookDate">Fecha preferida</label>
-          <input type="date" id="bookDate" class="form-input" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bookName">Nombre completo</label>
-          <input type="text" id="bookName" class="form-input" placeholder="Tu nombre y apellidos" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bookEmail">Correo electrónico</label>
-          <input type="email" id="bookEmail" class="form-input" placeholder="tu-correo@ejemplo.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bookNotes">Comentarios (nivel actual, objetivos, etc.)</label>
-          <textarea id="bookNotes" class="form-textarea" placeholder="¿Tienes experiencia previa? ¿Vienes en pareja o individual?"></textarea>
-        </div>
-
-        <button type="submit" class="form-submit-btn">
-          Confirmar Solicitud de Reserva
-        </button>
-      </form>
-
-      <div class="form-success-msg" id="formSuccessMsg">
-        ¡Solicitud enviada! Nos pondremos en contacto contigo para coordinar la clase. 💃
-      </div>
-    </div>
+<!-- MODAL PRÁCTICA -->
+<div class="modal-veil" id="modal-practice">
+  <div class="modal">
+    <h3>Proponer práctica</h3>
+    <p>La app propone día, hora y un lugar público. Así el match se convierte en baile, no en chat infinito.</p>
+    <div class="field row"><label>Día</label><div class="chips" id="p-day"></div></div>
+    <div class="field"><label>Hora</label>
+      <div class="chips" id="p-time">
+        <button type="button" class="chip" data-v="18:30">18:30</button>
+        <button type="button" class="chip" data-v="19:30">19:30</button>
+        <button type="button" class="chip" data-v="20:30">20:30</button>
+      </div></div>
+    <div class="field"><label>Lugar público</label>
+      <div class="chips" id="p-place">
+        <button type="button" class="chip" data-v="Social en IKKI · Clausen">Social en IKKI · Clausen</button>
+        <button type="button" class="chip" data-v="Brasserie de l'Arrêt · Merl">Brasserie de l'Arrêt · Merl</button>
+        <button type="button" class="chip" data-v="Social del domingo · Auberge de Jeunesse, Esch">Social del domingo · Esch</button>
+      </div></div>
+    <div class="row"><button class="btn" id="practice-send">Enviar propuesta</button></div>
+    <div class="row"><button class="btn secondary" id="practice-cancel">Cancelar</button></div>
   </div>
+</div>
 
-  <!-- ==========================================================================
-       FOOTER
-       ========================================================================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="brand-logo">
-          <img src="assets/logo-couple.png" alt="Logo Pareja de Baile Enjoy & Learn" class="brand-logo-img" width="40" height="40">
-          <span>ENJOY &amp; LEARN</span>
-        </div>
+<!-- MODAL RESERVA -->
+<div class="modal-veil" id="modal-booking">
+  <div class="modal">
+    <h3 id="booking-title">Reservar clase</h3>
+    <p id="booking-sub"></p>
+    <div class="field row"><label>Día</label><div class="chips" id="b-day"></div></div>
+    <div class="field"><label>Hora</label>
+      <div class="chips" id="b-time">
+        <button type="button" class="chip" data-v="18:00">18:00</button>
+        <button type="button" class="chip" data-v="19:00">19:00</button>
+        <button type="button" class="chip" data-v="20:00">20:00</button>
+      </div></div>
+    <div class="field"><label>Duración</label>
+      <div class="chips" id="b-dur">
+        <button type="button" class="chip" data-v="1">1 h</button>
+        <button type="button" class="chip" data-v="1.5">1,5 h</button>
+        <button type="button" class="chip" data-v="2">2 h</button>
+      </div></div>
+    <div class="breakdown" id="booking-breakdown"></div>
+    <div class="row"><button class="btn" id="booking-confirm">Confirmar y pagar (demo)</button></div>
+    <div class="row"><button class="btn secondary" id="booking-cancel">Cancelar</button></div>
+  </div>
+</div>
 
-        <div class="footer-instructors-socials">
-          <a href="https://www.instagram.com/yomiuri_ruiz/" target="_blank" rel="noopener noreferrer" class="footer-ig-pill" title="Instagram de Yomiuri Ruiz (@yomiuri_ruiz)">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>@yomiuri_ruiz</span>
-          </a>
-          <a href="https://www.instagram.com/ludivine.gomez/" target="_blank" rel="noopener noreferrer" class="footer-ig-pill" title="Instagram de Ludivine Gomez (@ludivine.gomez)">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>@ludivine.gomez</span>
-          </a>
-        </div>
+<!-- MODAL CONFIRMACIÓN GENÉRICA -->
+<div class="modal-veil" id="modal-confirm">
+  <div class="modal">
+    <h3 id="confirm-title">¿Seguro?</h3>
+    <p id="confirm-text"></p>
+    <div class="row"><button class="btn danger" id="confirm-yes" style="background:var(--red);color:#fff;border:none">Sí, continuar</button></div>
+    <div class="row"><button class="btn secondary" id="confirm-no">Volver</button></div>
+  </div>
+</div>
 
-        <div class="footer-socials">
-          <a href="https://www.instagram.com/yomiuri_ruiz/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Instagram Enjoy &amp; Learn" aria-label="Instagram">📸</a>
-          <a href="#" class="social-icon-btn" title="Canal de YouTube" aria-label="YouTube">▶️</a>
-          <a href="#" class="social-icon-btn" title="Playlist de Salsa &amp; Bachata" aria-label="Spotify">🎵</a>
-          <a href="tienda.html" class="social-icon-btn" title="Tienda Oficial" aria-label="Tienda">🛍️</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2026 Enjoy and Learn · Clases de Salsa Cubana, Bachata, Rumba y Bailoterapia en Luxemburgo.</p>
-        <div class="footer-legal-links">
-          <a href="tienda.html">Tienda Oficial</a>
-          <a href="#">Política de Privacidad</a>
-          <a href="#">Aviso Legal</a>
-        </div>
-      </div>
+<!-- MODAL VALORACIÓN -->
+<div class="modal-veil" id="modal-rate">
+  <div class="modal">
+    <h3 id="rate-title">¿Cómo fue?</h3>
+    <p id="rate-text">Tu valoración se guarda en el perfil de la otra persona.</p>
+    <div class="rate-stars" id="rate-stars">
+      <button data-v="1">★</button><button data-v="2">★</button><button data-v="3">★</button><button data-v="4">★</button><button data-v="5">★</button>
     </div>
-  </footer>
+    <div class="row"><button class="btn secondary" id="rate-skip">Ahora no</button></div>
+  </div>
+</div>
 
-  <script src="ecosystem.js"></script>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ================= DATOS DE DEMOSTRACIÓN ================= */
+const LEVELS = {1:"Principiante",2:"Intermedio",3:"Avanzado"};
+const DAY_NAMES = {0:"domingo",1:"lunes",2:"martes",3:"miércoles",4:"jueves",5:"viernes",6:"sábado"};
+const DAY_SHORT = {0:"Dom",1:"Lun",2:"Mar",3:"Mié",4:"Jue",5:"Vie",6:"Sáb"};
+const SEEKS = {practica:"Practicar esta semana",social:"Ir a un social",clases:"Recibir clases"};
+const GRADS = [["#7b2d8b","#c86dd7"],["#0f5e68","#38b2ac"],["#8b4513","#e69138"],["#274156","#5b84ae"],["#6d1f2c","#d35d6a"],["#20503c","#57a773"],["#4a2c82","#9b7ede"],["#7a4d00","#e0a526"],["#173f5f","#3a7ca5"],["#5e2750","#b565a7"],["#37474f","#90a4ae"],["#402e7a","#7c6bd9"]];
+
+const PROFILES = [
+ {id:"kiara",kind:"dancer",name:"Kiara",age:29,role:"follower",level:2,styles:["bachata","salsa"],days:[5,6],seeks:"practica",zone:"Clausen, Luxemburgo",bio:"Dos años bailando bachata. Busco practicar giros y conexión entre semana, sin agobios.",likesYou:true,ratings:[5,5,4]},
+ {id:"yosvani",kind:"instructor",name:"Yosvani",age:36,styles:["salsa"],teach:[1,2,3],music:"Timba y salsa cubana",price:45,days:[2,4,6],zone:"Luxemburgo ciudad",bio:"Instructor de salsa cubana y timba. Clases particulares y en pareja: musicalidad, suelta y partnerwork.",ratings:[5,5,5,4]},
+ {id:"mateo",kind:"dancer",name:"Mateo",age:33,role:"leader",level:2,styles:["salsa"],days:[2,4],seeks:"practica",zone:"Kirchberg, Luxemburgo",bio:"Salsero en 1 y en 2. Quiero pulir técnica con práctica regular, una o dos veces por semana.",likesYou:false,ratings:[4,5]},
+ {id:"lucia",kind:"dancer",name:"Lucía",age:26,role:"follower",level:1,styles:["bachata"],days:[3,5,0],seeks:"clases",zone:"Esch-sur-Alzette",bio:"Empecé hace cuatro meses y me encanta la bachata. Busco practicar lo de clase y perder la vergüenza en sociales.",likesYou:true,ratings:[5]},
+ {id:"alba-i",kind:"instructor",name:"Alba",age:31,styles:["bachata"],teach:[1,2],music:"Bachata moderna y sensual",price:40,days:[1,3,5],zone:"Luxemburgo ciudad",bio:"Profesora de bachata. Trabajo conexión, disociación y lady styling en clases particulares.",ratings:[5,4,5]},
+ {id:"diego",kind:"dancer",name:"Diego",age:41,role:"leader",level:3,styles:["salsa","bachata"],days:[4,6],seeks:"social",zone:"Merl, Luxemburgo",bio:"Quince años de pista. Busco followers de nivel para practicar figuras nuevas y preparar el próximo festival.",likesYou:true,ratings:[5,5,5]},
+ {id:"sofia",kind:"dancer",name:"Sofía",age:30,role:"ambos",level:3,styles:["bachata"],days:[1,6,0],seeks:"practica",zone:"Bonnevoie, Luxemburgo",bio:"Bailo de leader y de follower. Me apetece practicar bachata sensual con gente que cuide la técnica.",likesYou:false,ratings:[4,4,5]},
+ {id:"renato",kind:"instructor",name:"Renato",age:44,styles:["salsa","bachata"],teach:[1,2,3],music:"Salsa en línea y mambo",price:55,days:[2,5],zone:"Luxemburgo ciudad",bio:"Formador de instructores. Clases de técnica, shines y preparación de coreografías.",ratings:[5,5]},
+ {id:"nina-d",kind:"dancer",name:"Nina",age:24,role:"follower",level:2,styles:["salsa","bachata"],days:[2,3,6],seeks:"practica",zone:"Gare, Luxemburgo",bio:"Intermedia en salsa, empezando en bachata. Practico mejor con música y buena onda que con prisas.",likesYou:true,ratings:[5,4]},
+ {id:"hugo",kind:"dancer",name:"Hugo",age:28,role:"leader",level:1,styles:["bachata"],days:[5,0],seeks:"clases",zone:"Dudelange",bio:"Principiante total, dos meses de clases. Busco practicar los básicos sin miedo a pisar a nadie.",likesYou:false,ratings:[]},
+ {id:"carmen-i",kind:"instructor",name:"Carmen",age:38,styles:["salsa"],teach:[1,2],music:"Son cubano y salsa clásica",price:35,days:[1,4,0],zone:"Eich, Luxemburgo",bio:"Clases de salsa cubana y son. Rumba y afrocubano para quien quiera raíces de verdad.",ratings:[4,5,5]},
+ {id:"leo",kind:"dancer",name:"Leo",age:35,role:"leader",level:2,styles:["bachata","salsa"],days:[3,6],seeks:"social",zone:"Limpertsberg, Luxemburgo",bio:"Voy a todos los sociales que puedo. Busco práctica seria entre semana y gente para ir al festival de diciembre.",likesYou:true,ratings:[4,5,4]}
+];
+
+/* ================= ESTADO ================= */
+const LS_KEY = "compas_v1";
+let S = load();
+function load(){
+  try{ const raw = localStorage.getItem(LS_KEY); if(raw) return JSON.parse(raw); }catch(e){}
+  return {user:null, swipes:{}, matches:[], chats:{}, bookings:[], likes:{date:today(),count:0}, ratingsGiven:{}, ratedTargets:{}};
+}
+function save(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(S)); }catch(e){} }
+function today(){ const d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+function likesLeft(){ if(S.likes.date!==today()){ S.likes={date:today(),count:0}; } return Math.max(0, 20 - S.likes.count); }
+function profileById(id){ return PROFILES.find(p=>p.id===id); }
+function gradFor(id){ let h=0; for(const c of id) h=(h*31+c.charCodeAt(0))>>>0; return GRADS[h%GRADS.length]; }
+function initials(name){ return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join("").toUpperCase(); }
+function avgRating(p){ const extra=(S.ratedTargets[p.id]||[]); const all=(p.ratings||[]).concat(extra); if(!all.length) return null; return (all.reduce((a,b)=>a+b,0)/all.length); }
+function esc(t){ return String(t==null?"":t).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2600); }
+
+/* ================= NAVEGACIÓN ================= */
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active", s.id==="screen-"+id));
+  const inApp = ["discover","matches","bookings","profile","chat"].includes(id);
+  document.getElementById("screen-welcome").classList.toggle("active", id==="welcome");
+  document.getElementById("screen-signup").classList.toggle("active", id==="signup");
+  document.getElementById("app-main").classList.toggle("hidden", !inApp);
+  document.querySelectorAll("#tabbar button").forEach(b=>b.classList.toggle("on", b.dataset.tab===id));
+  if(inApp){ document.getElementById("tabbar").style.display = id==="chat" ? "none" : "flex"; }
+  updateBadges(); updateLikesPill();
+}
+function updateLikesPill(){ document.getElementById("likes-pill").innerHTML = "Likes hoy: <b>"+likesLeft()+"</b>"; }
+function updateBadges(){
+  const md=document.getElementById("matches-dot"), bd=document.getElementById("bookings-dot");
+  md.textContent=S.matches.length; md.classList.toggle("hidden", !S.matches.length);
+  const act=S.bookings.filter(b=>b.status==="active").length;
+  bd.textContent=act; bd.classList.toggle("hidden", !act);
+}
+document.querySelectorAll("#tabbar button").forEach(b=>b.addEventListener("click",()=>{
+  const t=b.dataset.tab;
+  if(t==="matches") renderMatches();
+  if(t==="bookings") renderBookings();
+  if(t==="profile") renderProfile();
+  if(t==="discover") renderDeck();
+  showScreen(t);
+}));
+
+/* ================= INSCRIPCIÓN ================= */
+let signupKind = "dancer";
+const sel = { role:null, level:null, teach:new Set(), styles:new Set(), days:new Set(), seeks:null };
+function chipGroup(el, {multi=false, target}={}){
+  el.querySelectorAll(".chip").forEach(ch=>ch.addEventListener("click",()=>{
+    const v=ch.dataset.v;
+    if(multi){ ch.classList.toggle("on"); const on=ch.classList.contains("on");
+      if(target){ on ? target.add(v) : target.delete(v); } }
+    else{ el.querySelectorAll(".chip").forEach(c=>c.classList.remove("on")); ch.classList.add("on");
+      if(target==="role") sel.role=v; if(target==="level") sel.level=Number(v); if(target==="seeks") sel.seeks=v; }
+  }));
+}
+function setupSignup(kind, prefill){
+  signupKind=kind;
+  document.getElementById("signup-title").textContent = kind==="dancer" ? "Tu perfil de bailador/a" : "Tu perfil de instructor/a";
+  document.getElementById("signup-sub").textContent = kind==="dancer"
+    ? "Un minuto. Esto es lo que verán tus matches."
+    : "Un minuto. Tu precio por hora se verá en tu carta, tal cual.";
+  document.getElementById("level-label").textContent = kind==="dancer" ? "Tu nivel" : "Tu nivel como bailador/a (opcional)";
+  document.getElementById("wrap-role").classList.toggle("hidden", kind!=="dancer");
+  document.getElementById("wrap-seeks").classList.toggle("hidden", kind!=="dancer");
+  document.getElementById("wrap-teach").classList.toggle("hidden", kind!=="instructor");
+  document.getElementById("wrap-music").classList.toggle("hidden", kind!=="instructor");
+  document.getElementById("wrap-price").classList.toggle("hidden", kind!=="instructor");
+  document.getElementById("signup-submit").textContent = prefill ? "Guardar cambios" : "Crear mi perfil";
+  // reset visual
+  document.querySelectorAll("#signup-form .chip").forEach(c=>c.classList.remove("on"));
+  sel.role=null; sel.level=null; sel.teach=new Set(); sel.styles=new Set(); sel.days=new Set(); sel.seeks=null;
+  document.getElementById("f-name").value=""; document.getElementById("f-music").value="";
+  document.getElementById("f-price").value=""; document.getElementById("f-zone").value="";
+  if(prefill){
+    const u=prefill;
+    document.getElementById("f-name").value=u.name||"";
+    document.getElementById("f-zone").value=u.zone||"";
+    if(u.role){ sel.role=u.role; mark("f-role",u.role); }
+    if(u.level){ sel.level=u.level; mark("f-level",String(u.level)); }
+    (u.teach||[]).forEach(v=>{ sel.teach.add(String(v)); mark("f-teach",String(v)); });
+    (u.styles||[]).forEach(v=>{ sel.styles.add(v); mark("f-styles",v); });
+    (u.days||[]).forEach(v=>{ sel.days.add(String(v)); mark("f-days",String(v)); });
+    if(u.seeks){ sel.seeks=u.seeks; mark("f-seeks",u.seeks); }
+    if(u.music) document.getElementById("f-music").value=u.music;
+    if(u.price) document.getElementById("f-price").value=u.price;
+  }
+}
+function mark(groupId, v){ document.querySelectorAll("#"+groupId+" .chip").forEach(c=>{ if(c.dataset.v===v) c.classList.add("on"); }); }
+chipGroup(document.getElementById("f-role"),{target:"role"});
+chipGroup(document.getElementById("f-level"),{target:"level"});
+chipGroup(document.getElementById("f-teach"),{multi:true,target:sel.teach});
+chipGroup(document.getElementById("f-styles"),{multi:true,target:sel.styles});
+chipGroup(document.getElementById("f-days"),{multi:true,target:sel.days});
+chipGroup(document.getElementById("f-seeks"),{target:"seeks"});
+document.getElementById("pick-dancer").addEventListener("click",()=>{ setupSignup("dancer"); showScreen("signup"); });
+document.getElementById("pick-instructor").addEventListener("click",()=>{ setupSignup("instructor"); showScreen("signup"); });
+document.getElementById("signup-back").addEventListener("click",()=>{ showScreen(S.user? "profile":"welcome"); if(S.user) renderProfile(); });
+document.getElementById("signup-form").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=document.getElementById("f-name").value.trim();
+  if(!name) return toast("Pon tu nombre.");
+  if(signupKind==="dancer"){
+    if(!sel.role) return toast("Elige si sueles ser leader, follower o los dos.");
+    if(!sel.level) return toast("Elige tu nivel.");
+    if(!sel.seeks) return toast("Elige qué buscas.");
+  } else {
+    if(!sel.teach.size) return toast("Elige qué niveles enseñas.");
+    const price=Number(document.getElementById("f-price").value);
+    if(!price || price<10) return toast("Pon tu precio por hora (mín. 10 €).");
+  }
+  if(!sel.styles.size) return toast("Elige al menos un estilo.");
+  if(!sel.days.size) return toast("Elige tus días disponibles.");
+  const wasEditing = !!S.user;
+  S.user = {
+    kind: signupKind, name,
+    role: signupKind==="dancer"? sel.role : null,
+    level: sel.level, teach:[...sel.teach].map(Number),
+    styles:[...sel.styles], days:[...sel.days].map(Number),
+    seeks: signupKind==="dancer"? sel.seeks : null,
+    music: document.getElementById("f-music").value.trim(),
+    price: signupKind==="instructor"? Number(document.getElementById("f-price").value) : null,
+    zone: document.getElementById("f-zone").value.trim() || "Luxemburgo"
+  };
+  save();
+  toast(wasEditing? "Perfil actualizado." : "¡Perfil creado! A bailar.");
+  if(wasEditing){ renderProfile(); showScreen("profile"); }
+  else { renderDeck(); showScreen("discover"); }
+});
+</script>
+
+<script>
+"use strict";
+/* ================= COMPATIBILIDAD ================= */
+function stylesHit(a,b){ return (a||[]).some(s=>(b||[]).includes(s)); }
+function daysHit(a,b){ return (a||[]).some(d=>(b||[]).includes(d)); }
+function isCompatible(p){
+  const u=S.user; if(!u) return false;
+  if(!stylesHit(u.styles,p.styles) || !daysHit(u.days,p.days)) return false;
+  if(p.kind==="instructor"){
+    if(u.kind==="instructor") return true;
+    return !u.level || (p.teach||[]).includes(u.level);
+  }
+  if(u.kind==="instructor") return true;
+  const rolesOk = u.role==="ambos" || p.role==="ambos" || u.role!==p.role;
+  const levelOk = !u.level || Math.abs(u.level-p.level)<=1;
+  return rolesOk && levelOk;
+}
+
+/* ================= MAZO ================= */
+let activeFilter="todos";
+let undoStack=[];
+document.querySelectorAll("#filters .chip").forEach(ch=>ch.addEventListener("click",()=>{
+  document.querySelectorAll("#filters .chip").forEach(c=>c.classList.remove("on"));
+  ch.classList.add("on"); activeFilter=ch.dataset.f; renderDeck();
+}));
+function deckCandidates(){
+  return PROFILES.filter(p=>{
+    if(S.swipes[p.id]) return false;
+    if(activeFilter==="bailadores") return p.kind==="dancer";
+    if(activeFilter==="instructores") return p.kind==="instructor";
+    if(activeFilter==="salsa") return p.styles.includes("salsa");
+    if(activeFilter==="bachata") return p.styles.includes("bachata");
+    return true;
+  });
+}
+function cardHTML(p){
+  const [g1,g2]=gradFor(p.id);
+  const rating=avgRating(p);
+  const roleTxt = p.kind==="dancer" ? (p.role==="ambos"?"Leader y follower":p.role==="leader"?"Leader":"Follower")+" · "+LEVELS[p.level] : "Instructor/a verificado/a";
+  const teachTxt = p.kind==="instructor" ? "Enseña: "+p.teach.map(t=>LEVELS[t]).join(", ") : "";
+  const price = p.kind==="instructor" ? '<div class="price">'+p.price+' €/h</div>' : "";
+  const compat = isCompatible(p) ? '<div class="compat">✓ Compatible contigo</div>' : "";
+  const seeks = p.kind==="dancer" ? '<div class="seeks">Busca: <b>'+esc(SEEKS[p.seeks]||"")+'</b></div>' : "";
+  const music = p.kind==="instructor" ? '<span class="tag gold">🎵 '+esc(p.music)+'</span>' : "";
+  return '<article class="pcard" data-id="'+p.id+'">'
+    + '<div class="photo" style="background:linear-gradient(150deg,'+g1+','+g2+')">'
+    + '<div class="initials">'+esc(initials(p.name))+'</div>'
+    + '<div class="kind">'+(p.kind==="instructor"?"🎓 Instructor/a":"💃 Bailador/a")+'</div>'+price+compat+'</div>'
+    + '<div class="body"><h3>'+esc(p.name)+' <span class="age">'+p.age+'</span></h3>'
+    + '<div class="meta">'+esc(roleTxt)+(teachTxt?" · "+esc(teachTxt):"")+' · '+esc(p.zone)+'</div>'
+    + (rating? '<div class="stars">★ '+rating.toFixed(1)+' · '+(p.ratings.length+(S.ratedTargets[p.id]||[]).length)+' valoraciones</div>':"")
+    + '<div class="tags">'+p.styles.map(s=>'<span class="tag">'+(s==="salsa"?"Salsa":"Bachata")+'</span>').join("")
+    + p.days.slice().sort((a,b)=>((a+6)%7)-((b+6)%7)).map(d=>'<span class="tag">'+DAY_SHORT[d]+'</span>').join("")+music+'</div>'
+    + '<p class="bio">'+esc(p.bio)+'</p>'+seeks
+    + '</div></article>';
+}
+function renderDeck(){
+  const deck=document.getElementById("deck");
+  const list=deckCandidates();
+  document.getElementById("btn-undo").disabled = !undoStack.length;
+  if(!list.length){
+    deck.innerHTML='<div class="empty-deck"><div class="big">🎵</div>No quedan más perfiles con este filtro.<br>Prueba con «Todos» o vuelve mañana: cada día hay likes nuevos.</div>';
+    document.getElementById("book-strip").classList.add("hidden");
+    document.getElementById("btn-no").disabled=true; document.getElementById("btn-yes").disabled=true;
+    return;
+  }
+  document.getElementById("btn-no").disabled=false; document.getElementById("btn-yes").disabled=false;
+  deck.innerHTML = list.slice(0,2).map((p,i)=>cardHTML(p)).join("");
+  const top=deck.querySelector(".pcard");
+  if(list[1]){ const back=deck.querySelectorAll(".pcard")[1]; back.style.transform="scale(.96) translateY(10px)"; back.style.opacity=".75"; back.style.zIndex="0"; }
+  top.style.zIndex="1";
+  attachDrag(top);
+  const cur=list[0];
+  document.getElementById("book-strip").classList.toggle("hidden", cur.kind!=="instructor");
+  if(cur.kind==="instructor") document.getElementById("btn-book-current").textContent="Reservar clase con "+cur.name+" · "+cur.price+" €/h";
+  updateLikesPill();
+}
+function currentProfile(){ const l=deckCandidates(); return l.length? l[0] : null; }
+function doSwipe(dir){
+  const p=currentProfile(); if(!p) return;
+  if(dir==="yes" && likesLeft()<=0){ toast("Has usado tus 20 likes de hoy. Vuelven mañana."); return; }
+  S.swipes[p.id]=dir;
+  if(dir==="yes"){ S.likes.count++; }
+  let matchId=null;
+  if(dir==="yes" && p.kind==="dancer" && p.likesYou && isCompatible(p)){
+    matchId=p.id;
+    if(!S.matches.find(m=>m.id===p.id)) S.matches.push({id:p.id, ts:Date.now()});
+    if(!S.chats[p.id]) S.chats[p.id]=[{who:"them", text:"¡Hola! Yo también quiero "+(SEEKS[p.seeks]||"bailar").toLowerCase()+". ¿Nos organizamos?"}];
+  }
+  undoStack.push({id:p.id, dir, matchId});
+  save(); renderDeck();
+  if(matchId) openMatchModal(p);
+}
+function doUndo(){
+  const last=undoStack.pop(); if(!last) return;
+  delete S.swipes[last.id];
+  if(last.dir==="yes") S.likes.count=Math.max(0,S.likes.count-1);
+  if(last.matchId){
+    S.matches=S.matches.filter(m=>m.id!==last.matchId);
+    toast("Match deshecho.");
+  }
+  save(); renderDeck(); updateBadges();
+}
+document.getElementById("btn-yes").addEventListener("click",()=>doSwipe("yes"));
+document.getElementById("btn-no").addEventListener("click",()=>doSwipe("no"));
+document.getElementById("btn-undo").addEventListener("click",doUndo);
+function attachDrag(card){
+  let sx=0, dx=0, dragging=false;
+  card.addEventListener("pointerdown",e=>{ dragging=true; sx=e.clientX; card.setPointerCapture(e.pointerId); card.style.transition="none"; });
+  card.addEventListener("pointermove",e=>{ if(!dragging) return; dx=e.clientX-sx; card.style.transform="translateX("+dx+"px) rotate("+(dx/18)+"deg)"; });
+  const end=()=>{ if(!dragging) return; dragging=false; card.style.transition="transform .18s ease";
+    if(dx>90) doSwipe("yes"); else if(dx<-90) doSwipe("no"); else { card.style.transform=""; } dx=0; };
+  card.addEventListener("pointerup",end); card.addEventListener("pointercancel",end);
+}
+
+/* ================= MATCH ================= */
+let lastMatch=null;
+function openMatchModal(p){
+  lastMatch=p;
+  document.getElementById("match-text").textContent="Tú y "+p.name+" sois compatibles: "+p.styles.map(s=>s==="salsa"?"salsa":"bachata").join(" y ")+", "+LEVELS[p.level].toLowerCase()+". Proponle día y lugar y a bailar.";
+  document.getElementById("modal-match").classList.add("open");
+  updateBadges();
+}
+document.getElementById("match-later").addEventListener("click",()=>document.getElementById("modal-match").classList.remove("open"));
+document.getElementById("match-propose").addEventListener("click",()=>{
+  document.getElementById("modal-match").classList.remove("open");
+  if(lastMatch) openPractice(lastMatch.id);
+});
+
+/* ================= PRÁCTICA ================= */
+const prac={profile:null, day:null, time:null, place:null};
+function nextDays(wanted, limit){
+  const out=[]; const now=new Date();
+  for(let i=1;i<=14 && out.length<limit;i++){
+    const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i);
+    if(wanted.includes(d.getDay())) out.push(d);
+  }
+  return out;
+}
+function fmtDay(d){ return DAY_NAMES[d.getDay()]+" "+d.getDate()+"/"+(d.getMonth()+1); }
+function chipPick(containerId, cb){
+  const box=document.getElementById(containerId);
+  box.querySelectorAll(".chip").forEach(ch=>ch.addEventListener("click",()=>{
+    box.querySelectorAll(".chip").forEach(c=>c.classList.remove("on")); ch.classList.add("on"); cb(ch.dataset.v);
+  }));
+}
+chipPick("p-time",v=>prac.time=v);
+chipPick("p-place",v=>prac.place=v);
+function openPractice(profileId){
+  prac.profile=profileId; prac.day=null;
+  const p=profileById(profileId);
+  const days=nextDays(p.days&&p.days.length? p.days:[5,6],3);
+  const box=document.getElementById("p-day");
+  box.innerHTML=days.map(d=>'<button type="button" class="chip" data-v="'+fmtDay(d)+'">'+fmtDay(d)+'</button>').join("");
+  chipPick("p-day",v=>prac.day=v);
+  document.getElementById("modal-practice").classList.add("open");
+}
+document.getElementById("practice-cancel").addEventListener("click",()=>document.getElementById("modal-practice").classList.remove("open"));
+document.getElementById("practice-send").addEventListener("click",()=>{
+  if(!prac.day||!prac.time||!prac.place) return toast("Elige día, hora y lugar.");
+  const p=profileById(prac.profile);
+  pushMsg(p.id,{who:"me", text:"Te propongo practicar el "+prac.day+" a las "+prac.time+" en "+prac.place+". ¿Te viene bien?"});
+  pushMsg(p.id,{who:"sys", text:"📍 Propuesta enviada: "+prac.day+", "+prac.time+", "+prac.place+". Lugar público, como debe ser."});
+  document.getElementById("modal-practice").classList.remove("open");
+  openChat(p.id);
+  setTimeout(()=>{ pushMsg(p.id,{who:"them", text:"¡Me viene genial! Nos vemos el "+prac.day.split(" ")[0]+" entonces. Llevo los zapatos de baile 😊"}); if(currentChat===p.id) renderChatBody(); },1400);
+});
+
+/* ================= MATCHES Y CHAT ================= */
+let currentChat=null;
+function renderMatches(){
+  const box=document.getElementById("matches-list");
+  if(!S.matches.length){
+    box.innerHTML='<div class="empty-list"><div class="big">💃</div>Aún no tienes matches.<br>Cuando alguien compatible te corresponda, aparecerá aquí.</div>';
+    return;
+  }
+  box.innerHTML=S.matches.map(m=>{
+    const p=profileById(m.id); const [g1,g2]=gradFor(p.id);
+    const msgs=S.chats[p.id]||[]; const last=msgs[msgs.length-1];
+    return '<button class="list-item" data-chat="'+p.id+'"><div class="avatar" style="background:linear-gradient(140deg,'+g1+','+g2+')">'+esc(initials(p.name))+'</div>'
+      +'<div class="info"><h4>'+esc(p.name)+'</h4><p>'+esc(last? last.text : "Sin mensajes todavía")+'</p></div><span class="badge">Chat</span></button>';
+  }).join("");
+  box.querySelectorAll("[data-chat]").forEach(b=>b.addEventListener("click",()=>openChat(b.dataset.chat)));
+}
+function openChat(profileId){
+  currentChat=profileId;
+  const p=profileById(profileId);
+  const [g1,g2]=gradFor(p.id);
+  const av=document.getElementById("chat-avatar");
+  av.textContent=initials(p.name); av.style.background="linear-gradient(140deg,"+g1+","+g2+")";
+  document.getElementById("chat-name").textContent=p.name;
+  document.getElementById("chat-meta").textContent = p.kind==="instructor" ? "Instructor/a · "+p.price+" €/h · "+esc(p.zone) : (p.role==="leader"?"Leader":p.role==="follower"?"Follower":"Leader y follower")+" · "+LEVELS[p.level]+" · "+esc(p.zone);
+  const actions=document.getElementById("chat-actions");
+  actions.innerHTML = p.kind==="instructor"
+    ? '<button class="chip" id="ca-book">📅 Reservar clase</button>'
+    : '<button class="chip" id="ca-practice">📍 Proponer práctica</button><button class="chip" id="ca-done">✓ Ya practicamos</button>';
+  const bp=document.getElementById("ca-practice"); if(bp) bp.addEventListener("click",()=>openPractice(p.id));
+  const bd=document.getElementById("ca-done"); if(bd) bd.addEventListener("click",()=>openRate(p.id,"practice"));
+  const bb=document.getElementById("ca-book"); if(bb) bb.addEventListener("click",()=>openBooking(p.id));
+  showScreen("chat");
+  renderChatBody();
+}
+function renderChatBody(){
+  const body=document.getElementById("chat-body");
+  const msgs=S.chats[currentChat]||[];
+  body.innerHTML=msgs.map(m=>'<div class="msg '+m.who+'">'+esc(m.text)+'</div>').join("");
+  body.scrollTop=body.scrollHeight;
+}
+function pushMsg(profileId,msg){
+  if(!S.chats[profileId]) S.chats[profileId]=[];
+  S.chats[profileId].push(msg); save();
+  if(currentChat===profileId) renderChatBody();
+}
+document.getElementById("chat-back").addEventListener("click",()=>{ currentChat=null; renderMatches(); showScreen("matches"); });
+function smartReply(p, text){
+  const t=text.toLowerCase();
+  if(/(precio|cuesta|cuánto|cuanto)/.test(t)) return p.kind==="instructor" ? "Mi precio es "+p.price+" €/h. Si reservas desde la app, el pago queda hecho y los dos vamos tranquilos." : "Yo no cobro, ¡solo quiero practicar! 😄";
+  if(/(viernes|social)/.test(t)) return "¡El social del viernes me encanta! Podríamos quedar allí y practicar antes de que se llene la pista.";
+  if(/(nivel|principiante|intermedio|avanzado)/.test(t)) return "Yo estoy en nivel "+LEVELS[p.level].toLowerCase()+". Lo importante es practicar con calma y corregirnos con buena onda.";
+  if(/(hora|cuándo|cuando|día|dia)/.test(t)) return "A mí me vienen bien estos días: "+p.days.map(d=>DAY_NAMES[d]).join(", ")+". ¿Te encaja alguno?";
+  if(/(hola|buenas|hey)/.test(t)) return "¡Hola! Encantado/a. ¿Qué te apetece: practicar esta semana o quedar en un social?";
+  if(/(gracias)/.test(t)) return "¡A ti! Nos vemos en la pista 💃";
+  const generic=["¡Me apetece mucho! ¿Lo concretamos con día y lugar?","Genial. Si quieres, usa el botón de proponer práctica y lo dejamos cerrado.","Perfecto. Yo suelo llevar zapatos de baile y agua, la música la pone el sitio 😊"];
+  return generic[Math.floor(Math.random()*generic.length)];
+}
+function sendChat(){
+  const input=document.getElementById("chat-text");
+  const text=input.value.trim(); if(!text||!currentChat) return;
+  input.value="";
+  const p=profileById(currentChat);
+  pushMsg(p.id,{who:"me",text});
+  const body=document.getElementById("chat-body");
+  const ty=document.createElement("div"); ty.className="typing"; ty.textContent=p.name+" está escribiendo…";
+  body.appendChild(ty); body.scrollTop=body.scrollHeight;
+  setTimeout(()=>{ ty.remove(); pushMsg(p.id,{who:"them", text:smartReply(p,text)}); }, 1100+Math.random()*700);
+}
+document.getElementById("chat-send").addEventListener("click",sendChat);
+document.getElementById("chat-text").addEventListener("keydown",e=>{ if(e.key==="Enter") sendChat(); });
+
+/* ================= RESERVAS ================= */
+const book={profile:null, day:null, time:null, dur:1};
+chipPick("b-time",v=>book.time=v);
+chipPick("b-dur",v=>{ book.dur=Number(v); updateBreakdown(); });
+function openBooking(profileId){
+  const p=profileById(profileId); if(!p||p.kind!=="instructor") return;
+  book.profile=profileId; book.day=null;
+  document.getElementById("booking-title").textContent="Reservar clase con "+p.name;
+  document.getElementById("booking-sub").textContent=p.styles.map(s=>s==="salsa"?"Salsa":"Bachata").join(" y ")+" · "+esc(p.music)+" · "+p.price+" €/h";
+  const days=nextDays(p.days&&p.days.length? p.days:[2,4],3);
+  const box=document.getElementById("b-day");
+  box.innerHTML=days.map(d=>'<button type="button" class="chip" data-v="'+fmtDay(d)+'">'+fmtDay(d)+'</button>').join("");
+  chipPick("b-day",v=>book.day=v);
+  updateBreakdown();
+  document.getElementById("modal-booking").classList.add("open");
+}
+function updateBreakdown(){
+  const p=profileById(book.profile); if(!p) return;
+  const total=Math.round(p.price*book.dur*100)/100;
+  const fee=Math.round(total*0.12*100)/100;
+  const net=Math.round((total-fee)*100)/100;
+  document.getElementById("booking-breakdown").innerHTML=
+    '<div class="line"><span>'+p.price+' € × '+String(book.dur).replace(".",",")+' h</span><span>'+total.toFixed(2).replace(".",",")+' €</span></div>'
+    +'<div class="line"><span>De los cuales, comisión Compás (12 %)</span><span>'+fee.toFixed(2).replace(".",",")+' €</span></div>'
+    +'<div class="line"><span>El instructor recibe</span><span>'+net.toFixed(2).replace(".",",")+' €</span></div>'
+    +'<div class="line total"><span>Total a pagar</span><span>'+total.toFixed(2).replace(".",",")+' €</span></div>';
+}
+document.getElementById("booking-cancel").addEventListener("click",()=>document.getElementById("modal-booking").classList.remove("open"));
+document.getElementById("booking-confirm").addEventListener("click",()=>{
+  if(!book.day||!book.time) return toast("Elige día y hora.");
+  const p=profileById(book.profile);
+  const total=Math.round(p.price*book.dur*100)/100;
+  const b={id:"b"+Date.now(), profileId:p.id, day:book.day, time:book.time, dur:book.dur, total, status:"active", ts:Date.now()};
+  S.bookings.push(b); save();
+  document.getElementById("modal-booking").classList.remove("open");
+  pushMsg(p.id,{who:"sys", text:"📅 Reserva confirmada: clase con "+p.name+" el "+b.day+" a las "+b.time+" ("+String(b.dur).replace(".",",")+" h, "+b.total.toFixed(2).replace(".",",")+" €). Pago simulado de la demo."});
+  toast("Reserva confirmada con "+p.name+".");
+  renderBookings(); showScreen("bookings"); updateBadges();
+});
+document.getElementById("btn-book-current").addEventListener("click",()=>{ const p=currentProfile(); if(p) openBooking(p.id); });
+function renderBookings(){
+  const box=document.getElementById("bookings-list");
+  if(!S.bookings.length){
+    box.innerHTML='<div class="empty-list"><div class="big">📅</div>No tienes reservas todavía.<br>En Descubrir, las cartas de instructor llevan botón de reserva.</div>';
+    return;
+  }
+  box.innerHTML=S.bookings.slice().reverse().map(b=>{
+    const p=profileById(b.profileId); const [g1,g2]=gradFor(p.id);
+    const st = b.status==="active" ? '<span class="badge">Confirmada</span>' : b.status==="done" ? '<span class="badge grey">Realizada</span>' : '<span class="badge grey">Cancelada</span>';
+    const actions = b.status==="active"
+      ? '<div class="btn-row" style="margin-top:10px"><button class="btn secondary" data-done="'+b.id+'">Clase realizada</button><button class="btn danger" data-cancel="'+b.id+'">Cancelar</button></div>' : "";
+    return '<div class="list-item" style="display:block"><div style="display:flex;gap:12px;align-items:center"><div class="avatar" style="background:linear-gradient(140deg,'+g1+','+g2+')">'+esc(initials(p.name))+'</div>'
+      +'<div class="info"><h4>'+esc(p.name)+' · '+b.total.toFixed(2).replace(".",",")+' €</h4><p>'+esc(b.day)+' · '+esc(b.time)+' · '+String(b.dur).replace(".",",")+' h</p></div>'+st+'</div>'+actions+'</div>';
+  }).join("");
+  box.querySelectorAll("[data-cancel]").forEach(btn=>btn.addEventListener("click",()=>{
+    openConfirm("Cancelar la reserva","La clase quedará cancelada y el instructor recibirá el aviso en el chat (demo).",()=>{
+      const b=S.bookings.find(x=>x.id===btn.dataset.cancel); if(!b) return;
+      b.status="cancelled"; save();
+      pushMsg(b.profileId,{who:"sys", text:"❌ Reserva cancelada: clase del "+b.day+" a las "+b.time+"."});
+      renderBookings(); updateBadges(); toast("Reserva cancelada.");
+    });
+  }));
+  box.querySelectorAll("[data-done]").forEach(btn=>btn.addEventListener("click",()=>{
+    const b=S.bookings.find(x=>x.id===btn.dataset.done); if(!b) return;
+    b.status="done"; save(); renderBookings(); updateBadges();
+    openRate(b.profileId,"booking");
+  }));
+}
+
+/* ================= CONFIRMACIÓN Y VALORACIÓN ================= */
+let confirmCb=null;
+function openConfirm(title,text,cb){
+  document.getElementById("confirm-title").textContent=title;
+  document.getElementById("confirm-text").textContent=text;
+  confirmCb=cb;
+  document.getElementById("modal-confirm").classList.add("open");
+}
+document.getElementById("confirm-no").addEventListener("click",()=>document.getElementById("modal-confirm").classList.remove("open"));
+document.getElementById("confirm-yes").addEventListener("click",()=>{ document.getElementById("modal-confirm").classList.remove("open"); if(confirmCb) confirmCb(); });
+let rateTarget=null;
+function openRate(profileId, ctx){
+  const p=profileById(profileId);
+  rateTarget=profileId;
+  document.getElementById("rate-title").textContent="¿Cómo fue con "+p.name+"?";
+  document.getElementById("rate-text").textContent = ctx==="booking" ? "Valora la clase. Tu nota se suma al perfil del instructor." : "Valora la práctica. Tu nota se suma a su perfil: puntualidad, respeto y buen baile cuentan.";
+  document.querySelectorAll("#rate-stars button").forEach(b=>b.classList.remove("on"));
+  document.getElementById("modal-rate").classList.add("open");
+}
+document.querySelectorAll("#rate-stars button").forEach(b=>b.addEventListener("click",()=>{
+  const v=Number(b.dataset.v);
+  document.querySelectorAll("#rate-stars button").forEach(x=>x.classList.toggle("on", Number(x.dataset.v)<=v));
+  if(rateTarget){
+    if(!S.ratedTargets[rateTarget]) S.ratedTargets[rateTarget]=[];
+    S.ratedTargets[rateTarget].push(v); save();
+    toast("¡Gracias! Valoración guardada.");
+  }
+  setTimeout(()=>document.getElementById("modal-rate").classList.remove("open"),350);
+}));
+document.getElementById("rate-skip").addEventListener("click",()=>document.getElementById("modal-rate").classList.remove("open"));
+
+/* ================= PERFIL ================= */
+function renderProfile(){
+  const u=S.user; if(!u) return;
+  const [g1,g2]=gradFor(u.name.toLowerCase().replace(/\s/g,"")||"yo");
+  const kindTxt = u.kind==="dancer" ? "💃 Bailador/a" : "🎓 Instructor/a";
+  const lines=[];
+  lines.push("<b>Tipo:</b> "+kindTxt);
+  if(u.role) lines.push("<b>Rol:</b> "+(u.role==="ambos"?"Leader y follower":u.role==="leader"?"Leader":"Follower"));
+  if(u.level) lines.push("<b>Nivel:</b> "+LEVELS[u.level]);
+  if(u.teach&&u.teach.length) lines.push("<b>Enseña:</b> "+u.teach.map(t=>LEVELS[t]).join(", "));
+  lines.push("<b>Estilos:</b> "+u.styles.map(s=>s==="salsa"?"Salsa":"Bachata").join(", "));
+  if(u.music) lines.push("<b>Música:</b> "+esc(u.music));
+  if(u.price) lines.push("<b>Precio:</b> "+u.price+" €/hora");
+  lines.push("<b>Disponibilidad:</b> "+u.days.slice().sort((a,b)=>((a+6)%7)-((b+6)%7)).map(d=>DAY_SHORT[d]).join(", "));
+  if(u.seeks) lines.push("<b>Busca:</b> "+SEEKS[u.seeks]);
+  lines.push("<b>Zona:</b> "+esc(u.zone));
+  lines.push("<b>Matches:</b> "+S.matches.length+" · <b>Reservas:</b> "+S.bookings.filter(b=>b.status==="active").length+" activas");
+  document.getElementById("profile-view").innerHTML=
+    '<div class="profile-head"><div class="avatar" style="background:linear-gradient(140deg,'+g1+','+g2+')">'+esc(initials(u.name))+'</div><div><h3 style="font-size:21px">'+esc(u.name)+'</h3><div style="color:var(--muted);font-size:13.5px">'+kindTxt+' · '+esc(u.zone)+'</div></div></div>'
+    +'<div class="kv">'+lines.join("<br>")+'</div>';
+}
+document.getElementById("btn-edit-profile").addEventListener("click",()=>{ setupSignup(S.user.kind, S.user); showScreen("signup"); });
+document.getElementById("btn-reset").addEventListener("click",()=>{
+  openConfirm("Borrar tus datos","Se borrará tu perfil, matches, chats y reservas guardados en este navegador, y volverás al inicio.",()=>{
+    localStorage.removeItem(LS_KEY);
+    S={user:null, swipes:{}, matches:[], chats:{}, bookings:[], likes:{date:today(),count:0}, ratingsGiven:{}, ratedTargets:{}};
+    undoStack=[];
+    save(); showScreen("welcome"); toast("Datos borrados. Empezamos de cero.");
+  });
+});
+
+/* ================= INICIO ================= */
+if(S.user){ renderDeck(); renderProfile(); showScreen("discover"); }
+else { showScreen("welcome"); }
+</script>
 </body>
 </html>
