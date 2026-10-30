@@ -658,7 +658,7 @@ function setupSignup(kind, prefill){
   document.getElementById("signup-submit").textContent = prefill ? t("Guardar cambios") : t("Crear mi perfil");
   // reset visual
   document.querySelectorAll("#signup-form .chip").forEach(c=>c.classList.remove("on"));
-  sel.role=null; sel.level=null; sel.teach=new Set(); sel.styles=new Set(); sel.days=new Set(); sel.seeks=null; sel.langs=new Set();
+  sel.role=null; sel.level=null; sel.teach.clear(); sel.styles.clear(); sel.days.clear(); sel.seeks=null; sel.langs.clear();
   document.getElementById("f-name").value=""; document.getElementById("f-music").value="";
   document.getElementById("f-price").value=""; document.getElementById("f-zone").value="";
   if(prefill){
