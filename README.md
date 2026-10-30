@@ -21,7 +21,6 @@
 - **Match con propósito**: al coincidir, se propone práctica con día, hora y lugar público; el chat incluye respuestas simuladas y aviso de propuesta.
 - **Reserva de clases con instructores**: día, hora y duración, con desglose transparente (total, comisión de ConCompás del 12 % y lo que recibe el instructor). Pago simulado.
 - **Mis reservas**: confirmar, marcar como realizada, valorar al instructor y cancelar con confirmación.
-- **Valoraciones** tras prácticas y clases, visibles en las cartas.
 - **Mi perfil**: ver y editar el perfil, o borrar todos los datos locales y empezar de cero.
 
 ## Tecnología
