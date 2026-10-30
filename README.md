@@ -6,6 +6,7 @@
 
 ## Qué hace
 
+- **Idiomas**: interfaz en español, francés e inglés (selector en la bienvenida y en «Mi perfil», se guarda la elección) y campo «Idiomas que hablas» en el perfil (español, francés, inglés, alemán, portugués, italiano, luxemburgués, catalán), visible en las cartas como 🌐 para saber si podéis comunicaros.
 - **Inscripción en dos roles**
   - *Bailador/a*: rol (leader/follower), nivel, estilos, disponibilidad y qué busca.
   - *Instructor/a*: estilos, tipo de música, niveles que enseña, disponibilidad y **precio por hora** visible en su carta.
