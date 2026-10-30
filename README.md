@@ -8,6 +8,7 @@
 
 - **Idiomas**: interfaz en español, francés e inglés (selector en la bienvenida y en «Mi perfil», se guarda la elección) y campo «Idiomas que hablas» en el perfil (español, francés, inglés, alemán, portugués, italiano, luxemburgués, catalán), visible en las cartas como 🌐 para saber si podéis comunicaros.
 - **Diseño**: el del prototipo — tipografía Manrope y logo de metrónomo — con la paleta «Atardecer caribeño»: degradado ámbar → coral → rosa (#FFB75E → #FF7E5F → #F43F5E) sobre fondo azul noche (#0A0F16) y acentos turquesa (#2EC4B6) en la compatibilidad; pastilla de compatibilidad por carta («N días en común · estilo en común»), saludo con el nombre en la cabecera, insignia de filtro activo con «Quitar los filtros» y pista de gesto en la primera carta.
+- **App instalable (PWA)**: manifiesto web + service worker con caché; se instala desde cualquier navegador moderno (Chrome/Edge/Android: «Instalar app»; iPhone/Safari: Compartir → «Añadir a pantalla de inicio»), queda como icono de metrónomo en la pantalla de inicio, se abre a pantalla completa y funciona sin conexión tras la primera visita. Botón «Instalar la app» en la bienvenida.
 - **Inscripción en dos roles**
   - *Bailador/a*: rol (leader/follower), nivel, estilos, disponibilidad y qué busca.
   - *Instructor/a*: estilos, tipo de música, niveles que enseña, disponibilidad y **precio por hora** visible en su carta.
