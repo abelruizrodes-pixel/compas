@@ -1,5 +1,5 @@
 /* ConCompás — service worker: caché de la app para instalación y uso sin conexión */
-const CACHE = "concompas-v11";
+const CACHE = "concompas-v12";
 const ASSETS = [
   "./",
   "./index.html",
@@ -55,4 +55,14 @@ self.addEventListener("fetch", (event) => {
       }).catch(() => caches.match(event.request))
     );
   }
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((list) => {
+      for (const c of list) { if ("focus" in c) return c.focus(); }
+      if (clients.openWindow) return clients.openWindow("./");
+    })
+  );
 });
