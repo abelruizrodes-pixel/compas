@@ -606,8 +606,10 @@ const I18N = { fr: {"Encuentra pareja de práctica de ": "Trouve un ou une parte
 const REV = {};
 Object.keys(I18N.fr).forEach(k=>{ const nk = norm(k); REV[nk] = nk; REV[norm(I18N.fr[k])] = nk; REV[norm(I18N.en[k])] = nk;
   [nk, norm(I18N.fr[k]), norm(I18N.en[k])].forEach(v=>{ const tv = v.trim(); if(tv.length >= 3 && REV[tv] === undefined) REV[tv] = nk; }); });
+const I18N_N = {};
+["fr","en"].forEach(l=>{ I18N_N[l] = {}; Object.keys(I18N[l]).forEach(k=>{ I18N_N[l][norm(k)] = I18N[l][k]; }); });
 function norm(s){ return String(s).replace(/\u00A0/g, " "); }
-function t(s){ if(!S.lang || S.lang === "es") return s; const d = I18N[S.lang]; const k = norm(s); return (d && d[k]) || (d && d[s]) || s; }
+function t(s){ if(!S.lang || S.lang === "es") return s; const d = I18N_N[S.lang]; const v = d && d[norm(s)]; return v !== undefined ? v : s; }
 const LANG_NAMES = {es:"Español", fr:"Français", en:"English", de:"Deutsch", pt:"Português", it:"Italiano", lb:"Lëtzebuergesch", ca:"Català"};
 function langName(c){ return LANG_NAMES[c] || c.toUpperCase(); }
 const LEVELS_I18N = {fr:{1:"Débutant",2:"Intermédiaire",3:"Avancé"}, en:{1:"Beginner",2:"Intermediate",3:"Advanced"}};
@@ -619,7 +621,7 @@ function dayShort(d){ return (DAY_SHORT_I18N[S.lang] && DAY_SHORT_I18N[S.lang][d
 const DAY_NAMES_I18N = {fr:{0:"dimanche",1:"lundi",2:"mardi",3:"mercredi",4:"jeudi",5:"vendredi",6:"samedi"}, en:{0:"Sunday",1:"Monday",2:"Tuesday",3:"Wednesday",4:"Thursday",5:"Friday",6:"Saturday"}};
 function dayName(d){ return (DAY_NAMES_I18N[S.lang] && DAY_NAMES_I18N[S.lang][d]) || DAY_NAMES[d]; }
 function applyI18n(){
-  const dict = I18N[S.lang] || {};
+  const dict = I18N_N[S.lang] || {};
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   const nodes = [];
   while(walker.nextNode()) nodes.push(walker.currentNode);
@@ -628,13 +630,13 @@ function applyI18n(){
     if(!key) return;
     const esKey = (REV[key] !== undefined) ? REV[key] : REV[rawN];
     if(esKey === undefined) return;
-    const target = (S.lang === "es") ? esKey : (dict[esKey] || esKey);
+    const target = (S.lang === "es") ? esKey : (dict[esKey] !== undefined ? dict[esKey] : esKey);
     if(target !== key) n.nodeValue = rawN.replace(key, target);
   });
   document.querySelectorAll("[placeholder]").forEach(el=>{
     const k = norm(el.getAttribute("placeholder")).trim();
     const esKey = (REV[k] !== undefined) ? REV[k] : REV[norm(el.getAttribute("placeholder"))];
-    if(esKey !== undefined) el.setAttribute("placeholder", (S.lang === "es") ? esKey : (dict[esKey] || esKey));
+    if(esKey !== undefined) el.setAttribute("placeholder", (S.lang === "es") ? esKey : (dict[esKey] !== undefined ? dict[esKey] : esKey));
   });
 }
 function setLang(l){
