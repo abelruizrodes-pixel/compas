@@ -1,6 +1,6 @@
-# Compás — App de match de baile (salsa y bachata · Luxemburgo)
+# ConCompás — App de match de baile (salsa y bachata · Luxemburgo)
 
-**Compás** es una aplicación web para encontrar pareja de práctica de salsa y bachata de tu nivel en Luxemburgo y reservar clases con instructores con el precio por hora visible.
+**ConCompás** es una aplicación web para encontrar pareja de práctica de salsa y bachata de tu nivel en Luxemburgo y reservar clases con instructores con el precio por hora visible.
 
 > Estado: **prototipo funcional de validación**. Los perfiles son ficticios, no hay servidor ni cuentas reales y los pagos son simulados. Todo el estado se guarda en el navegador de cada visitante (localStorage).
 
@@ -12,7 +12,7 @@
 - **Descubrir con match o descarte**: mazo deslizable (también con botones), filtros por tipo y estilo, botón de deshacer y límite de 20 likes al día.
 - **Compatibilidad real**: la app marca «Compatible contigo» cuando coinciden estilo, disponibilidad, rol complementario y nivel (±1).
 - **Match con propósito**: al coincidir, se propone práctica con día, hora y lugar público; el chat incluye respuestas simuladas y aviso de propuesta.
-- **Reserva de clases con instructores**: día, hora y duración, con desglose transparente (total, comisión de Compás del 12 % y lo que recibe el instructor). Pago simulado.
+- **Reserva de clases con instructores**: día, hora y duración, con desglose transparente (total, comisión de ConCompás del 12 % y lo que recibe el instructor). Pago simulado.
 - **Mis reservas**: confirmar, marcar como realizada, valorar al instructor y cancelar con confirmación.
 - **Valoraciones** tras prácticas y clases, visibles en las cartas.
 - **Mi perfil**: ver y editar el perfil, o borrar todos los datos locales y empezar de cero.
