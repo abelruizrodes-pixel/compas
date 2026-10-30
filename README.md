@@ -7,6 +7,7 @@
 ## Qué hace
 
 - **Idiomas**: interfaz en español, francés e inglés (selector en la bienvenida y en «Mi perfil», se guarda la elección) y campo «Idiomas que hablas» en el perfil (español, francés, inglés, alemán, portugués, italiano, luxemburgués, catalán), visible en las cartas como 🌐 para saber si podéis comunicaros.
+- **Diseño**: el del prototipo — tipografía Manrope, degradado coral y logo de metrónomo; pastilla de compatibilidad por carta («N días en común · estilo en común»), saludo con el nombre en la cabecera, insignia de filtro activo con «Quitar los filtros» y pista de gesto en la primera carta.
 - **Inscripción en dos roles**
   - *Bailador/a*: rol (leader/follower), nivel, estilos, disponibilidad y qué busca.
   - *Instructor/a*: estilos, tipo de música, niveles que enseña, disponibilidad y **precio por hora** visible en su carta.
