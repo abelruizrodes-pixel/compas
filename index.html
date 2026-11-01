@@ -1515,7 +1515,7 @@ window.addEventListener("load", ()=>{ setTimeout(async ()=>{
     if(q.get("pay") === "ok"){ toast(t("Pago confirmado: tu clase está reservada.")); showScreen("bookings"); }
     if(q.get("pay") === "cancel"){ toast(t("Pago cancelado: no se ha hecho ningún cargo.")); }
     if(q.get("connect") === "ok"){ try{ await callFn("refreshConnectStatus", {}); toast(t("Cobros activados. Ya puedes recibir pagos.")); }catch(e){} showScreen("profile"); }
-    if(q.get("pro") === "ok"){ toast(t("¡Ya eres ConCompás Pro!")); showScreen("profile"); }
+    if(q.get("pro") === "ok"){ try{ await callFn("syncProStatus", {}); }catch(e){} toast(t("¡Ya eres ConCompás Pro!")); showScreen("profile"); }
     history.replaceState(null, "", location.pathname);
   }catch(e){}
 }, 1200); });
