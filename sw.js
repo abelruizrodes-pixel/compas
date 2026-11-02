@@ -1,5 +1,5 @@
 /* ConCompás — service worker: caché de la app para instalación y uso sin conexión */
-const CACHE = "concompas-v24";
+const CACHE = "concompas-v25";
 const ASSETS = [
   "./",
   "./index.html",
