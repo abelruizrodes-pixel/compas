@@ -1184,6 +1184,27 @@ const PLACES = {
   "Madrid": ["Social de salsa · Malasaña", "Parque del Retiro", "Escuela de baile · Chamberí"]
 };
 const PLACES_DEFAULT = ["Social de salsa del centro", "Parque o plaza céntrica", "Escuela de baile del centro"];
+/* ===== Eventos reales (events.json, sincronizado desde las páginas de Facebook de las escuelas) ===== */
+let FB_EVENTS = [];
+function loadFbEvents(){
+  fetch("events.json", {cache:"no-store"}).then(r=> r.ok ? r.json() : null).then(j=>{
+    if(j && Array.isArray(j.events)) FB_EVENTS = j.events;
+  }).catch(()=>{});
+}
+loadFbEvents();
+function eventPlacesFor(city){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const k = normCity(city || "Luxemburgo");
+  return FB_EVENTS.filter(e=>{
+    if(!e || !e.date || !e.title) return false;
+    const d = new Date(e.date + "T23:59:59");
+    return !isNaN(d) && d >= today && normCity(e.city || "Luxemburgo") === k;
+  }).sort((a,b)=> a.date < b.date ? -1 : 1).slice(0,6).map(e=>{
+    const d = new Date(e.date + "T12:00:00");
+    const base = e.venue ? (e.title + " · " + e.venue) : e.title;
+    return {label: base, chip: base + " · " + fmtDay(d)};
+  });
+}
 const prac={profile:null, day:null, time:null, place:null};
 function nextDays(wanted, limit){
   const out=[]; const now=new Date();
@@ -1206,7 +1227,8 @@ function openPractice(profileId){
   prac.profile=profileId; prac.day=null; prac.place=null;
   const p=profileById(profileId);
   const places=placesFor(p.city||"Luxemburgo");
-  document.getElementById("p-place").innerHTML=places.map(pl=>'<button type="button" class="chip" data-v="'+esc(pl)+'">'+esc(pl)+'</button>').join("");
+  const placeObjs=eventPlacesFor(p.city||"Luxemburgo").concat(places.map(pl=>({label:pl, chip:pl})));
+  document.getElementById("p-place").innerHTML=placeObjs.map(o=>'<button type="button" class="chip" data-v="'+esc(o.label)+'">'+esc(o.chip)+'</button>').join("");
   chipPick("p-place",v=>prac.place=v);
   const days=nextDays(p.days&&p.days.length? p.days:[5,6],3);
   const box=document.getElementById("p-day");
