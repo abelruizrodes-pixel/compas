@@ -2,6 +2,33 @@
  "updated": "2026-11-03",
  "events": [
   {
+   "title": "Soirée Bachata",
+   "venue": "Agua Party Paris · Quai Anatole France",
+   "city": "París",
+   "date": "2026-11-03",
+   "time": "19:00",
+   "url": "https://www.facebook.com/events/1846523953040686/",
+   "source": "Agua Party Paris"
+  },
+  {
+   "title": "Salsa vs Bachata + Social",
+   "venue": "Sala Vivaldi",
+   "city": "Barcelona",
+   "date": "2026-11-03",
+   "time": "21:00",
+   "url": "https://www.facebook.com/events/3224637531070219/",
+   "source": "Multicultural Salsa&Bachata in Barcelona"
+  },
+  {
+   "title": "DITC · 100% Bachata",
+   "venue": "Sensation Dance School, Paris 13",
+   "city": "París",
+   "date": "2026-11-04",
+   "time": "20:00",
+   "url": "https://www.facebook.com/events/1130706472759818/",
+   "source": "Dance In The City - DITC"
+  },
+  {
    "title": "Afterwork SBK",
    "venue": "GRIDX, Wickrange",
    "city": "Luxemburgo",
@@ -20,6 +47,24 @@
    "source": "LBF Dance School"
   },
   {
+   "title": "El finde se baila: Salsa y Bachata",
+   "venue": "Dio Club",
+   "city": "Barcelona",
+   "date": "2026-11-05",
+   "time": "22:00",
+   "url": "https://www.facebook.com/events/4653486054882934/",
+   "source": "Seven Dance"
+  },
+  {
+   "title": "Fiesta Caribeña",
+   "venue": "Bandido Valencia",
+   "city": "Valencia",
+   "date": "2026-11-07",
+   "time": "17:45",
+   "url": "https://www.facebook.com/events/1412926787454302/1412926887454292/",
+   "source": "Salseando Hasta El Amanecer"
+  },
+  {
    "title": "Smooth Salsa & Bachata Nights",
    "venue": "Brasserie de l'Arrêt, Merl",
    "city": "Luxemburgo",
@@ -27,6 +72,42 @@
    "time": "18:40",
    "url": "https://www.facebook.com/events/3418152018374406/",
    "source": "Alkemia Dance School"
+  },
+  {
+   "title": "Bilongo · El Social",
+   "venue": "Asucar Valencia",
+   "city": "Valencia",
+   "date": "2026-11-07",
+   "time": "19:00",
+   "url": "https://www.facebook.com/events/969070365817132/",
+   "source": "Asucar Valencia"
+  },
+  {
+   "title": "Nostalgic Salsa Night",
+   "venue": "The Backyard, Drogenbos",
+   "city": "Bruselas",
+   "date": "2026-11-07",
+   "time": "21:00",
+   "url": "https://www.facebook.com/events/39545861455058195/",
+   "source": "The Backyard - Brussels"
+  },
+  {
+   "title": "Fiesta Caribeña",
+   "venue": "Tulum Valencia",
+   "city": "Valencia",
+   "date": "2026-11-08",
+   "time": "17:30",
+   "url": "https://www.facebook.com/events/1124999149964493/1124999246631150/",
+   "source": "Salseando Hasta El Amanecer"
+  },
+  {
+   "title": "Loco Festival · 5º Aniversario",
+   "venue": "Loco Valencia Salsa",
+   "city": "Valencia",
+   "date": "2026-11-12",
+   "time": "19:00",
+   "url": "https://www.facebook.com/events/1707805837214895/",
+   "source": "Loco Valencia Salsa"
   },
   {
    "title": "Smooth Salsa & Bachata Nights",
@@ -47,6 +128,15 @@
    "source": "Danse-Salsa.lu"
   },
   {
+   "title": "Sunday Salsa Chill",
+   "venue": "The Backyard, Drogenbos",
+   "city": "Bruselas",
+   "date": "2026-11-15",
+   "time": "15:00",
+   "url": "https://www.facebook.com/events/1359812455590257/",
+   "source": "The Backyard - Brussels"
+  },
+  {
    "title": "100% Bachata Night",
    "venue": "Brasserie de l'Arrêt",
    "city": "Luxemburgo",
@@ -54,6 +144,42 @@
    "time": "20:00",
    "url": "https://www.facebook.com/events/817072814502028/",
    "source": "LBF Dance School"
+  },
+  {
+   "title": "Clinic Follower Style",
+   "venue": "Seven Dance",
+   "city": "Barcelona",
+   "date": "2026-11-21",
+   "time": "10:00",
+   "url": "https://www.facebook.com/events/1576936274475827/",
+   "source": "Seven Dance"
+  },
+  {
+   "title": "Bachamia · Danse sociale",
+   "venue": "BachamÍa, Rue de Tolbiac",
+   "city": "París",
+   "date": "2026-11-21",
+   "time": "19:45",
+   "url": "https://www.facebook.com/events/1618298873098131/",
+   "source": "BachamÍa"
+  },
+  {
+   "title": "Festa de Gala · Divendres Ballem",
+   "venue": "Casino Barcelona",
+   "city": "Barcelona",
+   "date": "2026-11-27",
+   "time": "20:00",
+   "url": "https://www.facebook.com/events/1667001958106498/",
+   "source": "Club Friendsteam"
+  },
+  {
+   "title": "Salsa Spain World Congress 2026",
+   "venue": "Plaza de la Independencia 3",
+   "city": "Madrid",
+   "date": "2026-12-11",
+   "time": "17:00",
+   "url": "https://www.facebook.com/events/2053436528844156/",
+   "source": "Salsa Spain"
   },
   {
    "title": "Bachata & Salsa Night",
@@ -65,6 +191,24 @@
    "source": "LBF Dance School"
   },
   {
+   "title": "MAD Bachata Festival 2026",
+   "venue": "Hotel Isla de la Garena, Alcalá de Henares",
+   "city": "Madrid",
+   "date": "2026-12-18",
+   "time": "12:00",
+   "url": "https://www.facebook.com/events/1419902769511265/",
+   "source": "Sbk Europe"
+  },
+  {
+   "title": "Paris Afro Latin Congress",
+   "venue": "Paris Marriott CDG, Roissy",
+   "city": "París",
+   "date": "2027-03-19",
+   "time": "15:00",
+   "url": "https://www.facebook.com/events/26025805837091192/",
+   "source": "Paris Afro Latin Congress"
+  },
+  {
    "title": "Domingo Experience SBK Rooftop",
    "venue": "Mama Shelter Luxembourg",
    "city": "Luxemburgo",
@@ -72,6 +216,24 @@
    "time": "16:00",
    "url": "https://www.facebook.com/events/1775358106839771/",
    "source": "Lux Bachata"
+  },
+  {
+   "title": "The Backyard Salsa Camp",
+   "venue": "The Backyard, Drogenbos",
+   "city": "Bruselas",
+   "date": "2027-07-03",
+   "time": "11:00",
+   "url": "https://www.facebook.com/events/1860141301613747/",
+   "source": "The Backyard - Brussels"
+  },
+  {
+   "title": "Brussels Retro Salsa Fest 4",
+   "venue": "The Backyard, Drogenbos",
+   "city": "Bruselas",
+   "date": "2027-08-06",
+   "time": "22:00",
+   "url": "https://www.facebook.com/events/1032505539640315/",
+   "source": "The Backyard - Brussels"
   }
  ]
 }
