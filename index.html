@@ -274,6 +274,7 @@ nav.tabbar .ic .bic{width:21px;height:21px}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
 </head>
 <body>
 <div id="phone">
@@ -472,6 +473,10 @@ nav.tabbar .ic .bic{width:21px;height:21px}
       <div class="field" style="margin-top:22px"><label>Avisos en este dispositivo</label>
         <p class="screen-sub" id="notif-status"></p>
         <div class="row"><button class="btn secondary" id="btn-notif-enable" type="button">Activar avisos en este dispositivo</button></div>
+      </div>
+      <div class="field" style="margin-top:14px"><label>Sonido de aviso</label>
+        <div class="row"><button class="btn secondary" id="btn-notif-sound" type="button">Sonido: activado</button></div>
+        <p class="screen-sub">Un «ding» cuando llega un mensaje, un like o un match con la app abierta. Con la app cerrada, los avisos suenan con el sonido de tu móvil.</p>
       </div>
     </section>
 
@@ -1248,6 +1253,58 @@ document.getElementById("practice-send").addEventListener("click",()=>{
   if(!(window.FB && window.FB.isRemoteProfile && window.FB.isRemoteProfile(p))) setTimeout(()=>{ pushMsg(p.id,{who:"them", text:"¡Me viene genial! Nos vemos el "+prac.day.split(" ")[0]+" entonces. Llevo los zapatos de baile"}); if(currentChat===p.id) renderChatBody(); },1400);
 });
 
+/* ================= SONIDO DE AVISO ================= */
+let _audioCtx = null, _lastDing = 0;
+function playNotifSound(){
+  if(typeof S !== "undefined" && S && S.notifSound === false) return;
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext; if(!AC) return;
+    if(!_audioCtx) _audioCtx = new AC();
+    if(_audioCtx.state === "suspended") _audioCtx.resume();
+    const t0 = _audioCtx.currentTime;
+    [[880, 0], [1318.5, 0.12]].forEach(function(pair){
+      const f = pair[0], off = pair[1];
+      const o = _audioCtx.createOscillator(), g = _audioCtx.createGain();
+      o.type = "sine"; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t0 + off);
+      g.gain.exponentialRampToValueAtTime(0.22, t0 + off + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + off + 0.28);
+      o.connect(g); g.connect(_audioCtx.destination);
+      o.start(t0 + off); o.stop(t0 + off + 0.3);
+    });
+    if(navigator.vibrate) navigator.vibrate(60);
+  }catch(e){}
+}
+function dingDebounced(){
+  const now = Date.now();
+  if(now - _lastDing < 2500) return;
+  _lastDing = now;
+  playNotifSound();
+}
+document.addEventListener("pointerdown", function(){
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext; if(!AC) return;
+    if(!_audioCtx) _audioCtx = new AC();
+    if(_audioCtx.state === "suspended") _audioCtx.resume();
+  }catch(e){}
+}, { passive: true });
+
+/* Abrir el chat al tocar una notificación push */
+let pendingPair = "";
+function tryOpenPair(pair){
+  if(!pair) return;
+  const me = (window.FB && FB.user) ? FB.user.uid : "";
+  const partner = pair.split("_").find(function(u){ return u && u !== me; });
+  if(partner && typeof profileById === "function" && profileById(partner)){ openChat(partner); pendingPair = ""; }
+  else pendingPair = pair;
+}
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.addEventListener("message", function(e){
+    const d = (e && e.data) || {};
+    if(d.type === "open-chat" && d.pair) tryOpenPair(d.pair);
+  });
+}
+
 /* ================= AVISOS DE MATCH ================= */
 function notifyMatch(p){
   if(!S.notifs) S.notifs=[];
@@ -1269,6 +1326,7 @@ function notifyMatch(p){
 function notifyRemoteMatch(p){
   if(!S.notifs) S.notifs=[];
   if(!S.notifs.find(n=>n.pid===p.id)) S.notifs.unshift({pid:p.id, ts:Date.now(), read:false});
+  dingDebounced();
   if("Notification" in window && Notification.permission==="granted"){
     const title=t("¡Es un match!"), body=p.name+t(" ha hecho match contigo. ¡A bailar!");
     try{
@@ -1334,20 +1392,34 @@ function renderNotifs(){
   const st=document.getElementById("notif-status"), btn=document.getElementById("btn-notif-enable");
   if(st){
     if(!("Notification" in window)) st.textContent=t("Este navegador no admite avisos del sistema.");
-    else if(Notification.permission==="granted") st.textContent=t("Los avisos están activados en este dispositivo.");
+    else if(Notification.permission==="granted") st.textContent=t("Los avisos están activados en este dispositivo, también con la app cerrada.");
     else if(Notification.permission==="denied") st.textContent=t("Los avisos están bloqueados en este navegador. Actívalos en los ajustes del navegador para verlos fuera de la app.");
     else st.textContent=t("Si activas los avisos, este dispositivo mostrará también el aviso cuando haya un match, igual que lo recibirá la otra persona en el suyo.");
   }
   if(btn) btn.style.display = (("Notification" in window) && Notification.permission==="default") ? "" : "none";
+  if(typeof renderSoundBtn === "function") renderSoundBtn();
 }
 document.getElementById("btn-notifs").addEventListener("click",()=>{
   (S.notifs||[]).forEach(n=>n.read=true); save();
   renderNotifs(); showScreen("notifs");
 });
-document.getElementById("btn-notif-enable").addEventListener("click",()=>{
+document.getElementById("btn-notif-enable").addEventListener("click", async ()=>{
   if(!("Notification" in window)) return;
-  Notification.requestPermission().then(()=>{ renderNotifs(); updateBadges(); if(Notification.permission==="granted") toast(t("Avisos activados. Gracias.")); });
+  if(window.FB && FB.activatePush){
+    const r = await FB.activatePush();
+    renderNotifs(); updateBadges();
+    if(r === "granted"){ toast(t("Avisos activados. Gracias.")); playNotifSound(); }
+    else if(r === "denied") toast(t("Los avisos están bloqueados en este navegador."));
+  } else {
+    Notification.requestPermission().then(()=>{ renderNotifs(); updateBadges(); if(Notification.permission==="granted") toast(t("Avisos activados. Gracias.")); });
+  }
 });
+const _soundBtn = document.getElementById("btn-notif-sound");
+function renderSoundBtn(){ if(_soundBtn) _soundBtn.textContent = t("Sonido: ") + ((typeof S !== "undefined" && S && S.notifSound === false) ? t("desactivado") : t("activado")); }
+if(_soundBtn){
+  renderSoundBtn();
+  _soundBtn.addEventListener("click", ()=>{ S.notifSound = (S.notifSound === false); save(); renderSoundBtn(); if(S.notifSound) playNotifSound(); });
+}
 
 /* ================= MATCHES Y CHAT ================= */
 let currentChat=null;
@@ -2095,6 +2167,11 @@ window.addEventListener("appinstalled", function () {
         }
         entries.push({ uid: liker, ts: (d.data() || {}).ts || 0 });
       }
+      if(!FB._likersSeen) FB._likersSeen = new Set();
+      const _newLiker = entries.find(e=>FB._likersInit && !FB._likersSeen.has(e.uid));
+      entries.forEach(e=>FB._likersSeen.add(e.uid));
+      if(_newLiker) dingDebounced();
+      FB._likersInit = true;
       INBOX = entries;
       updateInboxBadge();
       const act = document.querySelector(".screen.active");
@@ -2108,9 +2185,15 @@ window.addEventListener("appinstalled", function () {
     if(FB._chatPartner === partner && FB._unsubChat) return;
     FB.stopChat();
     const me = FB.user.uid, pair = FB.pairId(me, partner);
-    FB._chatPartner = partner;
+    FB._chatPartner = partner; FB._chatInit = false; FB._chatLastTs = 0;
     FB._unsubChat = db.collection("chats").doc(pair).collection("messages").orderBy("ts").onSnapshot(snap=>{
       S.chats[partner] = snap.docs.map(d=>{ const m = d.data() || {}; return { who: m.from === "system" ? "sys" : (m.from === me ? "me" : "them"), text: m.text || "" }; });
+      const _lastMsg = snap.docs.length ? (snap.docs[snap.docs.length - 1].data() || {}) : null;
+      if(_lastMsg){
+        if(FB._chatInit && _lastMsg.from !== "system" && _lastMsg.from !== me && (_lastMsg.ts || 0) > (FB._chatLastTs || 0)) dingDebounced();
+        FB._chatLastTs = Math.max(FB._chatLastTs || 0, _lastMsg.ts || 0);
+        FB._chatInit = true;
+      }
       save();
       if(currentChat === partner) renderChatBody();
       const act = document.querySelector(".screen.active");
@@ -2125,6 +2208,49 @@ window.addEventListener("appinstalled", function () {
   };
   FB.deleteProfile = async function(){
     if(FB.user){ try{ await db.collection("profiles").doc(FB.user.uid).delete(); }catch(e){} }
+  };
+  /* ===== Push (FCM): avisos con la app cerrada ===== */
+  const VAPID_KEY = "BBviEyQsKNH24EHrmNkIN_VhLhp85D-iETYWoziH8ooAVpzVrjlNGTRLgA3plFSo8Plv6oQ340oxQA8Q0F2goSc";
+  let _messaging = null;
+  function _msg(){
+    if(_messaging) return _messaging;
+    try{ if(window.firebase && firebase.messaging) _messaging = firebase.messaging(); }catch(e){}
+    return _messaging;
+  }
+  async function _savePushToken(){
+    const ms = _msg(); if(!ms || !FB.user) return;
+    try{
+      const reg = await navigator.serviceWorker.getRegistration();
+      const token = await ms.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: reg || undefined });
+      if(token) await db.collection("users").doc(FB.user.uid).set({ fcmTokens: firebase.firestore.FieldValue.arrayUnion(token), pushAt: Date.now() }, { merge: true });
+    }catch(e){}
+  }
+  FB.initPush = function(){
+    const ms = _msg(); if(!ms) return;
+    if(!FB._pushInit){
+      FB._pushInit = true;
+      ms.onMessage(function(payload){
+        dingDebounced();
+        try{
+          const n = (payload && payload.notification) || {}, d = (payload && payload.data) || {};
+          if(navigator.serviceWorker && navigator.serviceWorker.ready){
+            navigator.serviceWorker.ready.then(function(r){ if(r && r.showNotification) r.showNotification(n.title || "ConCompás", { body: n.body || "", icon: "icon-192.png", badge: "icon-192.png", tag: d.tag || "concompas", data: { pair: d.pair || "" } }); }).catch(function(){});
+          }
+        }catch(e){}
+      });
+    }
+    if(("Notification" in window) && Notification.permission === "granted") _savePushToken();
+  };
+  FB.activatePush = async function(){
+    if(!("Notification" in window)) return "unsupported";
+    const ms = _msg(); if(!ms) return "unsupported";
+    try{
+      const perm = await Notification.requestPermission();
+      if(perm !== "granted") return perm;
+      FB.initPush();
+      await _savePushToken();
+      return "granted";
+    }catch(e){ return "error"; }
   };
   function init(){
     if(!window.firebase || !firebase.auth || !firebase.firestore) return false;
@@ -2150,7 +2276,7 @@ window.addEventListener("appinstalled", function () {
         S.user = Object.assign({}, p); delete S.user.demo; delete S.user.likesYou; delete S.user.age;
         S.user.rulesAccepted = true; save();
         await FB.fetchRemote();
-        await FB.loadSwipes(); FB.listenMatches(); startSrvListeners();
+        await FB.loadSwipes(); FB.listenMatches(); startSrvListeners(); if(FB.initPush) FB.initPush(); if(typeof pendingPair !== "undefined" && pendingPair) tryOpenPair(pendingPair);
         renderDeck(); renderProfile(); showScreen("discover");
       } else {
         toast(t("Tu cuenta no tiene perfil todavía. Créalo ahora."));
@@ -2177,7 +2303,7 @@ window.addEventListener("appinstalled", function () {
         }
       }catch(e){}
       await FB.fetchRemote();
-      await FB.loadSwipes(); FB.listenMatches(); startSrvListeners();
+      await FB.loadSwipes(); FB.listenMatches(); startSrvListeners(); if(FB.initPush) FB.initPush(); if(typeof pendingPair !== "undefined" && pendingPair) tryOpenPair(pendingPair);
       const act = document.querySelector(".screen.active");
       if(S.user && act && (act.id === "screen-welcome" || act.id === "screen-login" || act.id === "screen-discover")){
         renderDeck(); renderProfile(); showScreen("discover");
