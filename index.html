@@ -186,6 +186,17 @@ nav.tabbar .dot{position:absolute;top:8px;right:calc(50% - 20px);background:var(
 .breakdown{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:14px;font-size:15px}
 .breakdown .line{display:flex;justify-content:space-between;padding:4px 0}
 .breakdown .line.total{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-weight:800}
+/* ---------- Comisión 12 %: grande y visible (v31) ---------- */
+.fee-pill{display:block;margin-top:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;font-weight:800;font-size:19px;text-align:center;padding:13px 12px;border-radius:12px;box-shadow:0 8px 20px rgba(217,72,87,.35)}
+.fee-pill small{display:block;font-weight:600;font-size:13px;opacity:.92;margin-top:3px}
+.fee-note{margin-top:12px;background:rgba(224,165,38,.10);border:1.5px solid #e0a526;border-radius:12px;padding:12px 14px;font-size:15.5px;line-height:1.5;color:var(--ink)}
+.fee-note b{font-size:19px;color:#eec25e}
+.fee-banner{margin-top:14px;padding:16px;border:2px solid #e0a526;border-radius:14px;background:rgba(224,165,38,.08);text-align:center}
+.fee-banner-big{font-size:19px;font-weight:800}
+.fee-banner-big b{font-size:28px;color:#eec25e}
+.fee-banner-sub{color:var(--muted);font-size:13.5px;margin-top:4px;line-height:1.45}
+.breakdown .line.fee{font-size:16.5px;font-weight:800;color:#eec25e;padding:7px 0}
+.breakdown .line.net{font-size:16.5px;font-weight:800;padding:7px 0}
 .breakdown .line span:last-child{font-variant-numeric:tabular-nums}
 .profile-head{display:flex;gap:14px;align-items:center;margin-bottom:8px}
 .profile-head .avatar{width:96px;height:96px;font-size:34px;border:2px solid var(--gold);box-shadow:0 10px 24px rgba(255,126,95,.25)}
@@ -315,7 +326,8 @@ nav.tabbar .ic .bic{width:21px;height:21px}
       <button class="role-card" id="pick-instructor">
         <div class="big"><svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.6"/><path d="M9.3 9.1l1.9 1.9 3.5-3.7"/><path d="M8.9 13.6 7 20l5-2.6L17 20l-1.9-6.4"/></svg></div>
         <h3>Soy instructor/a</h3>
-        <p>Perfil público con tu precio por hora, reserva y pago dentro de la app. Comisión del 12&nbsp;% solo si entra una clase pagada. Sin exclusividad.</p>
+        <p>Perfil público con tu precio por hora, reserva y pago dentro de la app. Sin exclusividad.</p>
+        <span class="fee-pill">Comisión ConCompás: <b>12 %</b><small>Solo si entra una clase pagada · 0 % con ConCompás Pro</small></span>
       </button>
     </div>
     <button class="btn-install" id="btn-install" type="button"><svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg>Instalar la app</button>
@@ -377,6 +389,7 @@ nav.tabbar .ic .bic{width:21px;height:21px}
       <div class="field" id="wrap-music"><label>Tipo de música con la que trabajas</label><input type="text" id="f-music" placeholder="P. ej., timba y salsa cubana, bachata moderna…" maxlength="60"></div>
       <div class="field" id="wrap-price"><label>Precio por hora</label>
         <div class="price-wrap"><input type="number" id="f-price" min="10" max="200" step="5" placeholder="45"><span>€ / hora</span></div>
+        <div class="fee-note" id="fee-note">Comisión ConCompás: <b>12 %</b> de cada clase pagada (0 % si eres Pro).<br><span id="fee-net">Precio 45 €/h → recibes <b>39,60 €/h</b></span></div>
       </div>
       <div class="field"><label>Disponibilidad (días)</label>
         <div class="chips multi" id="f-days">
@@ -737,6 +750,8 @@ Object.assign(I18N.fr, {"Sin conexión con el servidor. Revisa tu conexión e in
 Object.assign(I18N.en, {"Sin conexión con el servidor. Revisa tu conexión e inténtalo de nuevo.": "No connection to the server. Check your connection and try again.", "No se pudo guardar tu perfil en el servidor. Inténtalo de nuevo.": "Your profile couldn't be saved on the server. Try again.", "Tu sesión no está conectada. Inicia sesión de nuevo.": "Your session isn't connected. Log in again.", "Tu cuenta no está conectada al servidor: los matches, el chat y los pagos están desactivados.": "Your account isn't connected to the server: matches, chat and payments are disabled.", "Conectar mi cuenta": "Connect my account", "Pagos desactivados: conecta tu cuenta para activar los cobros y ConCompás Pro.": "Payments disabled: connect your account to enable payouts and ConCompás Pro."});
 Object.assign(I18N.fr, {"Tipo de perfil": "Type de profil", "Cambiar a bailador/a": "Passer en danseur/se", "Cambiar a instructor/a": "Passer en professeur", "Cambiar de tipo conserva tu nombre, foto, ciudad, matches y chats.": "Changer de type conserve ton nom, ta photo, ta ville, tes matchs et tes discussions.", "Ahora eres instructor/a: completa tu precio y los niveles que enseñas.": "Tu es maintenant professeur : indique ton prix et les niveaux que tu enseignes.", "Ahora eres bailador/a: completa tu rol, tu nivel y qué buscas.": "Tu es maintenant danseur/se : indique ton rôle, ton niveau et ce que tu cherches."});
 Object.assign(I18N.en, {"Tipo de perfil": "Profile type", "Cambiar a bailador/a": "Switch to dancer", "Cambiar a instructor/a": "Switch to instructor", "Cambiar de tipo conserva tu nombre, foto, ciudad, matches y chats.": "Switching type keeps your name, photo, city, matches and chats.", "Ahora eres instructor/a: completa tu precio y los niveles que enseñas.": "You're now an instructor: set your price and the levels you teach.", "Ahora eres bailador/a: completa tu rol, tu nivel y qué buscas.": "You're now a dancer: set your role, level and what you're looking for."});
+Object.assign(I18N.fr, {"Perfil público con tu precio por hora, reserva y pago dentro de la app. Sin exclusividad.": "Profil public avec ton tarif horaire, réservation et paiement dans l'app. Sans exclusivité.", "Comisión ConCompás: ": "Commission ConCompás : ", "Solo si entra una clase pagada · 0 % con ConCompás Pro": "Seulement si un cours payé est réservé · 0 % avec ConCompás Pro", " de cada clase pagada (0 % si eres Pro).": " de chaque cours payé (0 % si tu es Pro).", "Precio 45 €/h → recibes ": "Prix 45 €/h → tu reçois ", "Precio ": "Prix ", " €/h → recibes ": " €/h → tu reçois ", "Por cada clase pagada se descuenta el 12 % de tu precio; recibes el 88 %. Con ConCompás Pro, la comisión es 0 %.": "Sur chaque cours payé, 12 % de ton prix sont prélevés ; tu reçois 88 %. Avec ConCompás Pro, la commission est de 0 %.", "ConCompás Pro activo: no pagas comisión en tus clases.": "ConCompás Pro actif : tu ne paies aucune commission sur tes cours."});
+Object.assign(I18N.en, {"Perfil público con tu precio por hora, reserva y pago dentro de la app. Sin exclusividad.": "Public profile with your hourly rate, booking and payment in the app. No exclusivity.", "Comisión ConCompás: ": "ConCompás commission: ", "Solo si entra una clase pagada · 0 % con ConCompás Pro": "Only when a paid lesson is booked · 0% with ConCompás Pro", " de cada clase pagada (0 % si eres Pro).": " of each paid lesson (0% if you're Pro).", "Precio 45 €/h → recibes ": "Price €45/h → you receive ", "Precio ": "Price ", " €/h → recibes ": " €/h → you receive ", "Por cada clase pagada se descuenta el 12 % de tu precio; recibes el 88 %. Con ConCompás Pro, la comisión es 0 %.": "Each paid lesson deducts 12% of your price; you receive 88%. With ConCompás Pro, the commission is 0%.", "ConCompás Pro activo: no pagas comisión en tus clases.": "ConCompás Pro active: you pay no commission on your lessons."});
 const REV = {};
 Object.keys(I18N.fr).forEach(k=>{ const nk = norm(k); REV[nk] = nk; REV[norm(I18N.fr[k])] = nk; REV[norm(I18N.en[k])] = nk;
   [nk, norm(I18N.fr[k]), norm(I18N.en[k])].forEach(v=>{ const tv = v.trim(); if(tv.length >= 3 && REV[tv] === undefined) REV[tv] = nk; }); });
@@ -1680,8 +1695,8 @@ function updateBreakdown(){
   const net=Math.round((total-fee)*100)/100;
   document.getElementById("booking-breakdown").innerHTML=
     '<div class="line"><span>'+p.price+' € × '+String(book.dur).replace(".",",")+' h'+(book.pack>1? ' × '+book.pack+t(" clases") : '')+'</span><span>'+total.toFixed(2).replace(".",",")+' €</span></div>'
-    +'<div class="line"><span>'+t("De los cuales, comisión ConCompás (12 %)")+'</span><span>'+fee.toFixed(2).replace(".",",")+' €</span></div>'
-    +'<div class="line"><span>'+t("El instructor recibe")+'</span><span>'+net.toFixed(2).replace(".",",")+' €</span></div>'
+    +'<div class="line fee"><span>'+t("De los cuales, comisión ConCompás (12 %)")+'</span><span>−'+fee.toFixed(2).replace(".",",")+' €</span></div>'
+    +'<div class="line net"><span>'+t("El instructor recibe")+'</span><span>'+net.toFixed(2).replace(".",",")+' €</span></div>'
     +'<div class="line total"><span>'+t("Total a pagar")+'</span><span>'+total.toFixed(2).replace(".",",")+' €</span></div>';
 }
 document.getElementById("booking-cancel").addEventListener("click",()=>document.getElementById("modal-booking").classList.remove("open"));
@@ -1891,6 +1906,10 @@ function renderProfile(){
     const bca=document.getElementById("btn-connect-account"); if(bca) bca.addEventListener("click",()=>showScreen("welcome"));
   }
   if(u.kind==="instructor"){
+    const acc0 = SRV.account || {};
+    const isPro0 = !!(acc0.pro && acc0.pro.active);
+    const feeHtml = '<div class="fee-banner"><div class="fee-banner-big">'+t("Comisión ConCompás: ")+'<b>'+(isPro0 ? "0 %" : "12 %")+'</b></div><div class="fee-banner-sub">'+(isPro0 ? t("ConCompás Pro activo: no pagas comisión en tus clases.") : t("Por cada clase pagada se descuenta el 12 % de tu precio; recibes el 88 %. Con ConCompás Pro, la comisión es 0 %."))+'</div></div>';
+    document.getElementById("profile-view").insertAdjacentHTML("beforeend", feeHtml);
     const proHtml = S.proInterest
       ? '<div style="margin-top:14px;padding:14px;border:1px solid #e0a526;border-radius:14px"><b>'+t("ConCompás Pro para instructores")+'</b><br><span style="color:var(--muted);font-size:13.5px">'+t("Ya estás en la lista de ConCompás Pro ✓")+'</span></div>'
       : '<div style="margin-top:14px;padding:14px;border:1px solid #e0a526;border-radius:14px"><b>'+t("ConCompás Pro para instructores")+'</b><br><span style="color:var(--muted);font-size:13.5px">'+t("19 €/mes: 0 % de comisión en tus clases, perfil verificado prioritario y herramientas de reserva. Los pagos se activan en la siguiente fase: apúntate y te avisamos.")+'</span><div class="row" style="margin-top:10px"><button class="btn" id="btn-pro">'+t("Quiero ser Pro")+'</button></div></div>';
@@ -2306,6 +2325,8 @@ window.addEventListener("appinstalled", function () {
     b.classList.toggle("show", show);
     i.focus();
   }));
+  const fpEl=document.getElementById("f-price"), fnEl=document.getElementById("fee-net");
+  if(fpEl&&fnEl){ const updFeeNet=()=>{ const v=Number(fpEl.value)||45; const net=(Math.round(v*0.88*100)/100).toFixed(2).replace(".",","); fnEl.innerHTML=t("Precio ")+v+t(" €/h → recibes ")+"<b>"+net+t(" €/h")+"</b>"; }; fpEl.addEventListener("input",updFeeNet); }
   document.getElementById("login-form").addEventListener("submit", async e=>{
     e.preventDefault();
     if(!FB.ready){ toast(t("No se pudo completar. Revisa el correo y la contraseña.")); return; }
