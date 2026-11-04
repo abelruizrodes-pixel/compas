@@ -472,6 +472,7 @@ nav.tabbar .ic .bic{width:21px;height:21px}
       <div id="notifs-list"></div>
       <div class="field" style="margin-top:22px"><label>Avisos en este dispositivo</label>
         <p class="screen-sub" id="notif-status"></p>
+        <p class="screen-sub" id="push-debug" style="font-size:12px;opacity:.75"></p>
         <div class="row"><button class="btn secondary" id="btn-notif-enable" type="button">Activar avisos en este dispositivo</button></div>
       </div>
       <div class="field" style="margin-top:14px"><label>Sonido de aviso</label>
@@ -2217,16 +2218,30 @@ window.addEventListener("appinstalled", function () {
     try{ if(window.firebase && firebase.messaging) _messaging = firebase.messaging(); }catch(e){}
     return _messaging;
   }
+  function _perr(e){ return (e && (e.code || e.message)) ? String(e.code || e.message) : String(e); }
+  function _pstat(s){
+    FB._pushStatus = s;
+    try{ const el = document.getElementById("push-debug"); if(el) el.textContent = "Push: " + s; }catch(e){}
+  }
   async function _savePushToken(){
-    const ms = _msg(); if(!ms || !FB.user) return;
+    const ms = _msg(); if(!ms || !FB.user){ _pstat("sin mensajería o sin sesión"); return FB._pushStatus; }
     try{
       const reg = await navigator.serviceWorker.getRegistration();
-      const token = await ms.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: reg || undefined });
-      if(token) await db.collection("users").doc(FB.user.uid).set({ fcmTokens: firebase.firestore.FieldValue.arrayUnion(token), pushAt: Date.now() }, { merge: true });
-    }catch(e){}
+      let token = "";
+      try{ token = await ms.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: reg || undefined }); }
+      catch(e1){ token = await ms.getToken({ vapidKey: VAPID_KEY }); }
+      if(token){
+        await db.collection("users").doc(FB.user.uid).set({ fcmTokens: firebase.firestore.FieldValue.arrayUnion(token), pushAt: Date.now() }, { merge: true });
+        _pstat("token registrado ✓");
+      } else _pstat("token vacío");
+    }catch(e){ _pstat("error: " + _perr(e)); }
+    return FB._pushStatus;
   }
   FB.initPush = function(){
-    const ms = _msg(); if(!ms) return;
+    let supported = true;
+    try{ if(firebase.messaging && firebase.messaging.isSupported) supported = firebase.messaging.isSupported(); }catch(e){ supported = false; }
+    if(!supported){ _pstat("este navegador no admite push"); return; }
+    const ms = _msg(); if(!ms){ _pstat("mensajería no disponible"); return; }
     if(!FB._pushInit){
       FB._pushInit = true;
       ms.onMessage(function(payload){
@@ -2243,14 +2258,18 @@ window.addEventListener("appinstalled", function () {
   };
   FB.activatePush = async function(){
     if(!("Notification" in window)) return "unsupported";
-    const ms = _msg(); if(!ms) return "unsupported";
+    let supported = true;
+    try{ if(firebase.messaging && firebase.messaging.isSupported) supported = firebase.messaging.isSupported(); }catch(e){ supported = false; }
+    if(!supported){ _pstat("este navegador no admite push"); toast(t("Este navegador no admite avisos push.")); return "unsupported"; }
+    const ms = _msg(); if(!ms){ _pstat("mensajería no disponible"); return "unsupported"; }
     try{
       const perm = await Notification.requestPermission();
       if(perm !== "granted") return perm;
       FB.initPush();
-      await _savePushToken();
+      const st = await _savePushToken();
+      if(st !== "token registrado \u2713") toast("Avisos: " + st);
       return "granted";
-    }catch(e){ return "error"; }
+    }catch(e){ _pstat("error: " + _perr(e)); toast("Avisos: error"); return "error"; }
   };
   function init(){
     if(!window.firebase || !firebase.auth || !firebase.firestore) return false;
