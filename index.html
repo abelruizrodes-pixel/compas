@@ -294,6 +294,29 @@ nav.tabbar .ic .bic{width:21px;height:21px}
 .legal-box h4{font-size:15px;margin-bottom:8px}
 .legal-box p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:6px}
 .legal-box a{color:#7fe7dc}
+/* ---------- Correcciones UX/UI v32 (revisión 10-11-2026) ---------- */
+.field .input-icon input{padding:15px 48px 15px 46px}
+.field .input-icon input::placeholder{color:#8fa2ba}
+.pw-toggle{width:44px;height:44px;right:2px}
+.pw-toggle svg{width:22px;height:22px}
+.field label.check{display:flex;gap:12px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:14.5px;font-weight:600;color:var(--ink);padding:10px 0;min-height:44px;margin-bottom:0}
+.field label.check input{width:22px;height:22px;margin-top:1px;flex:none}
+.field label.check span{min-width:0}
+.toast{width:max-content;max-width:min(400px,88vw)}
+.screen{scrollbar-width:thin;scrollbar-color:#454552 transparent}
+.screen::-webkit-scrollbar{width:6px;height:6px}
+.screen::-webkit-scrollbar-thumb{background:#454552;border-radius:99px}
+.screen::-webkit-scrollbar-track{background:transparent}
+.pcard .body{scrollbar-width:thin;scrollbar-color:#454552 transparent}
+.pcard .body::-webkit-scrollbar{width:5px}
+.pcard .body::-webkit-scrollbar-thumb{background:#454552;border-radius:99px}
+#f-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+#f-days .chip{text-align:center;padding:9px 2px}
+#f-langs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#f-langs .chip{text-align:center}
+.legal-foot{margin-top:20px;text-align:center;font-size:13px;line-height:1.9;color:var(--muted)}
+.legal-foot a{color:#7fe7dc}
+@media(min-width:480px){body{background:radial-gradient(60% 50% at 50% 0%,rgba(255,126,95,.15),transparent 70%),radial-gradient(45% 38% at 88% 100%,rgba(46,196,182,.10),transparent 70%),#07070b}#phone{box-shadow:0 0 90px rgba(0,0,0,.85)}}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -334,6 +357,7 @@ nav.tabbar .ic .bic{width:21px;height:21px}
     <button class="btn secondary" id="btn-share" type="button" style="margin-top:10px">Compartir la app</button>
     <button class="btn secondary" id="btn-login-open" type="button" style="margin-top:10px">Ya tengo cuenta</button>
     <div class="demo-note"><strong>Cuentas reales ya activas:</strong> crea tu cuenta y tu perfil se verá en los dispositivos de tu ciudad. También verás perfiles de demostración. El pago de las clases con instructores reales se hace con tarjeta, de forma segura.</div>
+    <div class="legal-foot"><a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a> · <a href="terminos.html" target="_blank" rel="noopener">Términos del servicio</a> · <a href="eliminar-cuenta.html" target="_blank" rel="noopener">Eliminar mi cuenta</a></div>
   </section>
 
   <!-- INSCRIPCIÓN -->
@@ -450,6 +474,7 @@ nav.tabbar .ic .bic{width:21px;height:21px}
       </div>
       <p class="mini-note" style="margin-top:10px"><a href="#" id="link-forgot">¿Has olvidado tu contraseña?</a></p>
       <p class="mini-note" style="margin-top:12px">¿Aún no tienes cuenta? Vuelve atrás y elige «Soy bailador/a» o «Soy instructor/a» para crearla.</p>
+      <div class="legal-foot"><a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a> · <a href="terminos.html" target="_blank" rel="noopener">Términos del servicio</a> · <a href="eliminar-cuenta.html" target="_blank" rel="noopener">Eliminar mi cuenta</a></div>
     </form>
   </section>
 
@@ -468,7 +493,7 @@ nav.tabbar .ic .bic{width:21px;height:21px}
     </header>
 
     <!-- DESCUBRIR -->
-    <section class="screen active" id="screen-discover" style="padding:0">
+    <section class="screen" id="screen-discover" style="padding:0">
       <div class="filters" id="filters">
         <button class="chip on" data-f="todos">Todos</button>
         <button class="chip" data-f="bailadores">Bailadores</button>
@@ -752,6 +777,8 @@ Object.assign(I18N.fr, {"Tipo de perfil": "Type de profil", "Cambiar a bailador/
 Object.assign(I18N.en, {"Tipo de perfil": "Profile type", "Cambiar a bailador/a": "Switch to dancer", "Cambiar a instructor/a": "Switch to instructor", "Cambiar de tipo conserva tu nombre, foto, ciudad, matches y chats.": "Switching type keeps your name, photo, city, matches and chats.", "Ahora eres instructor/a: completa tu precio y los niveles que enseñas.": "You're now an instructor: set your price and the levels you teach.", "Ahora eres bailador/a: completa tu rol, tu nivel y qué buscas.": "You're now a dancer: set your role, level and what you're looking for."});
 Object.assign(I18N.fr, {"Perfil público con tu precio por hora, reserva y pago dentro de la app. Sin exclusividad.": "Profil public avec ton tarif horaire, réservation et paiement dans l'app. Sans exclusivité.", "Comisión ConCompás: ": "Commission ConCompás : ", "Solo si entra una clase pagada · 0 % con ConCompás Pro": "Seulement si un cours payé est réservé · 0 % avec ConCompás Pro", " de cada clase pagada (0 % si eres Pro).": " de chaque cours payé (0 % si tu es Pro).", "Precio 45 €/h → recibes ": "Prix 45 €/h → tu reçois ", "Precio ": "Prix ", " €/h → recibes ": " €/h → tu reçois ", "Por cada clase pagada se descuenta el 12 % de tu precio; recibes el 88 %. Con ConCompás Pro, la comisión es 0 %.": "Sur chaque cours payé, 12 % de ton prix sont prélevés ; tu reçois 88 %. Avec ConCompás Pro, la commission est de 0 %.", "ConCompás Pro activo: no pagas comisión en tus clases.": "ConCompás Pro actif : tu ne paies aucune commission sur tes cours."});
 Object.assign(I18N.en, {"Perfil público con tu precio por hora, reserva y pago dentro de la app. Sin exclusividad.": "Public profile with your hourly rate, booking and payment in the app. No exclusivity.", "Comisión ConCompás: ": "ConCompás commission: ", "Solo si entra una clase pagada · 0 % con ConCompás Pro": "Only when a paid lesson is booked · 0% with ConCompás Pro", " de cada clase pagada (0 % si eres Pro).": " of each paid lesson (0% if you're Pro).", "Precio 45 €/h → recibes ": "Price €45/h → you receive ", "Precio ": "Price ", " €/h → recibes ": " €/h → you receive ", "Por cada clase pagada se descuenta el 12 % de tu precio; recibes el 88 %. Con ConCompás Pro, la comisión es 0 %.": "Each paid lesson deducts 12% of your price; you receive 88%. With ConCompás Pro, the commission is 0%.", "ConCompás Pro activo: no pagas comisión en tus clases.": "ConCompás Pro active: you pay no commission on your lessons."});
+Object.assign(I18N.fr, {"VALIDACIÓN · LUXEMBURGO": "VALIDATION · LUXEMBOURG", "tu@correo.com": "ton@exemple.com", "Tu nombre": "Ton nom", " de ConCompás.": " de ConCompás."});
+Object.assign(I18N.en, {"VALIDACIÓN · LUXEMBURGO": "VALIDATION · LUXEMBOURG", "tu@correo.com": "you@example.com", "Tu nombre": "Your name", "Mostrar contraseña": "Show password", " de ConCompás.": " of ConCompás."});
 const REV = {};
 Object.keys(I18N.fr).forEach(k=>{ const nk = norm(k); REV[nk] = nk; REV[norm(I18N.fr[k])] = nk; REV[norm(I18N.en[k])] = nk;
   [nk, norm(I18N.fr[k]), norm(I18N.en[k])].forEach(v=>{ const tv = v.trim(); if(tv.length >= 3 && REV[tv] === undefined) REV[tv] = nk; }); });
@@ -786,6 +813,13 @@ function applyI18n(){
     const k = norm(el.getAttribute("placeholder")).trim();
     const esKey = (REV[k] !== undefined) ? REV[k] : REV[norm(el.getAttribute("placeholder"))];
     if(esKey !== undefined) el.setAttribute("placeholder", (S.lang === "es") ? esKey : (dict[esKey] !== undefined ? dict[esKey] : esKey));
+  });
+  ["aria-label","title"].forEach(attr=>{
+    document.querySelectorAll("["+attr+"]").forEach(el=>{
+      const k = norm(el.getAttribute(attr)).trim();
+      const esKey = (REV[k] !== undefined) ? REV[k] : REV[norm(el.getAttribute(attr))];
+      if(esKey !== undefined) el.setAttribute(attr, (S.lang === "es") ? esKey : (dict[esKey] !== undefined ? dict[esKey] : esKey));
+    });
   });
 }
 function setLang(l){
@@ -1103,8 +1137,8 @@ function cardHTML(p){
   const music = p.kind==="instructor" ? '<span class="tag gold">'+ICONS.note+' '+esc(p.music)+'</span>' : "";
   const taughtTag = p.kind==="instructor" && taughtOf(p)>0 ? '<span class="tag gold">✓ '+taughtOf(p)+t(" clases impartidas")+'</span>' : "";
   return '<article class="pcard" data-id="'+p.id+'">'
-    + '<div class="photo" style="background:linear-gradient(150deg,'+g1+','+g2+')">'
-    + '<div class="initials">'+esc(initials(p.name))+'</div>'
+    + '<div class="photo" style="background:'+(p.photo? 'linear-gradient(165deg,rgba(8,8,12,.02) 40%,rgba(8,8,12,.52)),url('+p.photo+') center/cover no-repeat,' : '')+'linear-gradient(150deg,'+g1+','+g2+')">'
+    + (p.photo? '' : '<div class="initials">'+esc(initials(p.name))+'</div>')
     + '<div class="stamp like">A BAILAR</div><div class="stamp pass">PASO</div>'
     + '<div class="kind">'+(p.kind==="instructor"?ICONS.medal+" "+t("Instructor/a"):ICONS.dancers+" "+t("Bailador/a"))+'</div>'+price+compat+'</div>'
     + '<div class="body"><h3>'+esc(p.name)+' <span class="age">'+(p.age||"")+'</span></h3>'
