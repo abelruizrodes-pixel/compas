@@ -1,5 +1,5 @@
 /* ConCompás — service worker: caché de la app para instalación y uso sin conexión */
-const CACHE = "concompas-v33";
+const CACHE = "concompas-v34";
 
 /* ===== Push (FCM): avisos con la app cerrada ===== */
 importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
