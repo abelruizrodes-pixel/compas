@@ -59,7 +59,7 @@ h2.screen-title{font-size:24px;margin:8px 0 4px}
 p.screen-sub{color:var(--muted);font-size:14px;margin-bottom:18px;line-height:1.5}
 .field{margin-bottom:16px}
 .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px;letter-spacing:.3px;text-transform:uppercase}
-.field input[type=text],.field input[type=number],.field select{width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;outline:none}
+.field input[type=text],.field input[type=number],.field input[type=email],.field input[type=password],.field select,.field textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;outline:none;color:var(--ink)}
 .field input:focus,.field select:focus{border-color:var(--gold2)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:14px}
@@ -1660,7 +1660,7 @@ function renderProfile(){
   if(u.kind==="instructor"){
     const proHtml = S.proInterest
       ? '<div style="margin-top:14px;padding:14px;border:1px solid #e0a526;border-radius:14px"><b>'+t("ConCompás Pro para instructores")+'</b><br><span style="color:var(--muted);font-size:13.5px">'+t("Ya estás en la lista de ConCompás Pro ✓")+'</span><div class="row" style="margin-top:10px"><button class="btn" id="btn-pro-rev">'+t("Pagar con Revolut")+'</button></div></div>'
-      : '<div style="margin-top:14px;padding:14px;border:1px solid #e0a526;border-radius:14px"><b>'+t("ConCompás Pro para instructores")+'</b><br><span style="color:var(--muted);font-size:13.5px">'+t("19 €/mes: 0 % de comisión en tus clases, perfil verificado prioritario y herramientas de reserva. Paga tu primer mes con Revolut y te activamos el Pro.")+'</span><div class="row" style="margin-top:10px"><button class="btn" id="btn-pro">'+t("Quiero ser Pro")+'</button><button class="btn" id="btn-pro-rev" style="margin-left:8px">'+t("Pagar con Revolut")+'</button></div></div>';
+      : '<div style="margin-top:14px;padding:14px;border:1px solid #e0a526;border-radius:14px"><b>'+t("ConCompás Pro para instructores")+'</b><br><span style="color:var(--muted);font-size:13.5px">'+t("19 €/mes: 0 % de comisión en tus clases, perfil verificado prioritario y herramientas de reserva. Paga tu primer mes con Revolut y te activamos el Pro.")+'</span><div class="row" style="margin-top:10px;display:flex;flex-direction:column;gap:10px"><button class="btn" id="btn-pro">'+t("Quiero ser Pro")+'</button><button class="btn" id="btn-pro-rev">'+t("Pagar con Revolut")+'</button></div></div>';
     document.getElementById("profile-view").insertAdjacentHTML("beforeend", proHtml);
     const bp=document.getElementById("btn-pro"); if(bp) bp.addEventListener("click",()=>{ S.proInterest=true; save(); renderProfile(); toast(t("Anotado: te avisaremos cuando activemos ConCompás Pro.")); });
     const brv=document.getElementById("btn-pro-rev"); if(brv) brv.addEventListener("click",()=>{ window.open("https://checkout.revolut.com/pay/273aac5a-db4d-4109-bb95-749ba6b70e83","_blank"); });
