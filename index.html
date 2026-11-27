@@ -269,6 +269,35 @@ nav.tabbar .ic .bic{width:21px;height:21px}
 .legal-box h4{font-size:15px;margin-bottom:8px}
 .legal-box p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:6px}
 .legal-box a{color:#7fe7dc}
+
+/* ===== Eventos Singles (piloto) ===== */
+.sg-card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:16px}
+.sg-card img{width:100%;height:170px;object-fit:cover;display:block}
+.sg-body{padding:14px 16px 16px}
+.sg-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.sg-tag{font-size:11px;padding:4px 9px;border-radius:999px;background:var(--card2);color:var(--muted)}
+.sg-tag.gold{color:var(--gold2);border:1px solid var(--line)}
+.sg-title{font-size:19px;font-weight:700;margin-bottom:4px}
+.sg-meta{color:var(--muted);font-size:13.5px;line-height:1.45}
+.sg-desc{font-size:14px;line-height:1.5;margin-top:8px}
+.sg-quota{margin-top:10px}
+.sg-qrow{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:6px}
+.sg-qrow .lab{width:38px;flex:none}
+.sg-bar{flex:1;height:8px;border-radius:99px;background:var(--card2);overflow:hidden}
+.sg-bar i{display:block;height:100%;border-radius:99px}
+.sg-bar i.f{background:#f78fb3}
+.sg-bar i.m{background:#6cb2f5}
+.sg-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:10px}
+.sg-price{font-size:19px;font-weight:800}
+.sg-price small{font-size:12px;color:var(--muted);font-weight:400}
+.btn.sg-book{width:auto;padding:12px 22px}
+.sg-h{font-size:19px;margin:24px 0 6px}
+.sg-mine-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.btn.sg-cancel{width:auto;padding:10px 16px;font-size:14px}
+.sg-conn-card{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.sg-ava{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px;color:#14100d;flex:none}
+.sg-conn-info{flex:1;min-width:0}
+.sg-mutual{background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:14px 16px;margin-top:4px;font-size:14.5px;line-height:1.5}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -483,6 +512,25 @@ nav.tabbar .ic .bic{width:21px;height:21px}
       <div id="bookings-list"></div>
     </section>
 
+    <!-- EVENTOS SINGLES -->
+    <section class="screen" id="screen-singles">
+      <h2 class="screen-title">Eventos Singles</h2>
+      <p class="screen-sub">Eventos presenciales para solteros en Luxemburgo: salsa, yoga, speed dating y fiestas temáticas. Cupos equilibrados para ellas y ellos, rangos de edad cerrados y perfiles verificados. Piloto de diciembre: el pago es simulado.</p>
+      <div class="chips" id="sg-filters" style="margin-bottom:16px">
+        <button type="button" class="chip on" data-a="todos">Todos</button>
+        <button type="button" class="chip" data-a="25-35">25 – 35</button>
+        <button type="button" class="chip" data-a="35-45">35 – 45</button>
+        <button type="button" class="chip" data-a="45-60">45 – 60</button>
+      </div>
+      <div id="sg-grid"></div>
+      <h3 class="sg-h">Mis plazas</h3>
+      <div id="sg-mine"></div>
+      <h3 class="sg-h">Tus conexiones</h3>
+      <p class="screen-sub">Demo: así se ve después de un evento. Marca a quién quieres volver a ver; si es mutuo, se abre el chat dentro de ConCompás. Si no, nadie lo sabe.</p>
+      <div id="sg-conn"></div>
+      <div id="sg-mutual" class="sg-mutual hidden"></div>
+    </section>
+
     <!-- PERFIL -->
     <section class="screen" id="screen-profile">
       <h2 class="screen-title">Mi perfil</h2>
@@ -536,9 +584,27 @@ nav.tabbar .ic .bic{width:21px;height:21px}
       <button data-tab="discover" class="on"><span class="ic"><svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M15.5 8.5 13.4 13.4 8.5 15.5 10.6 10.6z"/></svg></span>Descubrir</button>
       <button data-tab="matches"><span class="ic"><svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v8a1.5 1.5 0 0 1-1.5 1.5H12l-4.6 4.2v-4.2H5.5A1.5 1.5 0 0 1 4 13.5z"/><path d="M8.2 9.6h.01M12 9.6h.01M15.8 9.6h.01"/></svg></span>Matches<span class="dot hidden" id="matches-dot">0</span></button>
       <button data-tab="bookings"><span class="ic"><svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10.5h16M8.5 3.5v4M15.5 3.5v4"/></svg></span>Reservas<span class="dot hidden" id="bookings-dot">0</span></button>
+      <button data-tab="singles"><span class="ic"><svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.2S3.6 15 2.4 9.9C1.5 6.2 4 3.5 7.3 3.5c2 0 3.7 1.1 4.7 2.8 1-1.7 2.7-2.8 4.7-2.8 3.3 0 5.8 2.7 4.9 6.4C20.4 15 12 20.2 12 20.2z"/></svg></span>Singles</button>
       <button data-tab="profile"><span class="ic"><svg class="bic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.2-3.4 3.8-5 7-5s5.8 1.6 7 5"/></svg></span>Mi perfil</button>
     </nav>
   </main>
+</div>
+
+<!-- MODAL EVENTOS SINGLES -->
+<div class="modal-veil" id="modal-singles">
+  <div class="modal">
+    <h3 id="sgm-title">Reservar</h3>
+    <p id="sgm-meta"></p>
+    <div class="field"><label>Plaza para</label>
+      <div class="chips" id="sgm-sex">
+        <button type="button" class="chip" data-s="F">Ella</button>
+        <button type="button" class="chip" data-s="M">Él</button>
+      </div>
+    </div>
+    <p id="sgm-note"></p>
+    <div class="row"><button class="btn" id="sgm-pay">Pagar y reservar</button></div>
+    <div class="row"><button class="btn secondary" id="sgm-cancel">Cancelar</button></div>
+  </div>
 </div>
 
 <!-- MODAL MATCH -->
@@ -762,7 +828,7 @@ function showScreen(id){
   document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active", s.id==="screen-"+id));
   const actScr=document.getElementById("screen-"+id); if(actScr) actScr.scrollTop=0;
   window.scrollTo(0,0);
-  const inApp = ["discover","matches","bookings","profile","chat","notifs","likesin"].includes(id);
+  const inApp = ["discover","matches","bookings","profile","chat","notifs","likesin","singles"].includes(id);
   document.getElementById("screen-welcome").classList.toggle("active", id==="welcome");
   document.getElementById("screen-signup").classList.toggle("active", id==="signup");
   document.getElementById("app-main").classList.toggle("hidden", !inApp);
@@ -1994,6 +2060,140 @@ window.addEventListener("appinstalled", function () {
     });
   }
 })();
+</script>
+<script>
+/* ===== ConCompás · Eventos Singles (piloto, integrado 19-11-2026) ===== */
+var SG_EVENTS=[
+ {id:'salsa', img:'singles/salsa.jpg', tag:'Clase + social', range:'25-35', title:'Salsa Singles Night', when:'Viernes 4 diciembre · 20:00', place:'Studio ConCompás, Luxemburgo', desc:'Clase de salsa con rotación de parejas y social después. No hace falta venir con pareja ni saber bailar.', price:20, capF:12, capM:12, baseF:9, baseM:11},
+ {id:'speed', img:'singles/speed.jpg', tag:'Citas a ciegas', range:'35-45', title:'Speed Dating', when:'Jueves 10 diciembre · 19:30', place:'Bar en el centro, Luxemburgo', desc:'10 mini-citas de 6 minutos con copa incluida. Al final, marcas tus conexiones en la app.', price:25, capF:10, capM:10, baseF:10, baseM:8},
+ {id:'yoga', img:'singles/yoga.jpg', tag:'Bienestar', range:'35-45', title:'Yoga + Brunch', when:'Sábado 12 diciembre · 11:00', place:'Estudio en Limpertsberg', desc:'Sesión suave de yoga para todos los niveles y brunch saludable después, en mesas pequeñas.', price:30, capF:10, capM:10, baseF:7, baseM:5},
+ {id:'fiesta', img:'singles/hero.jpg', tag:'Fiesta temática', range:'45-60', title:'Fiesta temática: Vinilos & Vino', when:'Sábado 19 diciembre · 21:00', place:'Sala en Hollerich, Luxemburgo', desc:'Trae tu vinilo favorito, nosotros ponemos el vino y el tocadiscos. El evento grande del mes.', price:35, capF:20, capM:20, baseF:14, baseM:12}
+];
+var SG_PEOPLE=[
+ {id:'laura', name:'Laura', age:34, note:'Salsa Singles Night · le encanta la bachata', f:true, mutual:false},
+ {id:'marc', name:'Marc', age:38, note:'Salsa Singles Night · primerizo, muy majo', f:false, mutual:true},
+ {id:'sofia', name:'Sofía', age:41, note:'Yoga + Brunch · profesora de pilates', f:true, mutual:false}
+];
+var sgFilter='todos', sgCur=null, sgSex=null;
+var sgState={b:{}, likes:[]};
+try{ var sgSaved=localStorage.getItem('cc_singles_v1'); if(sgSaved){ var p=JSON.parse(sgSaved); if(p && p.b) sgState=p; } }catch(e){}
+function sgSave(){ try{ localStorage.setItem('cc_singles_v1', JSON.stringify(sgState)); }catch(e){} }
+function sgT(s){ return (typeof t==='function') ? t(s) : s; }
+function sgEv(id){ for(var i=0;i<SG_EVENTS.length;i++) if(SG_EVENTS[i].id===id) return SG_EVENTS[i]; return null; }
+function sgCounts(ev){ var f=ev.baseF, m=ev.baseM, b=sgState.b[ev.id]; if(b==='F') f++; if(b==='M') m++; return {f:f, m:m}; }
+function sgBar(n, cap, cls){ var pc=Math.min(100, Math.round(n/cap*100)); return '<span class="sg-bar"><i class="'+cls+'" style="width:'+pc+'%"></i></span>'; }
+function sgCard(ev){
+  var c=sgCounts(ev), b=sgState.b[ev.id], btn='';
+  if(b==='F'||b==='M') btn='<button class="btn sg-book" disabled>'+sgT('Reservado ✓')+'</button>';
+  else if(b==='WF'||b==='WM') btn='<button class="btn sg-book" disabled>'+sgT('En lista de espera')+'</button>';
+  else btn='<button class="btn sg-book" data-book="'+ev.id+'">'+sgT('Reservar')+'</button>';
+  return '<article class="sg-card"><img src="'+ev.img+'" alt="">'
+   +'<div class="sg-body"><div class="sg-tags"><span class="sg-tag gold">'+sgT(ev.tag)+'</span><span class="sg-tag">'+ev.range.replace('-','–')+' '+sgT('años')+'</span></div>'
+   +'<div class="sg-title">'+ev.title+'</div>'
+   +'<div class="sg-meta">'+ev.when+'<br>'+ev.place+'</div>'
+   +'<p class="sg-desc">'+ev.desc+'</p>'
+   +'<div class="sg-quota"><div class="sg-qrow"><span class="lab">'+sgT('Ellas')+'</span>'+sgBar(c.f, ev.capF, 'f')+'<span>'+c.f+'/'+ev.capF+(c.f>=ev.capF?' · '+sgT('completo'):'')+'</span></div>'
+   +'<div class="sg-qrow"><span class="lab">'+sgT('Ellos')+'</span>'+sgBar(c.m, ev.capM, 'm')+'<span>'+c.m+'/'+ev.capM+(c.m>=ev.capM?' · '+sgT('completo'):'')+'</span></div></div>'
+   +'<div class="sg-foot"><span class="sg-price">'+ev.price+' € <small>'+sgT('/ persona')+'</small></span>'+btn+'</div>'
+   +'</div></article>';
+}
+function sgRenderGrid(){
+  var g=document.getElementById('sg-grid'); if(!g) return;
+  var html='';
+  SG_EVENTS.forEach(function(ev){ if(sgFilter==='todos'||ev.range===sgFilter) html+=sgCard(ev); });
+  g.innerHTML=html || '<p class="screen-sub">'+sgT('Sin eventos en este rango.')+'</p>';
+  g.querySelectorAll('[data-book]').forEach(function(btn){ btn.addEventListener('click', function(){ sgOpen(btn.dataset.book); }); });
+}
+function sgRenderMine(){
+  var box=document.getElementById('sg-mine'); if(!box) return;
+  var ids=Object.keys(sgState.b);
+  if(!ids.length){ box.innerHTML='<p class="screen-sub">'+sgT('Aún no tienes plazas en Eventos Singles.')+'</p>'; return; }
+  var html='';
+  ids.forEach(function(id){ var ev=sgEv(id); if(!ev) return; var b=sgState.b[id];
+    var kind=(b==='WF'||b==='WM') ? sgT('Lista de espera') : sgT('Plaza reservada');
+    var sex=(b==='F'||b==='WF') ? sgT('Ellas') : sgT('Ellos');
+    html+='<div class="sg-mine-row"><div><strong>'+ev.title+'</strong><div class="sg-meta">'+ev.when+' · '+kind+' ('+sex+')</div></div>'
+      +'<button class="btn secondary sg-cancel" data-cancel="'+id+'">'+sgT('Cancelar')+'</button></div>';
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('[data-cancel]').forEach(function(btn){ btn.addEventListener('click', function(){
+    delete sgState.b[btn.dataset.cancel]; sgSave(); renderSingles(); toast(sgT('Reserva cancelada.'));
+  }); });
+}
+function sgRenderConn(){
+  var box=document.getElementById('sg-conn'); if(!box) return;
+  var html='';
+  SG_PEOPLE.forEach(function(p){
+    var liked=sgState.likes.indexOf(p.id)>=0;
+    html+='<div class="sg-conn-card"><div class="sg-ava" style="background:'+(p.f?'#f78fb3':'#6cb2f5')+'">'+p.name.charAt(0)+'</div>'
+      +'<div class="sg-conn-info"><strong>'+p.name+', '+p.age+'</strong><div class="sg-meta">'+p.note+'</div></div>'
+      +'<button class="chip'+(liked?' on':'')+'" data-like="'+p.id+'">♥ '+(p.f?sgT('Quiero volver a verla'):sgT('Quiero volver a verlo'))+'</button></div>';
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('[data-like]').forEach(function(btn){ btn.addEventListener('click', function(){
+    var id=btn.dataset.like, i=sgState.likes.indexOf(id);
+    if(i>=0) sgState.likes.splice(i,1); else sgState.likes.push(id);
+    sgSave(); sgRenderConn();
+  }); });
+  var mut=document.getElementById('sg-mutual');
+  var mp=null;
+  SG_PEOPLE.forEach(function(p){ if(p.mutual && sgState.likes.indexOf(p.id)>=0) mp=p; });
+  if(mp){ mut.innerHTML='💛 <strong>'+sgT('¡Es mutuo!')+'</strong> '+sgT('Tú y ')+mp.name+sgT(' os habéis marcado. Ya podéis hablar en el chat de ConCompás.'); mut.classList.remove('hidden'); }
+  else mut.classList.add('hidden');
+}
+function renderSingles(){ sgRenderGrid(); sgRenderMine(); sgRenderConn(); }
+function sgOpen(id){
+  sgCur=sgEv(id); sgSex=null; if(!sgCur) return;
+  document.getElementById('sgm-title').textContent=sgCur.title;
+  document.getElementById('sgm-meta').textContent=sgCur.when+' · '+sgCur.place+' · '+sgCur.price+' €';
+  document.querySelectorAll('#sgm-sex .chip').forEach(function(ch){ ch.classList.remove('on'); });
+  sgUpdModal();
+  document.getElementById('modal-singles').classList.add('open');
+}
+function sgClose(){ document.getElementById('modal-singles').classList.remove('open'); }
+function sgUpdModal(){
+  var note=document.getElementById('sgm-note'), pay=document.getElementById('sgm-pay');
+  if(!sgCur) return;
+  var c=sgCounts(sgCur);
+  if(!sgSex){ note.textContent=sgT('Elige para quién es la plaza: los cupos de ellas y ellos van por separado para mantener el equilibrio.'); pay.textContent=sgT('Pagar y reservar'); return; }
+  var full=(sgSex==='F' && c.f>=sgCur.capF)||(sgSex==='M' && c.m>=sgCur.capM);
+  if(full){ note.textContent=sgT('Ese cupo está completo: entras en lista de espera y la plaza solo se libera en pares, para no romper el ratio.'); pay.textContent=sgT('Unirme a la lista de espera'); }
+  else { note.textContent=sgT('Pago simulado del piloto: no se hace ningún cargo real.'); pay.textContent=sgT('Pagar ')+sgCur.price+' €'+sgT(' y reservar'); }
+}
+(function(){
+  var tab=document.querySelector('#tabbar [data-tab="singles"]');
+  if(tab) tab.addEventListener('click', renderSingles);
+  document.querySelectorAll('#sg-filters .chip').forEach(function(ch){ ch.addEventListener('click', function(){
+    document.querySelectorAll('#sg-filters .chip').forEach(function(x){ x.classList.remove('on'); });
+    ch.classList.add('on'); sgFilter=ch.dataset.a; sgRenderGrid();
+  }); });
+  document.querySelectorAll('#sgm-sex .chip').forEach(function(ch){ ch.addEventListener('click', function(){
+    document.querySelectorAll('#sgm-sex .chip').forEach(function(x){ x.classList.remove('on'); });
+    ch.classList.add('on'); sgSex=ch.dataset.s; sgUpdModal();
+  }); });
+  document.getElementById('sgm-cancel').addEventListener('click', sgClose);
+  document.getElementById('modal-singles').addEventListener('click', function(e){ if(e.target.id==='modal-singles') sgClose(); });
+  document.getElementById('sgm-pay').addEventListener('click', function(){
+    if(!sgCur) return;
+    if(!sgSex){ toast(sgT('Elige si la plaza es para ella o para él.')); return; }
+    var c=sgCounts(sgCur);
+    var full=(sgSex==='F' && c.f>=sgCur.capF)||(sgSex==='M' && c.m>=sgCur.capM);
+    sgState.b[sgCur.id]= full ? ('W'+sgSex) : sgSex;
+    sgSave(); sgClose(); renderSingles();
+    toast(full ? sgT('Estás en la lista de espera de ')+sgCur.title+'.' : sgT('¡Plaza reservada! Nos vemos en ')+sgCur.title+'.');
+  });
+  try{
+    if(typeof I18N_N!=='undefined'){
+      var nz=(typeof norm==='function')?norm:function(s){return s;};
+      var SG_FR={'Eventos Singles':'Événements Singles','Mis plazas':'Mes places','Reservar':'Réserver','Reservado ✓':'Réservé ✓','En lista de espera':'Sur liste d’attente','Ellas':'Femmes','Ellos':'Hommes','Tus conexiones':'Tes connexions','Quiero volver a verla':'Je veux la revoir','Quiero volver a verlo':'Je veux le revoir','/ persona':'/ personne','Plaza para':'Place pour','Ella':'Femme','Él':'Homme','Pagar y reservar':'Payer et réserver','Cancelar':'Annuler','Clase + social':'Cours + social','Citas a ciegas':'Speed dating','Bienestar':'Bien-être','Fiesta temática':'Soirée à thème','años':'ans','completo':'complet','Lista de espera':'Liste d’attente','Plaza reservada':'Place réservée','Reserva cancelada.':'Réservation annulée.','¡Es mutuo!':'C’est mutuel !'};
+      var SG_EN={'Eventos Singles':'Singles Events','Mis plazas':'My spots','Reservar':'Book','Reservado ✓':'Booked ✓','En lista de espera':'On the waitlist','Ellas':'Women','Ellos':'Men','Tus conexiones':'Your connections','Quiero volver a verla':'I want to see her again','Quiero volver a verlo':'I want to see him again','/ persona':'/ person','Plaza para':'Spot for','Ella':'Woman','Él':'Man','Pagar y reservar':'Pay and book','Cancelar':'Cancel','Clase + social':'Class + social','Citas a ciegas':'Speed dating','Bienestar':'Wellness','Fiesta temática':'Themed party','años':'years old','completo':'full','Lista de espera':'Waitlist','Plaza reservada':'Spot booked','Reserva cancelada.':'Booking cancelled.','¡Es mutuo!':'It’s mutual!'};
+      Object.keys(SG_FR).forEach(function(k){ if(I18N_N.fr) I18N_N.fr[nz(k)]=SG_FR[k]; });
+      Object.keys(SG_EN).forEach(function(k){ if(I18N_N.en) I18N_N.en[nz(k)]=SG_EN[k]; });
+    }
+  }catch(e){}
+  renderSingles();
+})();
+
 </script>
 </body>
 </html>
